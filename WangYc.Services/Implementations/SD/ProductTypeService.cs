@@ -8,12 +8,13 @@ using WangYc.Core.Infrastructure.Querying;
 using WangYc.Core.Infrastructure.UnitOfWork;
 using WangYc.Models.Repository.SD;
 using WangYc.Models.SD;
+using WangYc.Services.Interfaces.SD;
 using WangYc.Services.Mapping.SD;
 using WangYc.Services.Messaging.SD;
 using WangYc.Services.ViewModels.SD;
 
 namespace WangYc.Services.Implementations.SD {
-    public class ProductTypeService {
+    public class ProductTypeService : IProductTypeService {
       
         private readonly IProductTypeRepository _productTypeRepository;
         private readonly IUnitOfWork _uow;

@@ -4,6 +4,8 @@ using WangYc.Models.Repository.SD;
 using WangYc.Core.Infrastructure.UnitOfWork;
 using WangYc.Repository.NHibernate;
 using WangYc.Repository.NHibernate.Repositories.SD;
+using WangYc.Models.SD;
+using System.Collections.Generic;
 
 namespace WangYc.Services.Tests.SD {
     [TestClass]
@@ -21,8 +23,7 @@ namespace WangYc.Services.Tests.SD {
         [TestMethod]
         public void GetProduct() {
 
-            this._productRsponstroy.FindAll();
+            IEnumerable<Product> model = this._productRsponstroy.FindAll();
         }
-
     }
 }

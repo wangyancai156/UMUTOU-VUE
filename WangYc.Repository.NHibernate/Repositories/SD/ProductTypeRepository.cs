@@ -8,7 +8,7 @@ using WangYc.Models.Repository.SD;
 using WangYc.Models.SD;
 
 namespace WangYc.Repository.NHibernate.Repositories.SD {
-    class ProductTypeRepository : Repository<ProductType, int>, IProductTypeRepository {
+    public class ProductTypeRepository : Repository<ProductType, int>, IProductTypeRepository {
         public ProductTypeRepository(IUnitOfWork uow)
             : base(uow) { }
     }

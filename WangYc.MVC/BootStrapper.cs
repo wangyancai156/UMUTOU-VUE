@@ -72,6 +72,8 @@ namespace WangYc.MVC
 
                 For<IProductRepository>().Use<ProductRepository>();
                 For<IProductService>().Use<ProductService>();
+                For<IProductTypeRepository>().Use<ProductTypeRepository>();
+                For<IProductTypeService>().Use<ProductTypeService>();
 
                 #endregion
 
