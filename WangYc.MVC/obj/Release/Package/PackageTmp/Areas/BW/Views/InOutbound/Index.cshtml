@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "库房管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@section scripts{
+    <!-- 引入样式 -->
+    @*<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">*@
+    <!-- 引入组件库 -->
+    @*<script src="https://unpkg.com/element-ui/lib/index.js"></script>*@
+    @*<script src="~/Scripts/BW/InOutbound/index.js"></script>*@
+    <script>
+        var app = new Vue({
+            el: '#container',
+            data: {
+                datalist: [],
+                options: [
+                    { text: '10', value: '10' },
+                    { text: '20', value: '20' },
+                    { text: '30', value: '30' },
+                    { text: '50', value: '50' }
+                ],
+                selected: '10',
+            },
+            created: function () {
+                this.loadData();
+            },
+            components: {// 局部注册分页组件
+                'pagination-component':
+                {
+                    template: '#pageComponent',
+                    props: ['currentpage', 'totalpage'],
+                    methods: {
+                        goto: function (currentpage) { // 页码点击事件
+                            console.log(currentpage);
+                            app.loadData(currentpage);
+                        },
+                        jump: function () { // 跳转
+                            var _jumpto = $("#jumpPage").val();
+                            if (_jumpto == undefined || _jumpto.trim().length <= 0) return;
+                            var _total = app.data.pageCount;
+                            var _page = parseInt(_jumpto.trim()) <= 0 ? 1 : (parseInt(_jumpto.trim()) > _total ? _total : parseInt(_jumpto));
+                            loadData(_page);
+                        },
+                        enterJump: function (e) { // 回车分页
+                            let that = this;
+                            if (e.which == 13) {
+                                that.jump();
+                            }
+                        },
+                        showHtml: function (i) { // 页码显示（有省略号）
+                            var index = app.datalist.pageIndex;
+                            var sum = app.datalist.pageCount;
+                            if (i < 3 || i > (sum - 2)) {  // 前两个和最后两个始终显示
+                                return "<a href=\"javascripit:;\">" + i + "</a>";
+                            } else if (i <= index + 2 && i >= index) { // 当前页的前一页和后一页始终显示
+                                return "<a href=\"javascripit:;\">" + i + "</a>";
+                            } else if (i === index + 3 || i === index - 1) { // 当前页的前前页和后后页显示...
+                                return "<a href=\"javascripit:;\">...</a>";
+                            } else { //除此以外都不显示
+                                return false;
+                            }
+                        }
+                    }
+                }
+            },
+            methods: {
+                submit: function () {
+                    let that = this;
+                    console.log("添加数据...");
+                    $.ajax({
+                        url: '/bw/inoutbound/AddInBound',
+                        type: 'post',
+                        data: {
+                            WarehouseId: 1,
+                            WarehouseShelfId: 1,
+                            ProductId: 1,
+                            Qty: 10,
+                            Price: 1000,
+                            Note: "备注"
+                        },
+                        success: function (jsonData) {
+                            that.loadData();
+                        }
+                    })
+                },
+                loadData: function (_page) {
+                    let that = this;
+                    $.ajax({
+                        url: '/bw/inoutbound/getpagelist',
+                        type: 'get',
+                        dataType: 'json',
+                        data: { page: _page },
+                        success: function (jsonData) {
+                            that.datalist = jsonData;
+                        }
+                    })
+                },
+                remove: function (id) {
+                    console.log(id);
+                    let that = this;
+                    $.ajax({
+                        url: '/bw/inoutbound/AddOutBound',
+                        type: 'post',
+                        data: {
+                            InboundId: id,
+                            InboundShelfId: 10,
+                            Qty: 1,
+                            Price: 100,
+                            Note: "出库",
+                            CreateUserId: 209
+                        },
+                        success: function (jsonData) {
+                            console.log(jsonData);
+                            that.loadData();
+                        }
+                    })
+                },
+                change: function () {
+                    let that = this;
+                    alert(that.selected);
+                    console.log(that.selected);
+                }
+            }
+        })
+
+    </script>
+}
+
+<div id="container">
+    <el-button class="el-button el-button--primary" type="button" icon="add" v-on:click="submit"><i class="el-icon-edit"></i>添加</el-button>
+    <div class="table" style="margin-top: 10px;">
+        <el-table v-bind:data="datalist.rows" ref="table" width="100%" height="400">
+            <el-table-column prop="Id" label="编号"></el-table-column>
+            <el-table-column label="库房"  align="left">
+                <template slot-scope="scope">
+                    <span v-bind:title="scope.row.WarehouseName">{{scope.row.WarehouseName}}</span>
+                </template>
+            </el-table-column>
+            @*<el-table-column prop="WarehouseName" label="库房"></el-table-column>*@
+            <el-table-column prop="Qty" label="数量"></el-table-column>
+            <el-table-column prop="Note" label="Note"></el-table-column>
+            <el-table-column prop="caozuo" label="操作">
+                <template slot-scope="scope">
+                    <span>
+                        <el-button type="text" size="small" style="width:40px;" icon="delete" v-on:click.native.prevent="remove(scope.row.Id)">删 除</el-button>
+                    </span>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+    <div class="dataTables_paginate paging_bootstrap">
+        @*自定义分页组件*@
+        <pagination-component v-bind:currentpage="datalist.pageIndex" v-bind:totalpage="datalist.pageCount"></pagination-component>
+    </div>
+
+    <div>
+        <div id="sample-table-2_length" class="dataTables_length">
+            <label>
+                显示
+                <select size="1" name="sample-table-2_length" aria-controls="sample-table-2" v-model="selected" v-on:change="change">
+                    <option v-for="option in options" v-bind:value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+                条记录
+            </label>
+        </div>
+    </div>
+</div>
+@*分页模板*@
+@Html.Partial("~/Views/Shared/_PaginationPartial.cshtml")
