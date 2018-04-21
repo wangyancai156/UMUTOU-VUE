@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperBootStrapper.cs" />
+    <Compile Include="Implementations\BW\PurchaseReceiptService.cs" />
     <Compile Include="Implementations\HR\OrganizationService.cs" />
     <Compile Include="Implementations\HR\RoleService.cs" />
     <Compile Include="Implementations\HR\UsersService.cs" />
