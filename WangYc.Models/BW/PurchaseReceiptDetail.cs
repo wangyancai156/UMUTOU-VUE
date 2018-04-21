@@ -12,6 +12,20 @@ namespace WangYc.Models.BW {
             throw new NotImplementedException();
         }
 
+        public PurchaseReceiptDetail() { }
+
+
+        public PurchaseReceiptDetail(int purchaseOrderDetailId, int purchaseReceiptId, int qty, string note,  bool isValid, string createUserId) {
+
+            this.PurchaseOrderDetailId = purchaseOrderDetailId;
+            this.PurchaseReceiptId = purchaseReceiptId;
+            this.Qty = qty;
+            this.Note = note;
+            this.IsValid = isValid;
+            this.CreateUserId = createUserId;
+            this.CreateDate = DateTime.Now;
+        }
+
         public virtual int PurchaseReceiptId {
             get;
             set;

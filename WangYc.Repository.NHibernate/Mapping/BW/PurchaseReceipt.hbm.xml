@@ -12,6 +12,11 @@
     <property name="IsValid" column="IsValid"></property>
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
-
+    
+    <!--明细-->
+    <bag name="Detail" cascade="all-delete-orphan" inverse="true">
+      <key column="PurchaseReceiptId"></key>
+      <one-to-many class="PurchaseReceiptDetail" />
+    </bag>
   </class>
 </hibernate-mapping>

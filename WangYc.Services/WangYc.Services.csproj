@@ -63,6 +63,7 @@
     <Compile Include="Implementations\BW\WarehouseShelfService.cs" />
     <Compile Include="Implementations\SD\ProductService.cs" />
     <Compile Include="Implementations\SD\ProductTypeService.cs" />
+    <Compile Include="Interfaces\BW\IPurchaseReceiptService.cs" />
     <Compile Include="Interfaces\HR\IOrganizationService.cs" />
     <Compile Include="Interfaces\HR\IRightsService.cs" />
     <Compile Include="Interfaces\HR\IRoleService.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Interfaces\SD\IProductService.cs" />
     <Compile Include="Interfaces\SD\IProductTypeService.cs" />
     <Compile Include="Mapping\BW\InOutBoundOfShelfMapper.cs" />
+    <Compile Include="Mapping\BW\PurchaseReceiptDetailMapper.cs" />
+    <Compile Include="Mapping\BW\PurchaseReceiptMapper.cs" />
     <Compile Include="Mapping\HR\OrganizationMapper.cs" />
     <Compile Include="Mapping\HR\RightsMapper.cs" />
     <Compile Include="Mapping\HR\RoleMapper.cs" />
@@ -86,6 +89,8 @@
     <Compile Include="Mapping\SD\ProductMapper.cs" />
     <Compile Include="Mapping\SD\ProductTypeMapper.cs" />
     <Compile Include="Messaging\Account\AccountRequest.cs" />
+    <Compile Include="Messaging\BW\AddPurchaseReceiptRequest.cs" />
+    <Compile Include="Messaging\BW\AddPurchaseReceiptDetailRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseShelfRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseRequest.cs" />
     <Compile Include="Messaging\BW\AddInOutBoundOfShelfRequest.cs" />
@@ -97,6 +102,8 @@
     <Compile Include="Messaging\SD\AddProductTypeRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BW\InOutBoundOfShelfView.cs" />
+    <Compile Include="ViewModels\BW\PurchaseReceiptDetailView.cs" />
+    <Compile Include="ViewModels\BW\PurchaseReceiptView.cs" />
     <Compile Include="ViewModels\DataGridView.cs" />
     <Compile Include="ViewModels\DataTreeView.cs" />
     <Compile Include="ViewModels\HR\OrganizationView.cs" />
