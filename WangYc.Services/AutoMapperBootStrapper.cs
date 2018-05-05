@@ -11,13 +11,31 @@ using WangYc.Models.BW;
 using WangYc.Services.ViewModels.BW;
 using WangYc.Models.SD;
 using WangYc.Services.ViewModels.SD;
+using WangYc.Models.PO;
+using WangYc.Services.ViewModels.PO;
 
 namespace WangYc.Services
 {
     public static class AutoMapperBootStrapper
     {
         public static void ConfigureAutoMapper() {
+
+            #region BW
+
+            Mapper.CreateMap<Warehouse, WarehouseView>();
+            Mapper.CreateMap<WarehouseShelf, WarehouseShelfView>();
             
+            Mapper.CreateMap<InOutBound, InOutBoundView>();
+            Mapper.CreateMap<OutBound, OutBoundView>();
+            Mapper.CreateMap<InBound, InBoundView>();
+
+            Mapper.CreateMap<InOutBoundOfShelf, InOutBoundOfShelfView>();
+            Mapper.CreateMap<InBoundOfShelf, InBoundOfShelfView>();
+            Mapper.CreateMap<OutBoundOfShelf, OutBoundOfShelfView>();
+
+
+            #endregion
+
             #region HR
 
             Mapper.CreateMap<Organization, OrganizationView>();
@@ -26,7 +44,6 @@ namespace WangYc.Services
                 .ForMember(d => d.text, t => t.MapFrom(s => s.Name))
                 .ForMember(d => d.nodes, t => t.MapFrom(s => s.Child));
 
-            Mapper.CreateMap<Users, UsersView>();
             Mapper.CreateMap<Rights, RightsView>();
             Mapper.CreateMap<Rights, DataTreeView>()
                .ForMember(d => d.id, t => t.MapFrom(s => s.Id))
@@ -34,30 +51,25 @@ namespace WangYc.Services
                .ForMember(d => d.nodes, t => t.MapFrom(s => s.Child));
 
             Mapper.CreateMap<Role, RoleView>();
+            Mapper.CreateMap<Users, UsersView>();
+            #endregion 
 
-            Mapper.CreateMap<InOutBound, InOutBoundView>();
-            #endregion
+            #region PO
 
-            #region BW
-
-            Mapper.CreateMap<Warehouse, WarehouseView>();
-            Mapper.CreateMap<WarehouseShelf, WarehouseShelfView>();
-
-            Mapper.CreateMap<InOutBound, InOutBoundView>();
-            Mapper.CreateMap<OutBound, OutBoundView>();
-            Mapper.CreateMap<InBound, InBoundView>();
-
-            Mapper.CreateMap<InOutBoundOfShelf, InOutBoundOfShelfView>();
-            Mapper.CreateMap<InBoundOfShelf, InBoundOfShelfView>();
-            Mapper.CreateMap<OutBoundOfShelf, OutBoundOfShelfView>();
-             
-            
+            Mapper.CreateMap<PurchaseOrder, PurchaseOrderView>();
+            Mapper.CreateMap<PurchaseOrderDetail, PurchaseOrderDetailView>();
+            Mapper.CreateMap<PurchaseType, PurchaseTypeView>();
+ 
             #endregion
 
             #region SD
 
             Mapper.CreateMap<Product, ProductView>();
+            Mapper.CreateMap<ProductType, ProductTypeView>();
+            
             #endregion
+
+
         }
       
     }

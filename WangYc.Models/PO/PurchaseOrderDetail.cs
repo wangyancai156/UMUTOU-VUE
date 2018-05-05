@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Models.SD;
 
 namespace WangYc.Models.PO {
     public class PurchaseOrderDetail : EntityBase<int>, IAggregateRoot {
@@ -12,11 +13,25 @@ namespace WangYc.Models.PO {
             throw new NotImplementedException();
         }
 
+        public PurchaseOrderDetail() { }
+
+        public PurchaseOrderDetail(PurchaseOrder purchaseOrder, Product product,int qty, float unitPrice, string note, string createUserId) {
+
+            this.PurchaseOrder = purchaseOrder;
+            this.Product = product;
+            this.Qty = qty;
+            this.UnitPrice = unitPrice;
+            this.Note= note;
+            this.CreateUserId = createUserId;
+            this.IsValid = true;
+            this.CreateDate = DateTime.Now;
+        }
+
         public virtual PurchaseOrder PurchaseOrder {
             get;
             set;
         }
-        public virtual int Product {
+        public virtual Product Product {
             get;
             set;
         }

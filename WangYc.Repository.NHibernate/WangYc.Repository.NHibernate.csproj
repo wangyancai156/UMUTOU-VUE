@@ -165,7 +165,7 @@
     <EmbeddedResource Include="Mapping\BW\PurchaseReceipt.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mapping\BW\PurchaseReceiptDetail.hbm.xml" />
+    <EmbeddedResource Include="Mapping\BW\PurchaseReceiptDetail.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

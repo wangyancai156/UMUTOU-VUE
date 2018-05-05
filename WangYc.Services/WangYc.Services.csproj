@@ -61,6 +61,8 @@
     <Compile Include="Implementations\BW\InOutBoundService.cs" />
     <Compile Include="Implementations\BW\WarehouseService.cs" />
     <Compile Include="Implementations\BW\WarehouseShelfService.cs" />
+    <Compile Include="Implementations\PO\PurchaseOrderService.cs" />
+    <Compile Include="Implementations\PO\PurchaseTypeService.cs" />
     <Compile Include="Implementations\SD\ProductService.cs" />
     <Compile Include="Implementations\SD\ProductTypeService.cs" />
     <Compile Include="Interfaces\BW\IPurchaseReceiptService.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Interfaces\BW\IInOutBoundService.cs" />
     <Compile Include="Interfaces\BW\IWarehouseService.cs" />
     <Compile Include="Interfaces\BW\IWarehouseShelfService.cs" />
+    <Compile Include="Interfaces\PO\IPurchaseOrderService.cs" />
+    <Compile Include="Interfaces\PO\IPurchaseTypeService.cs" />
     <Compile Include="Interfaces\SD\IProductService.cs" />
     <Compile Include="Interfaces\SD\IProductTypeService.cs" />
     <Compile Include="Mapping\BW\InOutBoundOfShelfMapper.cs" />
@@ -86,6 +90,9 @@
     <Compile Include="Mapping\BW\OutBoundMapper.cs" />
     <Compile Include="Mapping\BW\WarehouseMapper.cs" />
     <Compile Include="Mapping\BW\WarehouseShelfMapper.cs" />
+    <Compile Include="Mapping\PO\PurchaseOrderDetailMapper.cs" />
+    <Compile Include="Mapping\PO\PurchaseOrderMapper.cs" />
+    <Compile Include="Mapping\PO\PurchaseTypeMapper.cs" />
     <Compile Include="Mapping\SD\ProductMapper.cs" />
     <Compile Include="Mapping\SD\ProductTypeMapper.cs" />
     <Compile Include="Messaging\Account\AccountRequest.cs" />
@@ -94,6 +101,9 @@
     <Compile Include="Messaging\BW\AddWarehouseShelfRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseRequest.cs" />
     <Compile Include="Messaging\BW\AddInOutBoundOfShelfRequest.cs" />
+    <Compile Include="Messaging\PO\AddPurchaseOrderDetailRequest.cs" />
+    <Compile Include="Messaging\PO\AddPurchaseOrderRequest.cs" />
+    <Compile Include="Messaging\PO\AddPurchaseTypeRequest.cs" />
     <Compile Include="Messaging\SD\AddProductRequest.cs" />
     <Compile Include="Messaging\HR\AddRoleRequest.cs" />
     <Compile Include="Messaging\HR\AddUsersRequest.cs" />
@@ -106,6 +116,7 @@
     <Compile Include="ViewModels\BW\PurchaseReceiptView.cs" />
     <Compile Include="ViewModels\DataGridView.cs" />
     <Compile Include="ViewModels\DataTreeView.cs" />
+    <Compile Include="ViewModels\FI\PaymentTypeView.cs" />
     <Compile Include="ViewModels\HR\OrganizationView.cs" />
     <Compile Include="ViewModels\HR\RightsView.cs" />
     <Compile Include="ViewModels\HR\RoleView.cs" />
@@ -113,6 +124,10 @@
     <Compile Include="ViewModels\BW\InOutBoundView.cs" />
     <Compile Include="ViewModels\BW\WarehouseShelfView.cs" />
     <Compile Include="ViewModels\BW\WarehouseView.cs" />
+    <Compile Include="ViewModels\PO\PurchaseOrderDetailView.cs" />
+    <Compile Include="ViewModels\PO\PurchaseOrderView.cs" />
+    <Compile Include="ViewModels\PO\PurchaseTypeView.cs" />
+    <Compile Include="ViewModels\RS\SupplierView.cs" />
     <Compile Include="ViewModels\SD\ProductTypeView.cs" />
     <Compile Include="ViewModels\SD\ProductView.cs" />
   </ItemGroup>

@@ -13,8 +13,23 @@ namespace WangYc.Models.PO {
         protected override void Validate() {
             throw new NotImplementedException();
         }
+        #region model
 
-        public virtual IEnumerable<PurchaseOrderDetail> Detail {
+        public PurchaseOrder() { }
+
+
+        public PurchaseOrder( PurchaseType purchaseType, PaymentType paymentType, Supplier supplier, string createUserId,string note ) {
+
+            this.PurchaseType = purchaseType;
+            this.PaymentType = paymentType;
+            this.Supplier = supplier;
+            this.Note = note;
+            this.CreateUserId = createUserId;
+            this.CreateDate = DateTime.Now;
+        }
+
+     
+        public virtual IList<PurchaseOrderDetail> Detail {
             get;
             set;
         }
@@ -49,6 +64,25 @@ namespace WangYc.Models.PO {
             set;
         }
 
-      
+        #endregion
+
+
+        #region 方法
+
+        /// <summary>
+        /// 添加采购明细
+        /// </summary>
+        /// <param name="detail"></param>
+        public virtual void AddDetail(PurchaseOrderDetail detail) {
+
+            if (this.Detail == null) {
+                this.Detail = new List<PurchaseOrderDetail>(){ };
+            }
+            this.Detail.Add(detail);
+
+        }
+        #endregion
+
+
     }
 }

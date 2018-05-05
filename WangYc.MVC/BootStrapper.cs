@@ -20,6 +20,10 @@ using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Core.Infrastructure.Logging;
 using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Services.Interfaces.PO;
+using WangYc.Services.Implementations.PO;
+using WangYc.Models.Repository.PO;
+using WangYc.Repository.NHibernate.Repositories.PO;
 
 namespace WangYc.MVC
 {
@@ -80,6 +84,18 @@ namespace WangYc.MVC
                 For<IProductTypeRepository>().Use<ProductTypeRepository>();
                 For<IProductTypeService>().Use<ProductTypeService>();
 
+                #endregion
+
+                #region PO
+
+                For<IPurchaseOrderRepository>().Use<PurchaseOrderRepository>();
+                For<IPurchaseOrderService>().Use<PurchaseOrderService>();
+
+                For<IPurchaseTypeRepository>().Use<PurchaseTypeRepository>();
+                For<IPurchaseTypeService>().Use<PurchaseTypeService>();
+
+                For<IPurchaseOrderDetailRepository>().Use<PurchaseOrderDetailRepository>();
+                
                 #endregion
 
                 // Application Settings
