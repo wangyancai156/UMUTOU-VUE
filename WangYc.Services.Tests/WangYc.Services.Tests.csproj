@@ -53,8 +53,10 @@
     <Compile Include="BW\InOutBoundTest.cs" />
     <Compile Include="BW\WarehouseShelfTest.cs" />
     <Compile Include="BW\WarehouseTest.cs" />
+    <Compile Include="PO\PurchaseOrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HR\UsersServiceTest.cs" />
+    <Compile Include="RS\SupplierTests.cs" />
     <Compile Include="SD\ProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
