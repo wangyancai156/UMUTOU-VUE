@@ -13,6 +13,8 @@ using WangYc.Models.SD;
 using WangYc.Services.ViewModels.SD;
 using WangYc.Models.PO;
 using WangYc.Services.ViewModels.PO;
+using WangYc.Models.FI;
+using WangYc.Services.ViewModels.FI;
 
 namespace WangYc.Services
 {
@@ -66,9 +68,16 @@ namespace WangYc.Services
 
             Mapper.CreateMap<Product, ProductView>();
             Mapper.CreateMap<ProductType, ProductTypeView>();
-            
+
             #endregion
 
+
+            #region FI
+
+            Mapper.CreateMap<Payment, PaymentView>();
+            Mapper.CreateMap<PaymentType, PaymentTypeView>();
+            
+            #endregion
 
         }
       
