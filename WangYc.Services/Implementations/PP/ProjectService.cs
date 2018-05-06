@@ -16,11 +16,11 @@ using WangYc.Services.Interfaces.PP;
 namespace WangYc.Services.Implementations.PP {
     public class ProjectService : IProjectService {
 
-        private readonly IProjectRepository _ProjectRepository;
+        private readonly IProjectRepository _projectRepository;
         private readonly IUnitOfWork _uow;
         public ProjectService(IProjectRepository ProjectRepository, IUnitOfWork uow) {
 
-            this._ProjectRepository = ProjectRepository;
+            this._projectRepository = ProjectRepository;
             this._uow = uow;
         }
 
@@ -33,7 +33,7 @@ namespace WangYc.Services.Implementations.PP {
         /// <returns></returns>
         public IEnumerable<Project> GetProject(Query request) {
 
-            IEnumerable<Project> model = this._ProjectRepository.FindBy(request);
+            IEnumerable<Project> model = this._projectRepository.FindBy(request);
             return model;
         }
 
@@ -43,7 +43,7 @@ namespace WangYc.Services.Implementations.PP {
         /// <returns></returns>
         public IEnumerable<ProjectView> GetProjectView(Query request) {
 
-            IEnumerable<Project> model = _ProjectRepository.FindBy(request);
+            IEnumerable<Project> model = _projectRepository.FindBy(request);
             return model.ConvertToProjectView();
         }
         /// <summary>
@@ -52,7 +52,7 @@ namespace WangYc.Services.Implementations.PP {
         /// <returns></returns>
         public IEnumerable<ProjectView> GetProjectViewByAll() {
 
-            return this._ProjectRepository.FindAll().ConvertToProjectView();
+            return this._projectRepository.FindAll().ConvertToProjectView();
 
         }
 
@@ -64,7 +64,7 @@ namespace WangYc.Services.Implementations.PP {
 
             Query query = new Query();
             query.Add(Criterion.Create<Project>(c => c.Id, id, CriteriaOperator.Equal));
-            return this._ProjectRepository.FindBy(query).ConvertToProjectView();
+            return this._projectRepository.FindBy(query).ConvertToProjectView();
 
         }
         #endregion
@@ -73,11 +73,11 @@ namespace WangYc.Services.Implementations.PP {
 
         public void AddProject(AddProjectRequest request) {
 
-            Project model = this._ProjectRepository.FindBy(request.Id);
+            Project model = this._projectRepository.FindBy(request.Id);
             if (model == null) {
                 throw new EntityIsInvalidException<string>(request.Id.ToString());
             }
-            this._ProjectRepository.Add(model);
+            this._projectRepository.Add(model);
             this._uow.Commit();
         }
 
@@ -87,12 +87,12 @@ namespace WangYc.Services.Implementations.PP {
 
         public void UpdateProject(AddProjectRequest request) {
 
-            Project model = this._ProjectRepository.FindBy(request.Id);
+            Project model = this._projectRepository.FindBy(request.Id);
             if (model == null) {
                 throw new EntityIsInvalidException<string>(request.Id.ToString());
             }
 
-            this._ProjectRepository.Save(model);
+            this._projectRepository.Save(model);
             this._uow.Commit();
         }
 
@@ -101,11 +101,11 @@ namespace WangYc.Services.Implementations.PP {
         #region 删除
         public void RemoveProject(int id) {
 
-            Project model = this._ProjectRepository.FindBy(id);
+            Project model = this._projectRepository.FindBy(id);
             if (model == null) {
                 throw new EntityIsInvalidException<string>(id.ToString());
             }
-            this._ProjectRepository.Remove(model);
+            this._projectRepository.Remove(model);
             this._uow.Commit();
         }
 

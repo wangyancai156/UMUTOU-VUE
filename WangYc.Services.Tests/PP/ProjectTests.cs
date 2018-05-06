@@ -17,17 +17,29 @@ namespace WangYc.Services.Tests.PP {
         private readonly IProjectService _projectService;
         private readonly IProjectRepository _projectRepository;
 
+        private readonly IProjectAttendanceService _projectAttendanceService;
+        private readonly IProjectAttendanceRepository _projectAttendanceRepository;
+
         public ProjectTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._projectRepository = new ProjectRepository(uow);
+            this._projectAttendanceRepository = new ProjectAttendanceRepository(uow);
+
             this._projectService = new ProjectService(this._projectRepository, uow);
+            this._projectAttendanceService = new ProjectAttendanceService(this._projectAttendanceRepository, uow);
         }
 
         [TestMethod]
-        public void GetPurchaseOrder() {
+        public void GetProject() {
 
             this._projectService.GetProjectViewByAll();
+        }
+
+        [TestMethod]
+        public void GetAttendance() {
+
+            this._projectAttendanceService.GetProjectAttendanceViewByAll();
         }
 
     }

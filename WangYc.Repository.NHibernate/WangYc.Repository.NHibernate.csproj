@@ -74,6 +74,7 @@
     <Compile Include="Repositories\PO\PurchaseOrderDetailRepository.cs" />
     <Compile Include="Repositories\PO\PurchaseOrderRepository.cs" />
     <Compile Include="Repositories\PO\PurchaseTypeRepository.cs" />
+    <Compile Include="Repositories\PP\ProjectAttendanceRepository.cs" />
     <Compile Include="Repositories\PP\ProjectRepository.cs" />
     <Compile Include="Repositories\QueryTranslator.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -170,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\PP\Project.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\PP\ProjectAttendance.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

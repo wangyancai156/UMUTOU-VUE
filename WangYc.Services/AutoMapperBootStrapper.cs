@@ -83,7 +83,8 @@ namespace WangYc.Services
             #region PP
 
             Mapper.CreateMap<Project, ProjectView>();
-            
+            Mapper.CreateMap<ProjectAttendance, ProjectAttendanceView>();
+
             #endregion
 
         }

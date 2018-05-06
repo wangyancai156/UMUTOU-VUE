@@ -122,13 +122,17 @@ namespace WangYc.MVC
                 For<IProjectRepository>().Use<ProjectRepository>();
                 For<IProjectService>().Use<ProjectService>();
 
+                For<IProjectAttendanceRepository>().Use<ProjectAttendanceRepository>();
+                For<IProjectAttendanceService>().Use<ProjectAttendanceService>();
+                
                 #endregion
 
                 #region RS
 
                 For<ISupplierRepository>().Use<SupplierRepository>();
                 For<ISupplierService>().Use<SupplierService>();
-     
+
+
                 #endregion
 
                 #region SD
