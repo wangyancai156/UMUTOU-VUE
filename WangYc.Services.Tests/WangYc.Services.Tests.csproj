@@ -55,6 +55,7 @@
     <Compile Include="BW\WarehouseTest.cs" />
     <Compile Include="FI\PaymentTests.cs" />
     <Compile Include="PO\PurchaseOrderTest.cs" />
+    <Compile Include="PP\ProjectTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HR\UsersServiceTest.cs" />
     <Compile Include="RS\SupplierTests.cs" />

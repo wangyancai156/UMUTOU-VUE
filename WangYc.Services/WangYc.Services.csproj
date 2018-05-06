@@ -65,6 +65,7 @@
     <Compile Include="Implementations\BW\WarehouseShelfService.cs" />
     <Compile Include="Implementations\PO\PurchaseOrderService.cs" />
     <Compile Include="Implementations\PO\PurchaseTypeService.cs" />
+    <Compile Include="Implementations\PP\ProjectService.cs" />
     <Compile Include="Implementations\RS\SupplierService.cs" />
     <Compile Include="Implementations\SD\ProductService.cs" />
     <Compile Include="Implementations\SD\ProductTypeService.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Interfaces\BW\IWarehouseService.cs" />
     <Compile Include="Interfaces\BW\IWarehouseShelfService.cs" />
     <Compile Include="Interfaces\FI\IPaymentTypeService.cs" />
+    <Compile Include="Interfaces\PP\IProjectService.cs" />
     <Compile Include="Interfaces\PO\IPurchaseOrderService.cs" />
     <Compile Include="Interfaces\PO\IPurchaseTypeService.cs" />
     <Compile Include="Interfaces\RS\ISupplierService.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Mapping\PO\PurchaseOrderDetailMapper.cs" />
     <Compile Include="Mapping\PO\PurchaseOrderMapper.cs" />
     <Compile Include="Mapping\PO\PurchaseTypeMapper.cs" />
+    <Compile Include="Mapping\PP\ProjectMapper.cs" />
     <Compile Include="Mapping\RS\SupplierMapper.cs" />
     <Compile Include="Mapping\SD\ProductMapper.cs" />
     <Compile Include="Mapping\SD\ProductTypeMapper.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Messaging\PO\AddPurchaseOrderDetailRequest.cs" />
     <Compile Include="Messaging\PO\AddPurchaseOrderRequest.cs" />
     <Compile Include="Messaging\PO\AddPurchaseTypeRequest.cs" />
+    <Compile Include="Messaging\PP\AddProjectRequest.cs" />
     <Compile Include="Messaging\RS\AddSupplierRequest.cs" />
     <Compile Include="Messaging\SD\AddProductRequest.cs" />
     <Compile Include="Messaging\HR\AddRoleRequest.cs" />
@@ -140,6 +144,7 @@
     <Compile Include="ViewModels\PO\PurchaseOrderDetailView.cs" />
     <Compile Include="ViewModels\PO\PurchaseOrderView.cs" />
     <Compile Include="ViewModels\PO\PurchaseTypeView.cs" />
+    <Compile Include="ViewModels\PP\ProjectView.cs" />
     <Compile Include="ViewModels\RS\SupplierView.cs" />
     <Compile Include="ViewModels\SD\ProductTypeView.cs" />
     <Compile Include="ViewModels\SD\ProductView.cs" />
