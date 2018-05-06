@@ -125,6 +125,9 @@ namespace WangYc.MVC
                 For<IProjectAttendanceRepository>().Use<ProjectAttendanceRepository>();
                 For<IProjectAttendanceService>().Use<ProjectAttendanceService>();
                 
+                For<IProjectMaterialRepository>().Use<ProjectMaterialRepository>();
+                For<IProjectMaterialService>().Use<ProjectMaterialService>();
+
                 #endregion
 
                 #region RS

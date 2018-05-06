@@ -14,12 +14,16 @@ namespace WangYc.Repository.NHibernate.Tests.PP {
 
         private readonly IProjectRepository _projectRepository;
         private readonly IProjectAttendanceRepository _projectAttendanceRepository;
+        private readonly IProjectMaterialRepository _projectMaterialRepository;
+
         
+
         public ProjectTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._projectRepository = new ProjectRepository(uow);
             this._projectAttendanceRepository = new ProjectAttendanceRepository(uow);
+            this._projectMaterialRepository = new ProjectMaterialRepository(uow);
         }
  
 
@@ -34,6 +38,12 @@ namespace WangYc.Repository.NHibernate.Tests.PP {
         public void GetProjectAttendance() {
 
             this._projectAttendanceRepository.FindAll();
+        }
+
+        [TestMethod]
+        public void GetProjectMaterial() {
+
+            this._projectMaterialRepository.FindAll();
         }
     }
 }

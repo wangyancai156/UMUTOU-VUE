@@ -19,15 +19,21 @@ namespace WangYc.Services.Tests.PP {
 
         private readonly IProjectAttendanceService _projectAttendanceService;
         private readonly IProjectAttendanceRepository _projectAttendanceRepository;
+        
+        private readonly IProjectMaterialService _projectMaterialService;
+        private readonly IProjectMaterialRepository _projectMaterialRepository;
 
         public ProjectTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._projectRepository = new ProjectRepository(uow);
             this._projectAttendanceRepository = new ProjectAttendanceRepository(uow);
+            this._projectMaterialRepository = new ProjectMaterialRepository(uow);
 
             this._projectService = new ProjectService(this._projectRepository, uow);
             this._projectAttendanceService = new ProjectAttendanceService(this._projectAttendanceRepository, uow);
+            this._projectMaterialService = new ProjectMaterialService(this._projectMaterialRepository, uow);
+          
         }
 
         [TestMethod]
@@ -37,9 +43,15 @@ namespace WangYc.Services.Tests.PP {
         }
 
         [TestMethod]
-        public void GetAttendance() {
+        public void GetProjectAttendance() {
 
             this._projectAttendanceService.GetProjectAttendanceViewByAll();
+        }
+
+        [TestMethod]
+        public void GetProjectMaterial() {
+
+            this._projectMaterialService.GetProjectMaterialViewByAll();
         }
 
     }

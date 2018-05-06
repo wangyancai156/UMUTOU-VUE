@@ -73,6 +73,7 @@
     <Compile Include="PO\IPurchaseOrderRepository.cs" />
     <Compile Include="PO\IPurchaseTypeRepository.cs" />
     <Compile Include="PP\IProjectAttendanceRepository.cs" />
+    <Compile Include="PP\IProjectMaterialRepository.cs" />
     <Compile Include="PP\IProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RS\ISupplierRepository.cs" />
