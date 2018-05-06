@@ -9,7 +9,7 @@
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
 
-    <property name="ProjectId" column="ProjectId"></property>
+    <many-to-one name="Project" class="Project" column="ProjectId" ></many-to-one>
     <property name="ProductId" column="ProductId"></property>
     <property name="Qty" column="Qty"></property>
     <property name="CreateUserId" column="CreateUserId"></property>

@@ -33,9 +33,6 @@ namespace WangYc.Services.Tests.PP {
 
             IUnitOfWork uow = new NHUnitOfWork();
  
-            this._projectRepository = new ProjectRepository(uow);
-            this._projectService = new ProjectService(this._projectRepository, uow);
- 
             this._projectAttendanceRepository = new ProjectAttendanceRepository(uow);
             this._projectAttendanceService = new ProjectAttendanceService(this._projectAttendanceRepository, uow);
  
@@ -47,6 +44,9 @@ namespace WangYc.Services.Tests.PP {
 
             this._projectTypeRepository = new ProjectTypeRepository(uow);
             this._projectTypeService = new ProjectTypeService(this._projectTypeRepository, uow);
+
+            this._projectRepository = new ProjectRepository(uow);
+            this._projectService = new ProjectService(this._projectRepository,this._projectTypeRepository, null, null, uow);
 
         }
 

@@ -12,7 +12,7 @@ namespace WangYc.Models.PP {
             throw new NotImplementedException();
         }
 
-        public virtual int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
         public virtual int ProductId { get; set; }
 
         public virtual int Qty { get; set; }

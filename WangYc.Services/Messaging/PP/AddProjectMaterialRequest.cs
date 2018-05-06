@@ -8,5 +8,11 @@ namespace WangYc.Services.Messaging.PP {
    public  class AddProjectMaterialRequest {
 
         public int Id { get; set; }
+        public int ProjectId { get; set; }
+        public int ProductId { get; set; }
+        public int Qty { get; set; }
+        public string CreateUserId { get; set; }
+        public bool IsValid { get; set; } 
+       
     }
 }

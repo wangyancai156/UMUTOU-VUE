@@ -8,14 +8,30 @@
       <generator class="identity" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-
-    <property name="TypeId" column="TypeId"></property>
-    <property name="ChargeId" column="ChargeId"></property>
-    <property name="ApproveId" column="ApproveId"></property>
+    <many-to-one name="Type" class="ProjectType" column="TypeId" ></many-to-one>
+    <many-to-one name="Charge" class="WangYc.Models.HR.Users" column="ChargeId" ></many-to-one>
+    <many-to-one name="Approve" class="WangYc.Models.HR.Users" column="ApproveId" ></many-to-one>
     <property name="Note" column="Note"></property>
     <property name="State" column="State"></property>
-    <property name="CreateUserId" column="CreateUserId"></property>
+    <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
+
+    <!--项目员工考勤-->
+    <bag name="Attendance" cascade="all-delete-orphan" inverse="true">
+      <key column="ProjectId"></key>
+      <one-to-many class="ProjectAttendance" />
+    </bag>
+
+    <!--项目原料表-->
+    <bag name="Material" cascade="all-delete-orphan" inverse="true">
+      <key column="ProjectId"></key>
+      <one-to-many class="ProjectMaterial" />
+    </bag>
+    <!--项目产物-->
+    <bag name="Product" cascade="all-delete-orphan" inverse="true">
+      <key column="ProjectId"></key>
+      <one-to-many class="ProjectProduct" />
+    </bag>
 
   </class>
 </hibernate-mapping>
