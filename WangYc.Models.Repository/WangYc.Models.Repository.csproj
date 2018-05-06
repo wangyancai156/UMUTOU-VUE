@@ -76,6 +76,7 @@
     <Compile Include="PP\IProjectMaterialRepository.cs" />
     <Compile Include="PP\IProjectProductRepository.cs" />
     <Compile Include="PP\IProjectRepository.cs" />
+    <Compile Include="PP\IProjectTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RS\ISupplierRepository.cs" />
     <Compile Include="SD\IProductRepository.cs" />

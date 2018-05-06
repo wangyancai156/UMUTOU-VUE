@@ -131,6 +131,9 @@ namespace WangYc.MVC
                 For<IProjectProductRepository>().Use<ProjectProductRepository>();
                 For<IProjectProductService>().Use<ProjectProductService>();
 
+                For<IProjectTypeRepository>().Use<ProjectTypeRepository>();
+                For<IProjectTypeService>().Use<ProjectTypeService>();
+
                 #endregion
 
                 #region RS

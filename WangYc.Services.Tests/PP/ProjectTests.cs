@@ -26,6 +26,9 @@ namespace WangYc.Services.Tests.PP {
         private readonly IProjectProductService _projectProductService;
         private readonly IProjectProductRepository _projectProductRepository;
 
+        private readonly IProjectTypeService _projectTypeService;
+        private readonly IProjectTypeRepository _projectTypeRepository;
+
         public ProjectTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
@@ -41,6 +44,9 @@ namespace WangYc.Services.Tests.PP {
 
             this._projectProductRepository = new ProjectProductRepository(uow);
             this._projectProductService = new ProjectProductService(this._projectProductRepository, uow);
+
+            this._projectTypeRepository = new ProjectTypeRepository(uow);
+            this._projectTypeService = new ProjectTypeService(this._projectTypeRepository, uow);
 
         }
 
@@ -69,6 +75,13 @@ namespace WangYc.Services.Tests.PP {
             this._projectProductService.GetProjectProductViewByAll();
         }
 
+
+
+        [TestMethod]
+        public void GetProjectType() {
+
+            this._projectTypeService.GetProjectTypeViewByAll();
+        }
 
     }
 }

@@ -86,6 +86,9 @@ namespace WangYc.Services
             Mapper.CreateMap<ProjectAttendance, ProjectAttendanceView>();
             Mapper.CreateMap<ProjectMaterial, ProjectMaterialView>();
             Mapper.CreateMap<ProjectProduct, ProjectProductView>();
+            Mapper.CreateMap<ProjectType, ProjectTypeView>();
+
+            
 
             #endregion
 
