@@ -58,6 +58,7 @@
     <Compile Include="PP\Project.cs" />
     <Compile Include="PP\ProjectAttendance.cs" />
     <Compile Include="PP\ProjectMaterial.cs" />
+    <Compile Include="PP\ProjectProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RS\Supplier.cs" />
     <Compile Include="SD\Product.cs" />
