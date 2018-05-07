@@ -16,7 +16,7 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
         private readonly IInOutBoundRepository _inOutBoundRepository;
         private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
         private readonly IPurchaseReceiptDetailRepository _purchaseReceiptDetailRepository;
-
+        private readonly IInOutReasonRepository _inOutReasonRepository;
 
 
         public InOutBoundTests() {
@@ -25,6 +25,7 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
             this._inOutBoundRepository = new InOutBoundRepository(uow);
             this._purchaseReceiptRepository = new PurchaseReceiptRepository(uow);
             this._purchaseReceiptDetailRepository = new PurchaseReceiptDetailRepository(uow);
+            this._inOutReasonRepository = new InOutReasonRepository(uow);
         }
 
         [TestMethod]
@@ -45,6 +46,12 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
         public void GetPurchaseReceiptDetail() {
 
             IEnumerable<PurchaseReceiptDetail> model = this._purchaseReceiptDetailRepository.FindAll();
+        }
+
+        [TestMethod]
+        public void GetInOutReason() {
+
+            IEnumerable<InOutReason> model = this._inOutReasonRepository.FindAll();
         }
     }
 }

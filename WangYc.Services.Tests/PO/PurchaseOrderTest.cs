@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.UnitOfWork;
 using WangYc.Models.Repository.FI;
+using WangYc.Models.Repository.HR;
 using WangYc.Models.Repository.PO;
 using WangYc.Models.Repository.RS;
 using WangYc.Models.Repository.SD;
 using WangYc.Repository.NHibernate;
 using WangYc.Repository.NHibernate.Repositories.FI;
+using WangYc.Repository.NHibernate.Repositories.HR;
 using WangYc.Repository.NHibernate.Repositories.PO;
 using WangYc.Repository.NHibernate.Repositories.RS;
 using WangYc.Repository.NHibernate.Repositories.SD;
@@ -29,6 +31,8 @@ namespace WangYc.Services.Tests.PO {
         private readonly IPaymentTypeRepository _paymentTypeRepository;
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IUsersRepository _uersRepository;
+        private readonly IPurchaseTypeService _purchaseTypeService;
 
         public PurchaseOrderTest() {
 
@@ -38,6 +42,8 @@ namespace WangYc.Services.Tests.PO {
             this._paymentTypeRepository = new PaymentTypeRepository(uow);
             this._supplierRepository = new SupplierRepository(uow);
             this._productRepository = new ProductRepository(uow);
+            this._uersRepository = new UsersRepository(uow);
+            this._purchaseTypeService = new PurchaseTypeService(this._purchaseTypeRepository, this._uersRepository, uow);
             this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository, uow);
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
@@ -51,7 +57,7 @@ namespace WangYc.Services.Tests.PO {
         [TestMethod]
         public void GetPurchaseType() {
 
-            this._purchaseOrderService.GetPurchaseOrderViewByAll();
+            this._purchaseTypeService.GetPurchaseTypeViewByAll();
         }
     }
 }

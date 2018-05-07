@@ -189,7 +189,7 @@ namespace WangYc.Services.Implementations.BW
         }
 
         /// <summary>
-        /// 添加入库
+        /// 添加出库
         /// </summary>
         /// <param name="request"></param>
         public void AddOutBound(int inboundId, int inboundShelfId, int qty, float price, string note, int createUserId)

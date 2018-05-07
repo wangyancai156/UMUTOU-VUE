@@ -17,10 +17,12 @@
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
     <!--库房-->
-    <many-to-one name="Warehouse" class="Warehouse" column="WarehouseId"  lazy="false" fetch="select" ></many-to-one>
+    <many-to-one name="Warehouse" class="Warehouse" column="WarehouseId" ></many-to-one>
+    <!--入库原因-->
+    <many-to-one name="InOutReason" class="InOutReason" column="InOutReasonId" ></many-to-one>
     
     <!--产品-->
-    <many-to-one name="Product" class="WangYc.Models.SD.Product" column="ProductId"  lazy="false" fetch="select" ></many-to-one>
+    <many-to-one name="Product" class="WangYc.Models.SD.Product" column="ProductId" ></many-to-one>
    
     <subclass name="InBound" discriminator-value="1" dynamic-insert="true" dynamic-update="true">
       <bag name="OutBounds" inverse="true"  cascade="all">

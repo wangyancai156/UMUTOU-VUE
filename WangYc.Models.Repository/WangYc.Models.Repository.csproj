@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BW\IInOutBoundOfShelfRepository.cs" />
+    <Compile Include="BW\IInOutReasonRepository.cs" />
     <Compile Include="BW\IPurchaseReceiptDetailRepository.cs" />
     <Compile Include="BW\IPurchaseReceiptRepository.cs" />
     <Compile Include="FI\IPaymentRepository.cs" />

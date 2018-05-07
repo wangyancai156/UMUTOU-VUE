@@ -20,6 +20,10 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
+        public virtual InOutReason InOutReason {
+            get;
+            set;
+        }
         public virtual int Qty {
             get;
             set;

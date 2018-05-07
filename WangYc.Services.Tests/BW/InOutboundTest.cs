@@ -28,6 +28,10 @@ namespace WangYc.Services.Tests.BW {
         private readonly IProductRepository _productRepository;
         private readonly IWarehouseRepository _warehouseRepository;
         private readonly IWarehouseShelfRepository _warehouseShelfRepository;
+
+        private readonly IInOutReasonRepository _inOutReasonRepository;
+        private readonly IInOutReasonService _inOutReasonService;
+        
         public InOutBoundTest() {
 
             IUnitOfWork uow = new NHUnitOfWork();
@@ -38,6 +42,9 @@ namespace WangYc.Services.Tests.BW {
             this._warehouseRepository = new WarehouseRepository(uow);
             this._warehouseShelfRepository = new WarehouseShelfRepository(uow);
             this._inOutBoundService = new InOutBoundService(_inOutBoundRsponstroy, _outBoundRsponstroy, _inBoundRsponstroy, _productRepository, _warehouseRepository, _warehouseShelfRepository, uow);
+
+            this._inOutReasonRepository = new InOutReasonRepository(uow);
+            this._inOutReasonService = new InOutReasonService(this._inOutReasonRepository, uow);
 
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
@@ -55,6 +62,12 @@ namespace WangYc.Services.Tests.BW {
             // IEnumerable<InOutBound> inout = this._inOutBoundService.GetInOutBound(query);
 
         }
- 
+
+        [TestMethod]
+        public void GetGetInOutReason() {
+
+            this._inOutReasonService.GetInOutReasonViewByAll();
+        }
+
     }
 }
