@@ -10,9 +10,9 @@
     </id>
 
     <many-to-one name="Project" class="Project" column="ProjectId" ></many-to-one>
-    <property name="ProductId" column="ProductId"></property>
+    <many-to-one name="Product" class="WangYc.Models.SD.Product" column="ProductId" ></many-to-one>
     <property name="Qty" column="Qty"></property>
-    <property name="CreateUserId" column="CreateUserId"></property>
+    <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
 
   </class>

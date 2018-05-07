@@ -160,7 +160,32 @@ namespace WangYc.Services.Implementations.PP {
             this._uow.Commit();
         }
 
-        
+        /// <summary>
+        /// 添加员工考核
+        /// </summary>
+        /// <param name="request"></param>
+        public void AddProduct(AddProjectProductRequest request) {
+
+            Project model = this._projectRepository.FindBy(request.ProjectId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.ProjectId.ToString());
+            }
+            Product product = this._productRepository.FindBy(request.ProductId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.ProductId.ToString());
+            }
+            Users createUser = this._usersRepository.FindBy(request.CreateUserId);
+            if (createUser == null) {
+                throw new EntityIsInvalidException<string>(request.CreateUserId.ToString());
+            }
+
+            ProjectProduct material = new ProjectProduct(model, product,request.Qty, createUser);
+            model.AddProduct(material);
+
+            this._projectRepository.Add(model);
+            this._uow.Commit();
+        }
+
         #endregion
 
         #region 修改
