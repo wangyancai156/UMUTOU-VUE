@@ -12,15 +12,19 @@ using WangYc.Services.Interfaces.PO;
 using WangYc.Services.ViewModels.PO;
 using WangYc.Services.Messaging.PO;
 using WangYc.Services.Mapping.PO;
+using WangYc.Models.HR;
+using WangYc.Models.Repository.HR;
 
 namespace WangYc.Services.Implementations.PO {
     public class PurchaseTypeService : IPurchaseTypeService {
 
         private readonly IPurchaseTypeRepository _purchaseTypeRepository;
+        private readonly IUsersRepository _usersRepository;
         private readonly IUnitOfWork _uow;
-        public PurchaseTypeService(IPurchaseTypeRepository purchaseTypeRepository, IUnitOfWork uow) {
+        public PurchaseTypeService(IPurchaseTypeRepository purchaseTypeRepository, IUsersRepository usersRepository, IUnitOfWork uow) {
 
             this._purchaseTypeRepository = purchaseTypeRepository;
+            this._usersRepository = usersRepository;
             this._uow = uow;
         }
 
@@ -72,10 +76,12 @@ namespace WangYc.Services.Implementations.PO {
 
         public void AddPurchaseType(AddPurchaseTypeRequest request) {
 
-            PurchaseType model = this._purchaseTypeRepository.FindBy(request.Id);
-            if (model == null) {
-                throw new EntityIsInvalidException<string>(request.Id.ToString());
+            Users createUser = this._usersRepository.FindBy(request.CreateUserId);
+            if (createUser == null) {
+                throw new EntityIsInvalidException<string>(request.CreateUserId.ToString());
             }
+            PurchaseType model = new PurchaseType(request.Description,request.Note, createUser);
+            
             this._purchaseTypeRepository.Add(model);
             this._uow.Commit();
         }

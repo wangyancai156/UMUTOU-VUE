@@ -4,9 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Models.HR;
 
 namespace WangYc.Models.PO {
     public class PurchaseType : EntityBase<int>, IAggregateRoot {
+
+        public PurchaseType() { }
+
+        public PurchaseType(string description, string note, Users createUser) {
+
+            this.Description = description;
+            this.Note = note;
+            this.CreateDate = DateTime.Now;
+            this.CreateUser = createUser;
+        }
+
+        #region model
 
         protected override void Validate() {
             throw new NotImplementedException();
@@ -24,7 +37,7 @@ namespace WangYc.Models.PO {
             get;
             set;
         }
-        public virtual string CreateUserId {
+        public virtual Users CreateUser {
             get;
             set;
         }
@@ -33,6 +46,8 @@ namespace WangYc.Models.PO {
             get;
             set;
         }
-      
+        #endregion
+         
+
     }
 }

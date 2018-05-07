@@ -12,7 +12,7 @@
     <property name="Description" column="Description"></property>
     <property name="Note" column="Note"></property>
     <property name="IsValid" column="IsValid"></property>
-    <property name="CreateUserId" column="CreateUserId"></property>
+    <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
 
   </class>

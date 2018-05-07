@@ -17,12 +17,14 @@ namespace WangYc.Repository.NHibernate.Tests.PO {
 
         private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepoistroy;
 
+        private readonly IPurchaseTypeRepository _purchaseTypeRepoistroy;
+
         public PurchaseOrderTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._purchaseOrderRepoistroy = new PurchaseOrderRepository(uow);
             this._purchaseOrderDetailRepoistroy = new PurchaseOrderDetailRepository(uow);
-
+            this._purchaseTypeRepoistroy = new PurchaseTypeRepository(uow);
         }
 
         [TestMethod]
@@ -35,6 +37,12 @@ namespace WangYc.Repository.NHibernate.Tests.PO {
         public void GetPurchaseOrderDetail() {
 
             IEnumerable<PurchaseOrderDetail> model = this._purchaseOrderDetailRepoistroy.FindAll();
+        }
+
+        [TestMethod]
+        public void GetPurchaseType() {
+
+            IEnumerable<PurchaseType> model = this._purchaseTypeRepoistroy.FindAll();
         }
 
     }

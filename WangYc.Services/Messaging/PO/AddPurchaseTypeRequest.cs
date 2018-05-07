@@ -21,5 +21,14 @@ namespace WangYc.Services.Messaging.PO {
             get;
             set;
         }
+
+        public bool IsValid {
+            get;
+            set;
+        }
+        public string CreateUserId {
+            get;
+            set;
+        }
     }
 }

@@ -81,6 +81,8 @@ namespace WangYc.Models.PO {
             this.Detail.Add(detail);
 
         }
+
+
         #endregion
 
 
