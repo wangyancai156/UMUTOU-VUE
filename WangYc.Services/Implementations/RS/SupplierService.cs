@@ -12,15 +12,23 @@ using WangYc.Services.ViewModels.RS;
 using WangYc.Services.Mapping.RS;
 using WangYc.Services.Messaging.RS;
 using WangYc.Services.Interfaces.RS;
+using WangYc.Models.HR;
+using WangYc.Models.SD;
+using WangYc.Models.Repository.HR;
+using WangYc.Models.Repository.SD;
 
 namespace WangYc.Services.Implementations.RS {
     public class SupplierService  : ISupplierService {
 
         private readonly ISupplierRepository _supplierRepository;
+        private readonly IUsersRepository _usersRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _uow;
-        public SupplierService(ISupplierRepository supplierRepository, IUnitOfWork uow) {
+        public SupplierService(ISupplierRepository supplierRepository, IUsersRepository usersRepository, IProductRepository productRepository, IUnitOfWork uow) {
 
             this._supplierRepository = supplierRepository;
+            this._usersRepository = usersRepository;
+            this._productRepository = productRepository;
             this._uow = uow;
         }
 
@@ -71,12 +79,42 @@ namespace WangYc.Services.Implementations.RS {
 
         #region 添加
 
+        /// <summary>
+        /// 添加供应商
+        /// </summary>
+        /// <param name="request"></param>
         public void AddSupplier(AddSupplierRequest request) {
 
-            Supplier model = this._supplierRepository.FindBy(request.Id);
-            if (model == null) {
-                throw new EntityIsInvalidException<string>(request.Id.ToString());
+            Users createUser = this._usersRepository.FindBy(request.CreateUserId);
+            if (createUser == null) {
+                throw new EntityIsInvalidException<string>(request.CreateUserId.ToString());
             }
+            Supplier model = new Supplier(request.Name, request.MobilePhone, request.Note, createUser);
+           
+            this._supplierRepository.Add(model);
+            this._uow.Commit();
+        }
+
+        /// <summary>
+        /// 添加产品
+        /// </summary>
+        /// <param name="request"></param>
+        public void AddProduct(AddSupplierProductRequest request) {
+
+            Supplier model = this._supplierRepository.FindBy(request.SupplierId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.SupplierId.ToString());
+            }
+            Users createUser = this._usersRepository.FindBy(request.CreateUserId);
+            if (createUser == null) {
+                throw new EntityIsInvalidException<string>(request.CreateUserId.ToString());
+            }
+            Product product = this._productRepository.FindBy(request.ProductId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.ProductId.ToString());
+            }
+
+            SupplierProduct p = new SupplierProduct(model,product,request.Price,createUser);
             this._supplierRepository.Add(model);
             this._uow.Commit();
         }

@@ -14,12 +14,14 @@ namespace WangYc.Repository.NHibernate.Tests.RS {
     public class SupplierTests {
 
         private readonly ISupplierRepository _supplierRepository;
+        private readonly ISupplierProductRepository _supplierProductRepository;
 
         public SupplierTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._supplierRepository = new SupplierRepository(uow);
-           
+            this._supplierProductRepository = new SupplierProductRepository(uow);
+
         }
 
         [TestMethod]
@@ -27,7 +29,13 @@ namespace WangYc.Repository.NHibernate.Tests.RS {
 
             IEnumerable<Supplier> model = this._supplierRepository.FindAll();
         }
- 
+
+        [TestMethod]
+        public void GetSupplierProduct() {
+
+            IEnumerable<SupplierProduct> model = this._supplierProductRepository.FindAll();
+        }
+
 
     }
 }

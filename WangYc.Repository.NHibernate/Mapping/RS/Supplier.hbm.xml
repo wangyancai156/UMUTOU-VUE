@@ -13,8 +13,14 @@
     <property name="MobilePhone" column="MobilePhone"></property>
     <property name="Note" column="Note" ></property>
     <property name="IsValid" column="IsValid" ></property>
-    <property name="CreateUserId" column="CreateUserId" ></property>
+    <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
+    <!--供应商产品-->
+    <bag name="Product" cascade="all-delete-orphan" inverse="true">
+      <key column="SupplierProductId"></key>
+      <one-to-many class="SupplierProduct" />
+    </bag>
+ 
 
   </class>
 </hibernate-mapping>
