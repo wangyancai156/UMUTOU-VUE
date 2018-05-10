@@ -64,6 +64,7 @@
     <Compile Include="Implementations\BW\InOutBoundService.cs" />
     <Compile Include="Implementations\BW\WarehouseService.cs" />
     <Compile Include="Implementations\BW\WarehouseShelfService.cs" />
+    <Compile Include="Implementations\PO\PurchaseOrderDetailService.cs" />
     <Compile Include="Implementations\PO\PurchaseOrderService.cs" />
     <Compile Include="Implementations\PO\PurchaseTypeService.cs" />
     <Compile Include="Implementations\PP\ProjectAttendanceService.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Interfaces\BW\IWarehouseService.cs" />
     <Compile Include="Interfaces\BW\IWarehouseShelfService.cs" />
     <Compile Include="Interfaces\FI\IPaymentTypeService.cs" />
+    <Compile Include="Interfaces\PO\IPurchaseOrderDetailService.cs" />
     <Compile Include="Interfaces\PP\IProjectAttendanceService.cs" />
     <Compile Include="Interfaces\PP\IProjectMaterialService.cs" />
     <Compile Include="Interfaces\PP\IProjectProductService.cs" />

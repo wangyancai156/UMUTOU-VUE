@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Models.BW;
 using WangYc.Models.SD;
 
 namespace WangYc.Models.PO {
     public class PurchaseOrderDetail : EntityBase<int>, IAggregateRoot {
+
+        #region
 
         protected override void Validate() {
             throw new NotImplementedException();
@@ -15,13 +18,13 @@ namespace WangYc.Models.PO {
 
         public PurchaseOrderDetail() { }
 
-        public PurchaseOrderDetail(PurchaseOrder purchaseOrder, Product product,int qty, float unitPrice, string note, string createUserId) {
+        public PurchaseOrderDetail(PurchaseOrder purchaseOrder, Product product, int qty, float unitPrice, string note, string createUserId) {
 
             this.PurchaseOrder = purchaseOrder;
             this.Product = product;
             this.Qty = qty;
             this.UnitPrice = unitPrice;
-            this.Note= note;
+            this.Note = note;
             this.CreateUserId = createUserId;
             this.IsValid = true;
             this.CreateDate = DateTime.Now;
@@ -61,6 +64,25 @@ namespace WangYc.Models.PO {
             set;
         }
 
+        public virtual IList<PurchaseReceiptDetail> ReceiptDetail {
+            get;
+            set;
+        }
+
+        #endregion
+
+        #region 方法
+
+        public virtual void AddReceiptDetail(PurchaseReceiptDetail model) {
+
+            if (this.ReceiptDetail == null) {
+                this.ReceiptDetail = new List<PurchaseReceiptDetail>() { };
+            }
+            this.ReceiptDetail.Add(model);
+        }
+
+
+        #endregion
     }
 }
     

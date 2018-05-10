@@ -34,6 +34,10 @@ namespace WangYc.Services.Tests.PO {
         private readonly IUsersRepository _uersRepository;
         private readonly IPurchaseTypeService _purchaseTypeService;
 
+        private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
+        private readonly IPurchaseOrderDetailService _purchaseOrderDetailService;
+        
+
         public PurchaseOrderTest() {
 
             IUnitOfWork uow = new NHUnitOfWork();
@@ -45,6 +49,9 @@ namespace WangYc.Services.Tests.PO {
             this._uersRepository = new UsersRepository(uow);
             this._purchaseTypeService = new PurchaseTypeService(this._purchaseTypeRepository, this._uersRepository, uow);
             this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository, uow);
+
+            this._purchaseOrderDetailRepository = new PurchaseOrderDetailRepository(uow);
+            this._purchaseOrderDetailService = new PurchaseOrderDetailService(this._purchaseOrderDetailRepository,uow);
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
 
@@ -58,6 +65,12 @@ namespace WangYc.Services.Tests.PO {
         public void GetPurchaseType() {
 
             this._purchaseTypeService.GetPurchaseTypeViewByAll();
+        }
+
+        [TestMethod]
+        public void GetPurchaseOrderDetail() {
+
+            this._purchaseOrderDetailService.GetPurchaseOrderDetailViewByAll();
         }
     }
 }

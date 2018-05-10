@@ -17,5 +17,10 @@
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
 
+    <bag name="ReceiptDetail" cascade="all-delete-orphan" inverse="true">
+      <key column="PurchaseReceiptDetailId"></key>
+      <one-to-many class="WangYc.Models.BW.PurchaseReceiptDetail" />
+    </bag>
+
   </class>
 </hibernate-mapping>
