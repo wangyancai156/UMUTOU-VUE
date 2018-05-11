@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="WangYc.Models.Common"
+                   assembly="WangYc.Models">
+  <class name="WorkflowActivityNode" abstract="true" table="WorkflowActivityNode" >
+    <!--主键ID必须命名为Id-->
+    <id name="Id" column="Id" type="int" unsaved-value="0">
+      <generator class="identity" />
+      <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
+    </id>
+    
+    <property name="StatusId" column="StatusId" type="string"></property>
+    <property name="StatusName" column="StatusName" type="string"></property>
+    <property name="StatusNote" column="StatusNote" type="string"></property>
+    <property name="WorkFlowType" column="WorkFlowType" type="string"></property>
+
+  </class>
+</hibernate-mapping>

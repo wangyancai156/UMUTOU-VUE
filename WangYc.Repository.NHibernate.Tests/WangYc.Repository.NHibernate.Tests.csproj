@@ -49,6 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BW\InOutBoundTests.cs" />
+    <Compile Include="BW\PurchaseReceiptTests.cs" />
+    <Compile Include="Common\WorkflowActivityTests.cs" />
     <Compile Include="FI\PaymentTests.cs" />
     <Compile Include="PO\PurchaseOrderTests.cs" />
     <Compile Include="PP\ProjectTests.cs" />

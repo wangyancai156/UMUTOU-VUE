@@ -44,6 +44,8 @@
     <Compile Include="BW\InOutReason.cs" />
     <Compile Include="BW\PurchaseReceipt.cs" />
     <Compile Include="BW\PurchaseReceiptDetail.cs" />
+    <Compile Include="Common\WorkflowActivity.cs" />
+    <Compile Include="Common\WorkflowActivityNode.cs" />
     <Compile Include="FI\Payment.cs" />
     <Compile Include="FI\PaymentType.cs" />
     <Compile Include="HR\Organization.cs" />

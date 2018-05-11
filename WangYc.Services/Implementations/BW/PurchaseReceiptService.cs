@@ -12,20 +12,25 @@ using WangYc.Core.Infrastructure.Domain;
 using WangYc.Core.Infrastructure.UnitOfWork;
 using WangYc.Services.Messaging.BW;
 using WangYc.Services.Interfaces.BW;
+using WangYc.Models.PO;
+using WangYc.Models.Repository.PO;
 
 namespace WangYc.Services.Implementations.BW {
     public class PurchaseReceiptService : IPurchaseReceiptService {
 
         private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
         private readonly IPurchaseReceiptDetailRepository _purchaseReceiptDetailRepository;
+        private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
         private readonly IUnitOfWork _uow;
 
         public PurchaseReceiptService(
             IPurchaseReceiptRepository purchaseReceiptRepository,
             IPurchaseReceiptDetailRepository purchaseReceiptDetailRepository,
+            IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
             IUnitOfWork uow) {
             this._purchaseReceiptRepository = purchaseReceiptRepository;
             this._purchaseReceiptDetailRepository = purchaseReceiptDetailRepository;
+            this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
             this._uow = uow;
         }
 
@@ -43,6 +48,18 @@ namespace WangYc.Services.Implementations.BW {
             return this._purchaseReceiptRepository.FindBy(id);
         }
 
+           /// <summary>
+        /// 根据操作人获取今天的到货单
+        /// </summary>
+        /// <returns></returns>
+        public PurchaseReceipt GetPurchaseReceipt(string createUserId) {
+
+            Query query = new Query();
+            query.Add(Criterion.Create<PurchaseReceipt>(c => c.CreateUserId, createUserId, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<PurchaseReceipt>(c => c.CreateDate, DateTime.Now.ToShortDateString(), CriteriaOperator.GreaterThanOrEqual));
+            return this._purchaseReceiptRepository.FindBy(query).First();
+        }
+
         /// <summary>
         /// 获取到货单
         /// </summary>
@@ -52,6 +69,8 @@ namespace WangYc.Services.Implementations.BW {
             IEnumerable<PurchaseReceipt> model = this._purchaseReceiptRepository.FindBy(request);
             return model;
         }
+
+     
 
         /// <summary>
         /// 通过id获取所有库房视图
@@ -90,7 +109,7 @@ namespace WangYc.Services.Implementations.BW {
         #region 添加
 
         /// <summary>
-        ///添加库房
+        /// 添加接货单
         /// </summary>
         /// <param name="request"></param>
         public void AddPurchaseReceipt(AddPurchaseReceiptRequest request) {
@@ -100,15 +119,46 @@ namespace WangYc.Services.Implementations.BW {
             this._uow.Commit();
         }
 
+        /// <summary>
+        /// 添加接货单
+        /// </summary>
+        /// <param name="request"></param>
+        public PurchaseReceipt AddPurchaseReceipt(string createUserId) {
+            /*
+            * step.1.创建接货单：单个员工一天只能创建一个接货单（目前默认是这样如果有需求则可以修改）
+            *                    首先试着获取，如果没有获取则创建后再获取
+            * step.2.获取采购明细
+            */
+            PurchaseReceipt receipt = this.GetPurchaseReceipt(createUserId);
+            if (receipt == null) {
+                AddPurchaseReceiptRequest a = new AddPurchaseReceiptRequest();
+                a.CreateUserId = createUserId;
+                AddPurchaseReceipt(a);
+                receipt = this.GetPurchaseReceipt(createUserId);
+            }
+            if (receipt == null) {
+                throw new EntityIsInvalidException<string>("接货单没有创建成功，请重试！");
+            }
+            return receipt;
+
+        }
         public void AddPurchaseReceiptDetail(AddPurchaseReceiptDetailRequest request) {
 
-            PurchaseReceipt model = this._purchaseReceiptRepository.FindBy(request.PurchaseReceiptId);
+            /*
+             * step.1.创建接货单：单个员工一天只能创建一个接货单（目前默认是这样如果有需求则可以修改）
+             *                    首先试着获取，如果没有获取则创建后再获取
+             * step.2.获取采购明细
+             */
+            PurchaseReceipt receipt = this.AddPurchaseReceipt(request.CreateUserId);
 
+            PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.PurchaseOrderDetailId);
             if (model == null) {
-                throw new EntityIsInvalidException<string>(request.PurchaseReceiptId.ToString());
+                throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
             }
-            PurchaseReceiptDetail detail = new PurchaseReceiptDetail(request.PurchaseOrderDetailId, request.PurchaseReceiptId, request.Qty, request.Note, request.IsValid, request.CreateUserId);
-            model.AddDetail(detail);
+
+            PurchaseReceiptDetail receiptDetail = new PurchaseReceiptDetail(model, receipt, request.Qty, request.Note, request.IsValid, request.CreateUserId);
+            model.AddReceiptDetail(receiptDetail);
+            this._purchaseOrderDetailRepository.Save(model);
             this._uow.Commit();
         }
 

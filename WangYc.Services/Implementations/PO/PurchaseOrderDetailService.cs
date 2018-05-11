@@ -12,107 +12,112 @@ using WangYc.Services.Mapping.PO;
 using WangYc.Services.Messaging.PO;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.Interfaces.PO;
+using WangYc.Services.Messaging.BW;
+using WangYc.Models.BW;
 
 namespace WangYc.Services.Implementations.PO {
-        public class PurchaseOrderDetailService : IPurchaseOrderDetailService {
+    public class PurchaseOrderDetailService : IPurchaseOrderDetailService {
 
-            private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
-            private readonly IUnitOfWork _uow;
-            public PurchaseOrderDetailService(IPurchaseOrderDetailRepository PurchaseOrderDetailRepository, IUnitOfWork uow) {
+        private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
+        private readonly IUnitOfWork _uow;
+        public PurchaseOrderDetailService(IPurchaseOrderDetailRepository PurchaseOrderDetailRepository, IUnitOfWork uow) {
 
-                this._purchaseOrderDetailRepository = PurchaseOrderDetailRepository;
-                this._uow = uow;
-            }
+            this._purchaseOrderDetailRepository = PurchaseOrderDetailRepository;
+            this._uow = uow;
+        }
 
 
-            #region 查找
+        #region 查找
+        /// <summary>
+        /// 获取项目
+        /// </summary>
+        /// <returns></returns>
+        public  PurchaseOrderDetail GetPurchaseOrderDetail(int id) {
 
-            /// <summary>
-            /// 获取项目
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetail(Query request) {
+            return this._purchaseOrderDetailRepository.FindBy(id);
+        }
+        /// <summary>
+        /// 获取项目
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetail(Query request) {
 
-                IEnumerable<PurchaseOrderDetail> model = this._purchaseOrderDetailRepository.FindBy(request);
-                return model;
-            }
+            IEnumerable<PurchaseOrderDetail> model = this._purchaseOrderDetailRepository.FindBy(request);
+            return model;
+        }
 
-            /// <summary>
-            /// 获取项目视图
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailView(Query request) {
+        /// <summary>
+        /// 获取项目视图
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailView(Query request) {
 
-                IEnumerable<PurchaseOrderDetail> model = _purchaseOrderDetailRepository.FindBy(request);
-                return model.ConvertToPurchaseOrderDetailView();
-            }
-            /// <summary>
-            /// 获取所有项目视图
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByAll() {
+            IEnumerable<PurchaseOrderDetail> model = _purchaseOrderDetailRepository.FindBy(request);
+            return model.ConvertToPurchaseOrderDetailView();
+        }
+        /// <summary>
+        /// 获取所有项目视图
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByAll() {
 
-                return this._purchaseOrderDetailRepository.FindAll().ConvertToPurchaseOrderDetailView();
-
-            }
-
-            /// <summary>
-            /// 根据项目号获取项目视图
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewById(int id) {
-
-                Query query = new Query();
-                query.Add(Criterion.Create<PurchaseOrderDetail>(c => c.Id, id, CriteriaOperator.Equal));
-                return this._purchaseOrderDetailRepository.FindBy(query).ConvertToPurchaseOrderDetailView();
-
-            }
-            #endregion
-
-            #region 添加
-
-            public void AddPurchaseOrderDetail(AddPurchaseOrderDetailRequest request) {
-
-                PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.Id);
-                if (model == null) {
-                    throw new EntityIsInvalidException<string>(request.Id.ToString());
-                }
-                this._purchaseOrderDetailRepository.Add(model);
-                this._uow.Commit();
-            }
-
-        public void AddReceiptDetail() {
+            return this._purchaseOrderDetailRepository.FindAll().ConvertToPurchaseOrderDetailView();
 
         }
 
-            #endregion
+        /// <summary>
+        /// 根据项目号获取项目视图
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewById(int id) {
+
+            Query query = new Query();
+            query.Add(Criterion.Create<PurchaseOrderDetail>(c => c.Id, id, CriteriaOperator.Equal));
+            return this._purchaseOrderDetailRepository.FindBy(query).ConvertToPurchaseOrderDetailView();
+
+        }
+        #endregion
+
+        #region 添加
+
+        public void AddPurchaseOrderDetail(AddPurchaseOrderDetailRequest request) {
+
+            PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.Id);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.Id.ToString());
+            }
+            this._purchaseOrderDetailRepository.Add(model);
+            this._uow.Commit();
+        }
+
+        #endregion
 
         #region 修改
 
         public void UpdatePurchaseOrderDetail(AddPurchaseOrderDetailRequest request) {
 
-                PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.Id);
-                if (model == null) {
-                    throw new EntityIsInvalidException<string>(request.Id.ToString());
-                }
-
-                this._purchaseOrderDetailRepository.Save(model);
-                this._uow.Commit();
+            PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.Id);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.Id.ToString());
             }
 
-            #endregion
-
-            #region 删除
-            public void RemovePurchaseOrderDetail(int id) {
-
-                PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(id);
-                if (model == null) {
-                    throw new EntityIsInvalidException<string>(id.ToString());
-                }
-                this._purchaseOrderDetailRepository.Remove(model);
-                this._uow.Commit();
-            }
-
-            #endregion
+            this._purchaseOrderDetailRepository.Save(model);
+            this._uow.Commit();
         }
+
+        #endregion
+
+        #region 删除
+        public void RemovePurchaseOrderDetail(int id) {
+
+            PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(id);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(id.ToString());
+            }
+            this._purchaseOrderDetailRepository.Remove(model);
+            this._uow.Commit();
+        }
+
+        #endregion
     }
+}

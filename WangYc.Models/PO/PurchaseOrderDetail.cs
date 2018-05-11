@@ -79,6 +79,11 @@ namespace WangYc.Models.PO {
                 this.ReceiptDetail = new List<PurchaseReceiptDetail>() { };
             }
             this.ReceiptDetail.Add(model);
+            //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结
+            if (this.ReceiptDetail.Sum(s => s.Qty) == this.Qty) {
+                
+            }
+
         }
 
 

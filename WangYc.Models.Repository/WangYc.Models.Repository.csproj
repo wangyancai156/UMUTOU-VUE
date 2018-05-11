@@ -61,6 +61,8 @@
     <Compile Include="BW\IInOutReasonRepository.cs" />
     <Compile Include="BW\IPurchaseReceiptDetailRepository.cs" />
     <Compile Include="BW\IPurchaseReceiptRepository.cs" />
+    <Compile Include="Common\IWorkflowActivityNodeRepository.cs" />
+    <Compile Include="Common\IWorkflowActivityRepository.cs" />
     <Compile Include="FI\IPaymentRepository.cs" />
     <Compile Include="FI\IPaymentTypeRepository.cs" />
     <Compile Include="HR\IOrganizationRepository.cs" />

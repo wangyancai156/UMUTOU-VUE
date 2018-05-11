@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Models.PO;
 
 namespace WangYc.Models.BW {
     public class PurchaseReceiptDetail : EntityBase<int>, IAggregateRoot {
@@ -15,10 +16,10 @@ namespace WangYc.Models.BW {
         public PurchaseReceiptDetail() { }
 
 
-        public PurchaseReceiptDetail(int purchaseOrderDetailId, int purchaseReceiptId, int qty, string note,  bool isValid, string createUserId) {
+        public PurchaseReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, PurchaseReceipt purchaseReceipt, int qty, string note,  bool isValid, string createUserId) {
 
-            this.PurchaseOrderDetailId = purchaseOrderDetailId;
-            this.PurchaseReceiptId = purchaseReceiptId;
+            this.PurchaseOrderDetail = purchaseOrderDetail;
+            this.PurchaseReceipt = purchaseReceipt;
             this.Qty = qty;
             this.Note = note;
             this.IsValid = isValid;
@@ -26,11 +27,11 @@ namespace WangYc.Models.BW {
             this.CreateDate = DateTime.Now;
         }
 
-        public virtual int PurchaseReceiptId {
+        public virtual PurchaseReceipt PurchaseReceipt {
             get;
             set;
         }
-        public virtual int PurchaseOrderDetailId {
+        public virtual PurchaseOrderDetail PurchaseOrderDetail {
             get;
             set;
         }

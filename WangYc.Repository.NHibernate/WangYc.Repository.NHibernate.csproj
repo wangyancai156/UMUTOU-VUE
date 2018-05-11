@@ -64,6 +64,8 @@
     <Compile Include="Repositories\BW\InOutReasonRepository.cs" />
     <Compile Include="Repositories\BW\PurchaseReceiptDetailRepository.cs" />
     <Compile Include="Repositories\BW\PurchaseReceiptRepository.cs" />
+    <Compile Include="Repositories\Common\WorkflowActivityNodeRepository.cs" />
+    <Compile Include="Repositories\Common\WorkflowActivityRepository.cs" />
     <Compile Include="Repositories\FI\PaymentRepository.cs" />
     <Compile Include="Repositories\FI\PaymentTypeRepository.cs" />
     <Compile Include="Repositories\HR\OrganizationRepository.cs" />
@@ -194,6 +196,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\BW\InOutReason.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Common\WorkflowActivity.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Common\WorkflowActivityNode.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
