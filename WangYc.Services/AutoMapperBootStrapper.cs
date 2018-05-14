@@ -17,6 +17,8 @@ using WangYc.Models.FI;
 using WangYc.Services.ViewModels.FI;
 using WangYc.Models.PP;
 using WangYc.Services.ViewModels.PP;
+using WangYc.Models.Common;
+using WangYc.Services.ViewModels.Common;
 
 namespace WangYc.Services
 {
@@ -87,12 +89,16 @@ namespace WangYc.Services
             Mapper.CreateMap<ProjectMaterial, ProjectMaterialView>();
             Mapper.CreateMap<ProjectProduct, ProjectProductView>();
             Mapper.CreateMap<ProjectType, ProjectTypeView>();
-
-            
-
+ 
             #endregion
 
+
+            #region Common
+
+            Mapper.CreateMap<WorkflowActivity, WorkflowActivityView>();
+            
+            #endregion
         }
-      
+
     }
 }

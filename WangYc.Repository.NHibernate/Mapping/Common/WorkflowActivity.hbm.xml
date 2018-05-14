@@ -12,6 +12,7 @@
     <property name="ObjectId" column="ObjectId"></property>
     <property name="ObjectTypeId" column="ObjectTypeId"></property>
     <property name="WorkflowNodeId" column="WorkflowNodeId"></property>
+    <property name="Note" column="Note"></property>
     <property name="StartTime" column="StartTime"></property>
     <property name="EndTime" column="EndTime"></property>
     <property name="CreateUserId" column="CreateUserId"></property>

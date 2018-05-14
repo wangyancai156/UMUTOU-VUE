@@ -41,6 +41,10 @@ using WangYc.Services.Implementations.PO;
 using WangYc.Services.Implementations.PP;
 using WangYc.Services.Implementations.RS;
 using WangYc.Services.Implementations.SD;
+using WangYc.Models.Repository.Common;
+using WangYc.Repository.NHibernate.Repositories.Common;
+using WangYc.Services.Interfaces.Common;
+using WangYc.Services.Implementations.Common;
 
 namespace WangYc.MVC
 {
@@ -153,7 +157,14 @@ namespace WangYc.MVC
 
                 #endregion
 
-             
+                #region Common
+
+                For<IWorkflowActivityRepository>().Use<WorkflowActivityRepository>();
+                For<IWorkflowActivityService>().Use<WorkflowActivityService>();
+
+                #endregion
+
+
 
                 // Application Settings
                 For<IApplicationSettings>().Use<WebConfigApplicationSettings>();

@@ -11,15 +11,16 @@
     <many-to-one name="PurchaseOrder" class="PurchaseOrder" column="PurchaseOrderId" lazy="false" fetch="select"></many-to-one>
     <many-to-one name="Product" class="WangYc.Models.SD.Product" column="ProductId" lazy="false" fetch="select"></many-to-one>
     <property name="Qty" column="Qty"></property>
+    <property name="ArrivalQty" column="ArrivalQty"></property>
     <property name="UnitPrice" column="UnitPrice"></property>
     <property name="Note" column="Note"></property>
     <property name="IsValid" column="IsValid"></property>
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
 
-    <bag name="ReceiptDetail" cascade="all-delete-orphan" inverse="true">
-      <key column="PurchaseReceiptDetailId"></key>
-      <one-to-many class="WangYc.Models.BW.PurchaseReceiptDetail" />
+    <bag name="WaitArrival" cascade="all-delete-orphan" inverse="true">
+      <key column="PurchaseOrderDetailId"></key>
+      <one-to-many class="WangYc.Models.BW.WaitArrival" />
     </bag>
 
   </class>

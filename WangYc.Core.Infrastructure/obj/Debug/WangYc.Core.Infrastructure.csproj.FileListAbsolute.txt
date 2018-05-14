@@ -143,7 +143,6 @@ E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\WangYc.Core.
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\WangYc.Core.Infrastructure.pdb
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\log4net.dll
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\log4net.xml
-E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csprojResolveAssemblyReference.cache
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csproj.CoreCompileInputs.cache
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.dll
 E:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.pdb

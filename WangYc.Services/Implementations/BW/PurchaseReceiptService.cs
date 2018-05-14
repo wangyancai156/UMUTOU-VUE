@@ -14,6 +14,8 @@ using WangYc.Services.Messaging.BW;
 using WangYc.Services.Interfaces.BW;
 using WangYc.Models.PO;
 using WangYc.Models.Repository.PO;
+using WangYc.Services.Interfaces.Common;
+using WangYc.Services.Messaging.Common;
 
 namespace WangYc.Services.Implementations.BW {
     public class PurchaseReceiptService : IPurchaseReceiptService {
@@ -21,16 +23,21 @@ namespace WangYc.Services.Implementations.BW {
         private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
         private readonly IPurchaseReceiptDetailRepository _purchaseReceiptDetailRepository;
         private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
+        private readonly IWorkflowActivityService _workflowActivityService;
         private readonly IUnitOfWork _uow;
 
         public PurchaseReceiptService(
             IPurchaseReceiptRepository purchaseReceiptRepository,
             IPurchaseReceiptDetailRepository purchaseReceiptDetailRepository,
             IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
-            IUnitOfWork uow) {
+            IWorkflowActivityService workflowActivityService,
+            IUnitOfWork uow
+        ) {
+
             this._purchaseReceiptRepository = purchaseReceiptRepository;
             this._purchaseReceiptDetailRepository = purchaseReceiptDetailRepository;
             this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
+            this._workflowActivityService = workflowActivityService;
             this._uow = uow;
         }
 
@@ -157,8 +164,19 @@ namespace WangYc.Services.Implementations.BW {
             }
 
             PurchaseReceiptDetail receiptDetail = new PurchaseReceiptDetail(model, receipt, request.Qty, request.Note, request.IsValid, request.CreateUserId);
-            model.AddReceiptDetail(receiptDetail);
+            //model.AddReceiptDetail(receiptDetail);
             this._purchaseOrderDetailRepository.Save(model);
+
+            //如果已经全部到齐结束采购单
+            if (model.PurchaseOrder.Detail.Where(s => s.Qty > s.ArrivalQty).Count() > 0) {
+                AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
+                request_ac.ObjectId = model.PurchaseOrder.Id.ToString();
+                request_ac.ObjectTypeId = "PurchaseOrder";
+                request_ac.WorkflowNodeId = "PO-005";
+                request_ac.Note = "货物到齐全自动完结";
+                request_ac.CreateUserId = request.CreateUserId;
+                this._workflowActivityService.InsertNewActivity(request_ac);
+            }
             this._uow.Commit();
         }
 

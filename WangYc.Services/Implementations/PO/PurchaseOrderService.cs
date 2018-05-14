@@ -18,6 +18,8 @@ using WangYc.Models.RS;
 using WangYc.Models.SD;
 using WangYc.Models.Repository.SD;
 using WangYc.Services.Interfaces.PO;
+using WangYc.Services.Messaging.Common;
+using WangYc.Services.Interfaces.Common;
 
 namespace WangYc.Services.Implementations.PO {
     public class PurchaseOrderService : IPurchaseOrderService {
@@ -27,6 +29,7 @@ namespace WangYc.Services.Implementations.PO {
         private readonly IPaymentTypeRepository _paymentTypeRepository;
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IWorkflowActivityService _workflowActivityService;
         private readonly IUnitOfWork _uow;
 
         public PurchaseOrderService(
@@ -35,6 +38,7 @@ namespace WangYc.Services.Implementations.PO {
             IPaymentTypeRepository paymentTypeRepository,
             ISupplierRepository supplierRepository,
             IProductRepository productRepository,
+            IWorkflowActivityService workflowActivityService,
             IUnitOfWork uow
             ) {
             this._purchaseOrderRepository = purchaseOrderRepository;
@@ -42,6 +46,7 @@ namespace WangYc.Services.Implementations.PO {
             this._paymentTypeRepository = paymentTypeRepository;
             this._supplierRepository = supplierRepository;
             this._productRepository = productRepository;
+            this._workflowActivityService = workflowActivityService;
             this._uow = uow;
         }
 
@@ -109,6 +114,14 @@ namespace WangYc.Services.Implementations.PO {
             PurchaseOrder model = new PurchaseOrder(purchaseType, paymentType, supplier,request.CreateUserId,request.Note);
 
             this._purchaseOrderRepository.Add(model);
+
+            AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
+            request_ac.ObjectId = model.Id.ToString();
+            request_ac.ObjectTypeId = "PurchaseOrder";
+            request_ac.WorkflowNodeId = "PO-001";
+            request_ac.Note = "添加采购单";
+            request_ac.CreateUserId = request.CreateUserId;
+            this._workflowActivityService.InsertNewActivity(request_ac);
             this._uow.Commit();
         }
 
@@ -158,6 +171,22 @@ namespace WangYc.Services.Implementations.PO {
             this._uow.Commit();
         }
 
+
+        public void Apply(int id, string createUserId) {
+
+            PurchaseOrder model = this._purchaseOrderRepository.FindBy(id);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(id.ToString());
+            }
+            AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
+            request_ac.ObjectId = model.Id.ToString();
+            request_ac.ObjectTypeId = "PurchaseOrder";
+            request_ac.WorkflowNodeId = "PO-002";
+            request_ac.Note = "提交采购单";
+            request_ac.CreateUserId = createUserId;
+            this._workflowActivityService.InsertNewActivity(request_ac);
+            this._uow.Commit();
+        }
         #endregion
 
         #region 删除

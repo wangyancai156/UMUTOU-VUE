@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Models.BW;
+using WangYc.Models.Common;
 using WangYc.Models.SD;
 
 namespace WangYc.Models.PO {
     public class PurchaseOrderDetail : EntityBase<int>, IAggregateRoot {
 
-        #region
+        #region model
 
         protected override void Validate() {
             throw new NotImplementedException();
@@ -42,6 +43,10 @@ namespace WangYc.Models.PO {
             get;
             set;
         }
+        public virtual int ArrivalQty {
+            get;
+            set;
+        }
         public virtual float UnitPrice {
             get;
             set;
@@ -64,30 +69,14 @@ namespace WangYc.Models.PO {
             set;
         }
 
-        public virtual IList<PurchaseReceiptDetail> ReceiptDetail {
+        public virtual IList<WaitArrival> WaitArrival {
             get;
             set;
         }
 
         #endregion
 
-        #region 方法
-
-        public virtual void AddReceiptDetail(PurchaseReceiptDetail model) {
-
-            if (this.ReceiptDetail == null) {
-                this.ReceiptDetail = new List<PurchaseReceiptDetail>() { };
-            }
-            this.ReceiptDetail.Add(model);
-            //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结
-            if (this.ReceiptDetail.Sum(s => s.Qty) == this.Qty) {
-                
-            }
-
-        }
-
-
-        #endregion
+     
     }
 }
     

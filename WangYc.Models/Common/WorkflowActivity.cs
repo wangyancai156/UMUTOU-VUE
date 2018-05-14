@@ -11,12 +11,28 @@ namespace WangYc.Models.Common {
         protected override void Validate() {
             throw new NotImplementedException();
         }
+        public WorkflowActivity() { }
+
+        public WorkflowActivity(string objectId, string objectTypeId, string workflowNodeId, string createUserId, int parentId) {
+
+            this.ObjectId = objectId;
+            this.ObjectTypeId = objectTypeId;
+            this.WorkflowNodeId = workflowNodeId;
+            this.StartTime = DateTime.Now;
+            this.CreateUserId = createUserId;
+            this.StartTime = DateTime.Now;
+            this.EndTime = (DateTime?)null;
+            this.ParentId = parentId;
+        }
+
+       
 
         public virtual string ObjectId { get; set; }
-        public virtual int ObjectTypeId { get; set; }
-        public virtual int WorkflowNodeId { get; set; }
+        public virtual string ObjectTypeId { get; set; }
+        public virtual string WorkflowNodeId { get; set; }
+        public virtual string Note { get; set; }
         public virtual DateTime StartTime { get; set; }
-        public virtual DateTime EndTime { get; set; }
+        public virtual DateTime? EndTime { get; set; }
         public virtual string CreateUserId { get; set; }
         public virtual int ParentId { get; set; }
 
