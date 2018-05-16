@@ -96,6 +96,7 @@ namespace WangYc.MVC
 
                 For<IUsersRepository>().Use<WangYc.Repository.NHibernate.Repositories.HR.UsersRepository>();
                 For<IUsersService>().Use<UsersService>();
+                For<IIdGenerator<Users, string>>().Use<IdGenerator<Users>>();
 
                 For<IOrganizationRepository>().Use<WangYc.Repository.NHibernate.Repositories.HR.OrganizationRepository>();
                 For<IOrganizationService>().Use<OrganizationService>();

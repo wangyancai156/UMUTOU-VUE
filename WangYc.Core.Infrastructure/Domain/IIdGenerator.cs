@@ -8,5 +8,7 @@ namespace WangYc.Core.Infrastructure.Domain
     public interface IIdGenerator<T, TId> where T : EntityBase<TId> {
 
         TId NewId(T t);
+
+        TId NewIntId(T t, int length);
     }
 }

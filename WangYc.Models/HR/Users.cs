@@ -96,6 +96,12 @@ namespace WangYc.Models.HR {
         protected override void Validate() {
             throw new NotImplementedException();
         }
+        public override string GenerateIdPrefix() {
+
+            return GetChineseSpell(this.UserName.Substring(0, 1)); 
+        }
+
+      
     }
 }
 

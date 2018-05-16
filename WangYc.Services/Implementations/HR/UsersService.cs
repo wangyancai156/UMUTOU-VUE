@@ -20,13 +20,21 @@ namespace WangYc.Services.Implementations.HR {
         private readonly IUsersRepository _usersRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IIdGenerator<Users, string> _usersIdGenerator;
         private readonly IUnitOfWork _uow;
 
-        public UsersService(IUsersRepository usersRepository, IOrganizationRepository organizationRepository, IRoleRepository roleRepository, IUnitOfWork uow) {
+        public UsersService(
+                IUsersRepository usersRepository,
+                IOrganizationRepository organizationRepository,
+                IRoleRepository roleRepository,
+                IIdGenerator<Users, string> usersIdGenerator,
+                IUnitOfWork uow
+            ) {
 
             this._usersRepository = usersRepository;
             this._organizationRepository = organizationRepository;
             this._roleRepository = roleRepository;
+            this._usersIdGenerator = usersIdGenerator;
             this._uow = uow;
         }
 
@@ -78,6 +86,8 @@ namespace WangYc.Services.Implementations.HR {
             return users.FirstOrDefault();
         }
 
+
+
         #endregion
 
         #region 删除
@@ -106,8 +116,9 @@ namespace WangYc.Services.Implementations.HR {
             }
 
             Users user = new Users(organization, request.Id, request.UserName, request.UserPwd, request.Telephone);
-            _usersRepository.Add(user);
-            _uow.Commit();
+            user.Id = this._usersIdGenerator.NewIntId(user, 3);
+            this._usersRepository.Add(user);
+            this._uow.Commit();
         }
         /// <summary>
         /// 添加权限

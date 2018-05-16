@@ -20,7 +20,7 @@ using WangYc.Services.Mapping.HR;
 using WangYc.Services.ViewModels.HR;
 using WangYc.Models.HR;
 using WangYc.Services.ViewModels;
-
+using WangYc.Services.Messaging.HR;
 
 namespace WangYc.Services.Tests
 {
@@ -29,15 +29,18 @@ namespace WangYc.Services.Tests
     {
         private readonly IUsersService _userService;
         private readonly IOrganizationService _organizationService;
+        IIdGenerator<Users, string> _usersIdGenerator;
         public UsersServiceTest() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             IUsersRepository _usersRepository = new UsersRepository(uow);
             IRoleRepository _roleRepository = new RoleRepository(uow);
             IOrganizationRepository _organizationRepository = new OrganizationRepository(uow);
+            this._usersIdGenerator = new IdGenerator<Users>();
 
-            this._userService = new UsersService(_usersRepository, _organizationRepository, _roleRepository, uow);
+            this._userService = new UsersService(_usersRepository, _organizationRepository, _roleRepository, this._usersIdGenerator, uow);
             this._organizationService = new OrganizationService(_organizationRepository, uow);
+            
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
 
@@ -54,6 +57,18 @@ namespace WangYc.Services.Tests
         [TestMethod]
         public void GetOrganization() {
             IEnumerable<DataTreeView> organization = this._organizationService.GetOrganizationTreeView();
+        }
+
+        [TestMethod]
+        public void AddUser() {
+
+            AddUsersRequest request = new AddUsersRequest();
+            request.Organizationid = 1;
+            request.Telephone = "15010215094";
+            request.UserName = "王彦彩";
+            request.UserPwd = "liwenwen851126";
+            this._userService.InsertUsers(request);
+
         }
     }
 }

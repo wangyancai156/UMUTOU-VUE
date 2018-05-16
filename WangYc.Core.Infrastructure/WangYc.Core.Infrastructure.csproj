@@ -68,6 +68,7 @@
     <Compile Include="Domain\ValueObjectBase.cs" />
     <Compile Include="Domain\ValueObjectIsInvalidException.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\IdIncrease.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Log4NetAdapter.cs" />
     <Compile Include="Logging\LoggingFactory.cs" />
