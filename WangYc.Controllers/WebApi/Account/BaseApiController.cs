@@ -5,13 +5,18 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using WangYc.Controllers.WebApi.Account;
+using WangYc.Services.Messaging;
 
 namespace WangYc.Controllers.Account.WebApi
 {
+    //添加验证
+    [AuthFilterOutside]
     public class BaseApiController : ApiController
     {
-
+     
         public HttpResponseMessage ToJson(Object obj)
         {
             String str;
@@ -28,5 +33,7 @@ namespace WangYc.Controllers.Account.WebApi
             return result;
         }
 
+
+      
     }
 }
