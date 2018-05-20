@@ -4,23 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Models.HR;
+using WangYc.Services.Messaging.HR;
 using WangYc.Services.ViewModels;
 using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Services.Interfaces.HR {
     public interface IRightsService {
 
+        #region 查询
         IEnumerable<Rights> GetRights();
-
-        IEnumerable<Rights> GetRightsByIdList(string[] rightsIdList);
-
-        IEnumerable<RightsView> GetRightsView();
+        Rights GetRightsById(int id);
+        IEnumerable<Rights> GetRightsById(string[] rightsIdList);
 
         IEnumerable<DataTreeView> GetRightsTreeView();
 
-        IEnumerable<RightsView> GetRightsView(int roleid);
+        IEnumerable<RightsView> GetRightsView(int id);
 
-        RightsView AddRightsChild(int id, string name,string url, string description, bool isshow);
+        IEnumerable<RightsView> GetRightsViewByRole(int roleid);
+
+
+        #endregion
+
+        RightsView AddRights(AddRightsRequest request);
         RightsView UpdateRights(int id, string name,string url, string description, bool isshow);
         void DeleteRights(int id);
 

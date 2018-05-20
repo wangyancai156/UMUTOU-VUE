@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace WangYc.Services.ViewModels.HR {
     public class RoleView {
 
-        public OrganizationView Organization {
+        public int OrganizationId {
             get;
             set;
         }
-        public IList<RightsView> Rights {
+        public string OrganizationName {
             get;
             set;
         }
@@ -29,7 +29,9 @@ namespace WangYc.Services.ViewModels.HR {
             get;
             set;
         }
+        public bool IsValid { get; set; }
 
-    
+
+
     }
 }

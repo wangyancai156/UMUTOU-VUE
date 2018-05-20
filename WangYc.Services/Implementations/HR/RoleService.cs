@@ -11,6 +11,7 @@ using WangYc.Services.Interfaces.HR;
 using WangYc.Services.ViewModels.HR;
 using WangYc.Services.Mapping.HR;
 using WangYc.Services.Messaging.HR;
+using WangYc.Core.Infrastructure.Querying;
 
 namespace WangYc.Services.Implementations.HR {
     public class RoleService : IRoleService {
@@ -38,12 +39,26 @@ namespace WangYc.Services.Implementations.HR {
             IEnumerable<Role> model = _roleRepository.FindAll();
             return model;
         }
+        private IEnumerable<Role> GetRoleById(string [] id) {
+             
+            int[] ids = Array.ConvertAll<string, int>(id, s => int.Parse(s));
+
+            Query query = new Query();
+            if (ids.Length>0)
+                query.Add(Criterion.Create<Role>(p => p.Id, ids, CriteriaOperator.InOfInt32));
+
+            IEnumerable<Role> model = _roleRepository.FindBy(query);
+            return model;
+        }
         /// <summary>
         /// 获取所有的权限视图
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<RoleView> GetRoleView() {
-            IEnumerable<Role> role = _roleRepository.FindAll();
+        public IEnumerable<RoleView> GetRoleView(int organizationId) {
+
+            Query query = new Query();
+            query.Add(Criterion.Create<Role>(c => c.Organization.Id, organizationId, CriteriaOperator.Equal));
+            IEnumerable<Role> role = this._roleRepository.FindBy(query);
             return role.ConvertToRoleView();
         }
         /// <summary>
@@ -69,9 +84,9 @@ namespace WangYc.Services.Implementations.HR {
                 throw new EntityIsInvalidException<string>(organizationid.ToString());
             }
 
-            Role model = new Role( name, description);
-            IEnumerable<Rights> rightslList = this._rightsService.GetRightsByIdList(rightsIdList);
-            model.AddRights(rightslList);
+            Role model = new Role(orgmodel, name, description);
+            //IEnumerable<Rights> rightslList = this._rightsService.GetRightsById(rightsIdList);
+            //model.AddRights(rightslList);
 
             this._roleRepository.Add(model);
             this._uow.Commit();
@@ -99,13 +114,16 @@ namespace WangYc.Services.Implementations.HR {
 
         #region 删除
 
-        public void DeleteRole(int id) {
-
-            Role model = this._roleRepository.FindBy(id);
+        public void DeleteRole(string [] id) {
+             
+            List<Role> model = GetRoleById(id).ToList();
             if (model == null) {
                 throw new EntityIsInvalidException<string>(model.ToString());
             }
-            this._roleRepository.Remove(model);
+            foreach (Role item in model) {
+                item.IsValid = false;
+                this._roleRepository.Save(item);
+            }
             this._uow.Commit();
         }
         #endregion

@@ -10,10 +10,11 @@
     </id>
     <property name="Name" column="Name" type="string"></property>
     <property name="Description" column="Description" type="string"></property>
-
-    <!--<many-to-one name="Organization" class="Organization" lazy="false" fetch="select" >
+    <property name="IsValid" column="IsValid" ></property>
+    
+    <many-to-one name="Organization" class="Organization" lazy="false" fetch="select" >
       <column name="OrganizationId" sql-type="int" ></column>
-    </many-to-one>-->
+    </many-to-one>
 
     <bag name="Rights" table="WangYc.dbo.RoleRights"  >
       <key column="RoleId"></key>

@@ -35,16 +35,44 @@ namespace WangYc.Services.Implementations.HR {
         public IEnumerable<DataTreeView> GetOrganizationTreeView() {
             
             Query query = new Query();
-            query.Add(Criterion.Create<Organization>(c => c.Parent, null, CriteriaOperator.IsNull));
+            query.Add(Criterion.Create<Organization>(c => c.Id, 0, CriteriaOperator.Equal));
             return this._organizationRepository.FindBy(query).ConvertToDataTreeView();
         }
 
-        public IEnumerable<OrganizationView> GetOrganization() {
+        public Organization GetOrganization(int id) {
+
+            return this._organizationRepository.FindBy(id);
+        }
+        public IEnumerable<OrganizationView> GetOrganizationView(int id) {
 
             Query query = new Query();
-            query.Add(Criterion.Create<Organization>(c => c.Parent, null, CriteriaOperator.IsNull));
-            return this._organizationRepository.FindAll().ConvertToOrganizationView();
+            query.Add(Criterion.Create<Organization>(c => c.Id, id, CriteriaOperator.Equal));
+            return this._organizationRepository.FindBy(query).ConvertToOrganizationView();
         }
+
+        public IList<int> GetOrganizationChildNode(int id) {
+
+            IList<int> result = new List<int>();
+            Query query = new Query();
+            query.Add(Criterion.Create<Organization>(c => c.Id, id, CriteriaOperator.Equal));
+            IEnumerable<Organization> org = this._organizationRepository.FindBy(query);
+            return GetOrganizationNode(org);
+        }
+        private IList<int> GetOrganizationNode(IEnumerable<Organization> org) {
+
+            IList<int> result = new List<int>();
+            foreach (Organization item in org) {
+                result.Add(item.Id);
+                if (item.Child.Count > 0) {
+                    IList<int> child = GetOrganizationNode(item.Child);
+                    foreach (int childitem in child) {
+                        result.Add(childitem);
+                    }
+                }
+            }
+            return result;
+        }
+
         #endregion
 
 
@@ -61,8 +89,7 @@ namespace WangYc.Services.Implementations.HR {
             this._uow.Commit();
             return result.ConvertToOrganizationView();
         }
-
-
+        
         #endregion
 
         #region 修改

@@ -36,9 +36,10 @@ namespace WangYc.Services.Tests
             IUsersRepository _usersRepository = new UsersRepository(uow);
             IRoleRepository _roleRepository = new RoleRepository(uow);
             IOrganizationRepository _organizationRepository = new OrganizationRepository(uow);
+            IOrganizationService _organizationService = new OrganizationService(_organizationRepository,uow);
             this._usersIdGenerator = new IdGenerator<Users>();
 
-            this._userService = new UsersService(_usersRepository, _organizationRepository, _roleRepository, this._usersIdGenerator, uow);
+            this._userService = new UsersService(_usersRepository, _organizationService, _roleRepository, this._usersIdGenerator, uow);
             this._organizationService = new OrganizationService(_organizationRepository, uow);
             
             AutoMapperBootStrapper.ConfigureAutoMapper();
@@ -65,8 +66,8 @@ namespace WangYc.Services.Tests
             AddUsersRequest request = new AddUsersRequest();
             request.Organizationid = 1;
             request.Telephone = "15010215094";
-            request.UserName = "王彦彩";
-            request.UserPwd = "liwenwen851126";
+            request.Name = "王彦彩";
+            request.Pwd = "liwenwen851126";
             this._userService.InsertUsers(request);
 
         }

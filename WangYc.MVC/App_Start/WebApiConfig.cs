@@ -13,7 +13,7 @@ namespace WangYc.MVC
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
             config.DependencyResolver = new WangYc.Controllers.StructureMapDependencyResolver(StructureMap.ObjectFactory.Container);

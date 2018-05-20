@@ -9,10 +9,14 @@ using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Services.Interfaces.HR {
     public interface IOrganizationService {
-
+        #region 查询
         IEnumerable<DataTreeView> GetOrganizationTreeView();
+        Organization GetOrganization(int id);
+        IEnumerable<OrganizationView> GetOrganizationView(int id);
 
-        IEnumerable<OrganizationView> GetOrganization();
+        IList<int> GetOrganizationChildNode(int id);
+   
+        #endregion
 
         OrganizationView AddOrganizationChild(int id, string name, string description);
 

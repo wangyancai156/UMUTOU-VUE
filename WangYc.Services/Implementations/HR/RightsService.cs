@@ -14,6 +14,7 @@ using WangYc.Services.ViewModels.HR;
 using WangYc.Services.Interfaces.HR;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.ViewModels;
+using WangYc.Services.Messaging.HR;
 
 namespace WangYc.Services.Implementations.HR {
     public class RightsService : IRightsService {
@@ -32,7 +33,11 @@ namespace WangYc.Services.Implementations.HR {
             IEnumerable<Rights> rights = _rightsRepository.FindAll();
             return rights;
         }
-        public IEnumerable<Rights> GetRightsByIdList(string[] rightsIdList) {
+        public  Rights GetRightsById(int id) {
+
+            return this._rightsRepository.FindBy(id);
+        }
+        public IEnumerable<Rights> GetRightsById(string[] rightsIdList) {
 
             Query query = new Query();
             if (rightsIdList != null)
@@ -42,10 +47,6 @@ namespace WangYc.Services.Implementations.HR {
             return rights;
         }
 
-        public IEnumerable<RightsView> GetRightsView() {
-            IEnumerable<Rights> rights = _rightsRepository.FindAll();
-            return rights.ConvertToRightsView();
-        }
         public IEnumerable<DataTreeView> GetRightsTreeView() {
 
             Query query = new Query();
@@ -54,7 +55,15 @@ namespace WangYc.Services.Implementations.HR {
             return rights.ConvertToDataTreeView();
         }
 
-        public IEnumerable<RightsView> GetRightsView(int roleid ) {
+        public IEnumerable<RightsView> GetRightsView(int id) {
+
+            Query query = new Query();
+            query.Add(Criterion.Create<Rights>(c => c.Id, id, CriteriaOperator.Equal));
+            IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
+            return rights.ConvertToRightsView();
+        }
+
+        public IEnumerable<RightsView> GetRightsViewByRole(int roleid ) {
 
             Query query = new Query();
             query.Add(new Criterion("fndbyroleid", roleid, CriteriaOperator.Equal));
@@ -67,14 +76,14 @@ namespace WangYc.Services.Implementations.HR {
 
         #region 添加
 
-        public RightsView AddRightsChild(int id, string name,string url, string description, bool isshow) {
+        public RightsView AddRights(AddRightsRequest request) {
 
-            Rights rights = this._rightsRepository.FindBy(id);
+            Rights rights = this._rightsRepository.FindBy(request.ParentId);
             if (rights == null) {
-                throw new EntityIsInvalidException<string>(id.ToString());
+                throw new EntityIsInvalidException<string>(request.ParentId.ToString());
             }
 
-            Rights result = rights.AddChild(name, url, description, isshow);
+            Rights result = rights.AddChild(request.Name, request.Url, request.Description, request.IsShow);
             this._uow.Commit();
             return result.ConvertToRightsView();
         }

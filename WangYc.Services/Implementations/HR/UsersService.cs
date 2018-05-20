@@ -18,31 +18,26 @@ using WangYc.Core.Infrastructure.Domain;
 namespace WangYc.Services.Implementations.HR {
     public class UsersService : IUsersService {
         private readonly IUsersRepository _usersRepository;
-        private readonly IOrganizationRepository _organizationRepository;
+        private readonly IOrganizationService _organizationService;
         private readonly IRoleRepository _roleRepository;
         private readonly IIdGenerator<Users, string> _usersIdGenerator;
         private readonly IUnitOfWork _uow;
 
         public UsersService(
                 IUsersRepository usersRepository,
-                IOrganizationRepository organizationRepository,
+                IOrganizationService organizationService,
                 IRoleRepository roleRepository,
                 IIdGenerator<Users, string> usersIdGenerator,
                 IUnitOfWork uow
             ) {
 
             this._usersRepository = usersRepository;
-            this._organizationRepository = organizationRepository;
+            this._organizationService = organizationService;
             this._roleRepository = roleRepository;
             this._usersIdGenerator = usersIdGenerator;
             this._uow = uow;
         }
 
-        public IEnumerable<UsersView> GetUsersView() {
-
-            IEnumerable<Users> users = _usersRepository.FindAll();
-            return users.ConvertToUsersView();
-        }
 
 
         #region 查找
@@ -86,6 +81,18 @@ namespace WangYc.Services.Implementations.HR {
             return users.FirstOrDefault();
         }
 
+        public IEnumerable<UsersView> GetUsersView(SearchUsersRequest request) {
+
+            int[] allnode = this._organizationService.GetOrganizationChildNode(request.OrganizationId).ToArray();
+           
+            Query query = new Query();
+            query.Add(Criterion.Create<Users>(c => c.Organization.Id, allnode, CriteriaOperator.InOfInt32));
+            //query.Add(Criterion.Create<Users>(c => c.UserName, request.Name+ "%", CriteriaOperator.Like));
+            query.QueryOperator = QueryOperator.And;
+            IEnumerable<Users> users = _usersRepository.FindBy(query);
+            return users.ConvertToUsersView();
+        }
+
 
 
         #endregion
@@ -95,10 +102,19 @@ namespace WangYc.Services.Implementations.HR {
         /// 根据ID获取用户
         /// </summary>
         /// <param name="userid"></param>
-        public void DeleteUsers(string userid) {
-            Users user = FindBy(userid);
-            _usersRepository.Remove(user);
-            _uow.Commit();
+        public void DeleteUsers(string [] userid) {
+
+            string result = "删除成功";
+            foreach (string id in userid) {
+                try {
+                    Users user = FindBy(id);
+                    user.SignState = 0;
+                    this._usersRepository.Save(user);
+                } catch (Exception ex) {
+                    result = "修改失败：" + ex.Message;
+                }
+            }
+            this._uow.Commit();
         }
 
         #endregion
@@ -110,12 +126,12 @@ namespace WangYc.Services.Implementations.HR {
         /// <param name="user"></param>
         public void InsertUsers(AddUsersRequest request) {
 
-            Organization organization = this._organizationRepository.FindBy(request.Organizationid);
+            Organization organization = this._organizationService.GetOrganization(request.Organizationid);
             if (organization == null) {
                 throw new EntityIsInvalidException<string>(organization.ToString());
             }
 
-            Users user = new Users(organization, request.Id, request.UserName, request.UserPwd, request.Telephone);
+            Users user = new Users(organization, request.Id, request.Name, request.Pwd, request.Telephone);
             user.Id = this._usersIdGenerator.NewIntId(user, 3);
             this._usersRepository.Add(user);
             this._uow.Commit();
@@ -154,15 +170,15 @@ namespace WangYc.Services.Implementations.HR {
                 throw new EntityIsInvalidException<string>(user.Id.ToString());
             }
 
-            Organization organization = this._organizationRepository.FindBy(request.Organizationid);
+            Organization organization = this._organizationService.GetOrganization(request.Organizationid);
             if (organization == null) {
                 throw new EntityIsInvalidException<string>(organization.ToString());
             }
 
             user.Organization = organization;
             user.Telephone = request.Telephone;
-            user.UserName = request.UserName;
-            user.UserPwd = request.UserPwd;
+            user.UserName = request.Name;
+            user.UserPwd = request.Pwd;
 
             _uow.Commit();
         }

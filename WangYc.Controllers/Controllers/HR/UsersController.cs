@@ -34,7 +34,7 @@ namespace WangYc.Controllers.Controllers.HR {
  
         public JsonResult GetUsers() {
  
-            IEnumerable<UsersView> usersView = _usersService.GetUsersView();
+            IEnumerable<UsersView> usersView = _usersService.GetUsersView(null);
 
             return Json(usersView, JsonRequestBehavior.AllowGet);
         }
@@ -49,7 +49,7 @@ namespace WangYc.Controllers.Controllers.HR {
             }
 
         }
-        public ActionResult RemoveUsers(string userid) {
+        public ActionResult RemoveUsers(string [] userid) {
             try {
                 _usersService.DeleteUsers(userid);
                 return Content("删除成功");

@@ -27,17 +27,14 @@ namespace WangYc.Controllers.Controllers.HR {
         /// <returns></returns>
         public JsonResult GetRights() {
 
-            IEnumerable<RightsView> rights = this._rightsService.GetRightsView();
+            IEnumerable<RightsView> rights = this._rightsService.GetRightsView(0);
             return Json(rights, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult AddRightsChild(string id, string name, string url, string description, string isshow) {
 
-            bool show = false;
-            if (isshow == "1") {
-                show = true;
-            }
-            RightsView rights = this._rightsService.AddRightsChild(Convert.ToInt32(id), name, url, description, show);
+           
+            RightsView rights = this._rightsService.AddRights(null);
             return Json(rights, JsonRequestBehavior.AllowGet);
         }
 

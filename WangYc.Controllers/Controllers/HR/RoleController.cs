@@ -29,7 +29,7 @@ namespace WangYc.Controllers.Controllers.HR {
 
         public JsonResult GetRole() {
 
-            IEnumerable<RoleView> model = this._roleService.GetRoleView();
+            IEnumerable<RoleView> model = this._roleService.GetRoleView(0);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
@@ -40,9 +40,9 @@ namespace WangYc.Controllers.Controllers.HR {
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult RemoveRole(int id) {
+        public ActionResult DeleteRole(int id) {
             try {
-                this._roleService.DeleteRole(id);
+                this._roleService.DeleteRole(null);
                 return Content("删除成功");
             }
             catch (Exception ex) {
@@ -75,7 +75,7 @@ namespace WangYc.Controllers.Controllers.HR {
 
             int id = Convert.ToInt32(roleid);
             RoleView model = this._roleService.GetRoleViewById(id);
-            return Json(model.Rights, JsonRequestBehavior.AllowGet);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetRightsTreeView() {
 

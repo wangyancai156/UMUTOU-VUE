@@ -17,13 +17,13 @@ namespace WangYc.Models.HR {
 
         public Role() { }
 
-        public Role( string name, string description) {
+        public Role(Organization organization, string name, string description) {
 
-            //this.Organization = organization;
+            this.Organization = organization;
             this.Name = name;
             this.Description = description;
             this.CreateDate = DateTime.Now;
-                    
+            this.IsValid = true;
         }
 
         /// <summary>
@@ -38,13 +38,17 @@ namespace WangYc.Models.HR {
         /// 创建时间
         /// </summary>
         public virtual DateTime CreateDate { set; get; }
+        /// <summary>
+        /// 是否有效
+        /// </summary>
+        public virtual bool IsValid { get; set; }
         ///// <summary>
         ///// 组织
         ///// </summary>
-        //public virtual Organization Organization {
-        //    get;
-        //    set;
-        //}
+        public virtual Organization Organization {
+            get;
+            set;
+        }
         /// <summary>
         /// 权限
         /// </summary>

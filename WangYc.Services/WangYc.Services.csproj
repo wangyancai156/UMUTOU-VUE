@@ -144,6 +144,8 @@
     <Compile Include="Messaging\Common\AddWorkflowActivityRequest.cs" />
     <Compile Include="Messaging\FI\AddPaymentRequest.cs" />
     <Compile Include="Messaging\FI\AddPaymentTypeRequest.cs" />
+    <Compile Include="Messaging\HR\AddRightsRequest.cs" />
+    <Compile Include="Messaging\HR\SearchUsersRequest.cs" />
     <Compile Include="Messaging\PO\AddPurchaseOrderDetailRequest.cs" />
     <Compile Include="Messaging\PO\AddPurchaseOrderRequest.cs" />
     <Compile Include="Messaging\PO\AddPurchaseTypeRequest.cs" />

@@ -140,6 +140,10 @@
     <Compile Include="WebApi\Account\BaseApiController.cs" />
     <Compile Include="WebApi\BW\InOutBoundController.cs" />
     <Compile Include="WebApi\BW\WarehouseController.cs" />
+    <Compile Include="WebApi\HR\OrganizationController.cs" />
+    <Compile Include="WebApi\HR\RightsController.cs" />
+    <Compile Include="WebApi\HR\RoleController.cs" />
+    <Compile Include="WebApi\HR\UsersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WangYc.Core.Infrastructure\WangYc.Core.Infrastructure.csproj">

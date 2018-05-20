@@ -42,7 +42,7 @@ namespace WangYc.Controllers.Controllers.HR {
         /// <returns></returns>
         public JsonResult GetOrganization() {
 
-            IEnumerable<OrganizationView> organization = this._organizationService.GetOrganization();
+            IEnumerable<OrganizationView> organization = this._organizationService.GetOrganizationView(0);
             return Json(organization, JsonRequestBehavior.AllowGet);
 
         }

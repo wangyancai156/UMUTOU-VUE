@@ -13,7 +13,7 @@ using WangYc.Services.Messaging;
 namespace WangYc.Controllers.Account.WebApi
 {
     //添加验证
-    [AuthFilterOutside]
+    
     public class BaseApiController : ApiController
     {
      

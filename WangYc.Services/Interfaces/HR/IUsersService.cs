@@ -16,7 +16,7 @@ namespace WangYc.Services.Interfaces.HR
         /// </summary>
         IEnumerable<Users> GetUsers();
 
-        IEnumerable<UsersView> GetUsersView();
+        IEnumerable<UsersView> GetUsersView(SearchUsersRequest request);
 
         UsersView FindUsersBy(string userid);
         /// <summary>
@@ -29,7 +29,7 @@ namespace WangYc.Services.Interfaces.HR
 
         Users FindBy(string userId);
 
-        void DeleteUsers(string userid);
+        void DeleteUsers(string [] userid);
 
         void InsertUsers(AddUsersRequest user);
 

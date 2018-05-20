@@ -20,7 +20,7 @@ namespace WangYc.Services.Interfaces.HR {
         /// 获取所有的权限视图
         /// </summary>
         /// <returns></returns>
-        IEnumerable<RoleView> GetRoleView();
+        IEnumerable<RoleView> GetRoleView(int organizationId);
 
         /// <summary>
         /// 根据Id获取权限视图
@@ -47,7 +47,7 @@ namespace WangYc.Services.Interfaces.HR {
 
         #region 删除
 
-        void DeleteRole(int id);
+        void DeleteRole(string [] id);
 
         #endregion
 

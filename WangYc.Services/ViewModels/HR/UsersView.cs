@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace WangYc.Services.ViewModels.HR {
     public class UsersView {
 
-        public OrganizationView Organization {
+        public int OrganizationId {
+            get;
+            set;
+        }
+        public string OrganizationName {
             get;
             set;
         }
