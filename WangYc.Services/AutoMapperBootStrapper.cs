@@ -46,15 +46,21 @@ namespace WangYc.Services
 
             Mapper.CreateMap<Organization, OrganizationView>();
             Mapper.CreateMap<Organization, DataTreeView>()
-                .ForMember(d => d.id, t => t.MapFrom(s => s.Id))
-                .ForMember(d => d.text, t => t.MapFrom(s => s.Name))
-                .ForMember(d => d.nodes, t => t.MapFrom(s => s.Child));
+                .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+                .ForMember(d => d.label, t => t.MapFrom(s => s.Name))
+                .ForMember(d => d.children, t => t.MapFrom(s => s.Child));
+            Mapper.CreateMap<Organization, DataTree>()
+               .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+               .ForMember(d => d.label, t => t.MapFrom(s => s.Name));
 
             Mapper.CreateMap<Rights, RightsView>();
             Mapper.CreateMap<Rights, DataTreeView>()
-               .ForMember(d => d.id, t => t.MapFrom(s => s.Id))
-               .ForMember(d => d.text, t => t.MapFrom(s => s.Name))
-               .ForMember(d => d.nodes, t => t.MapFrom(s => s.Child));
+                .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+                .ForMember(d => d.label, t => t.MapFrom(s => s.Name))
+                .ForMember(d => d.children, t => t.MapFrom(s => s.Child));
+            Mapper.CreateMap<Rights, DataTree>()
+              .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+              .ForMember(d => d.label, t => t.MapFrom(s => s.Name));
 
             Mapper.CreateMap<Role, RoleView>();
             Mapper.CreateMap<Users, UsersView>();

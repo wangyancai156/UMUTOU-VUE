@@ -14,11 +14,11 @@ namespace WangYc.Models.HR {
 
         public Rights() { }
 
-        public Rights(Rights parent, string name,string url, string descriptin, bool isshow, int level) {
+        public Rights(Rights parent, string name,string url, string description, bool isshow, int level) {
 
             this.Name = name;
             this.Url = url;
-            this.Descriptin = descriptin;
+            this.Description = description;
             this.IsShow = isshow;
             this.Level = level;
             this.CreateDate = DateTime.Now;
@@ -45,7 +45,7 @@ namespace WangYc.Models.HR {
         /// <summary>
         /// 描述
         /// </summary>
-        public virtual string Descriptin { get; set; }
+        public virtual string Description { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -89,10 +89,10 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual void UpdateRights(string name,string url, string descriptin, bool isshow) {
+        public virtual void UpdateRights(string name,string url, string description, bool isshow) {
 
             this.Name = name;
-            this.Descriptin = descriptin;
+            this.Description = description;
             this.IsShow = isshow;
             this.Url = url;
         }

@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WangYc.Services.ViewModels {
-    public class DataTreeView : DataTree {
- 
-        public string ParentId { get; set; }
-
-        public IList<DataTree> children { get; set; }
-
+    public class DataTree {
+        public string value { get; set; }
+        public string label { get; set; }
     }
 }

@@ -11,6 +11,10 @@ namespace WangYc.Services.ViewModels.HR {
         /// <summary>
         /// 名称
         /// </summary>
+        public string PathName { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
         public string Name { get; set; }
         /// <summary>
         /// 路径
@@ -19,7 +23,7 @@ namespace WangYc.Services.ViewModels.HR {
         /// <summary>
         /// 描述
         /// </summary>
-        public string Descriptin { get; set; }
+        public string Description { get; set; }
         /// <summary>
         /// 是否显示
         /// </summary>

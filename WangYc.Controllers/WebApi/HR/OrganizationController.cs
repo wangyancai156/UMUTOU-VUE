@@ -49,9 +49,9 @@ namespace WangYc.Controllers.WebApi.HR {
         /// <param name="description">节点说明</param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage AddOrganization(int parentId, string name, string description) {
+        public HttpResponseMessage AddOrganization(int ParentId, string Name, string Description) {
 
-            OrganizationView organization = this._organizationService.AddOrganizationChild(parentId, name, description);
+            OrganizationView organization = this._organizationService.AddOrganizationChild(ParentId, Name, Description);
             return ToJson(organization);
         }
 

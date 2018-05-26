@@ -30,8 +30,29 @@ namespace WangYc.Services.Mapping.HR
             return Mapper.Map<Rights, DataTreeView>(rights);
         }
 
-        public static IEnumerable<DataTreeView> ConvertToDataTreeView(this IEnumerable<Rights> rights) {
-            return Mapper.Map<IEnumerable<Rights>, IEnumerable<DataTreeView>>(rights);
+        public static DataTree ConvertToDataTree(this Rights rights) {
+
+            return Mapper.Map<Rights, DataTree>(rights);
         }
+
+        public static IList<DataTree> ConvertToDataTreeView(this IEnumerable<Rights> rights) {
+
+            IList<DataTree> reslut = new List<DataTree>();
+            foreach (Rights item in rights) {
+                if (item.Child.Count > 0) {
+                    DataTreeView reslutChild = new DataTreeView();
+                    reslutChild.value = item.Id.ToString();
+                    reslutChild.label = item.Name;
+                    reslutChild.children = ConvertToDataTreeView(item.Child);
+                    reslut.Add(reslutChild);
+                }
+                else {
+                    reslut.Add(item.ConvertToDataTree());
+                }
+            }
+            return reslut;
+        }
+      
+
     }
 }

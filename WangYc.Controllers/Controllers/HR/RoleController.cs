@@ -79,7 +79,7 @@ namespace WangYc.Controllers.Controllers.HR {
         }
         public JsonResult GetRightsTreeView() {
 
-            IEnumerable<DataTreeView> model = this._rightsService.GetRightsTreeView();
+            IList<DataTree> model = this._rightsService.GetRightsTreeView();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

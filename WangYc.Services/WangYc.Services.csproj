@@ -170,6 +170,7 @@
     <Compile Include="ViewModels\BW\WaitArrivalView.cs" />
     <Compile Include="ViewModels\Common\WorkflowActivityView.cs" />
     <Compile Include="ViewModels\DataGridView.cs" />
+    <Compile Include="ViewModels\DataTree.cs" />
     <Compile Include="ViewModels\DataTreeView.cs" />
     <Compile Include="ViewModels\FI\PaymentTypeView.cs" />
     <Compile Include="ViewModels\FI\PaymentView.cs" />

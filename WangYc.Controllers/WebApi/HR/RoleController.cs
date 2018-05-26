@@ -80,7 +80,7 @@ namespace WangYc.Controllers.WebApi.HR {
         [HttpGet]
         public HttpResponseMessage GetRightsTreeView() {
 
-            IEnumerable<DataTreeView> model = this._rightsService.GetRightsTreeView();
+            IList<DataTree> model = this._rightsService.GetRightsTreeView();
             return ToJson(model);
         }
 

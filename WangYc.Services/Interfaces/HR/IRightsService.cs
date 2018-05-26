@@ -16,7 +16,7 @@ namespace WangYc.Services.Interfaces.HR {
         Rights GetRightsById(int id);
         IEnumerable<Rights> GetRightsById(string[] rightsIdList);
 
-        IEnumerable<DataTreeView> GetRightsTreeView();
+        IList<DataTree> GetRightsTreeView();
 
         IEnumerable<RightsView> GetRightsView(int id);
 

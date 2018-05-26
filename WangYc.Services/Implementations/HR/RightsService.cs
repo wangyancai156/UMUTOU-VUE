@@ -47,7 +47,7 @@ namespace WangYc.Services.Implementations.HR {
             return rights;
         }
 
-        public IEnumerable<DataTreeView> GetRightsTreeView() {
+        public IList<DataTree> GetRightsTreeView() {
 
             Query query = new Query();
             query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
