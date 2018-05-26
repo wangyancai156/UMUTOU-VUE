@@ -10,7 +10,7 @@
     </id>
  
     <property name="Name" column="Name" ></property>
-    <property name="Descriptin" column="Descriptin"></property>
+    <property name="Description" column="Description"></property>
     <property name="CreateDate" column="CreateDate"></property>
     <property name="Level" column="Level"></property>
     

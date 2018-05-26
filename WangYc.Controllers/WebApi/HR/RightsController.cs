@@ -55,13 +55,9 @@ namespace WangYc.Controllers.WebApi.HR {
         /// <param name="description"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage UpdateRights(int id, string name, string url, string description, string isshow) {
-
-            bool show = false;
-            if (isshow == "1") {
-                show = true;
-            }
-            RightsView rights = this._rightsService.UpdateRights(id, name, url, description, show);
+        public HttpResponseMessage EditRights([FromUri] AddRightsRequest request) {
+ 
+            RightsView rights = this._rightsService.UpdateRights(request.Id, request.Name, request.Url, request.Description, request.IsShow);
             return ToJson(rights);
         }
 

@@ -16,7 +16,7 @@ namespace WangYc.Services.ViewModels.HR {
         /// <summary>
         /// 描述
         /// </summary>
-        public string Descriptin { get; set; }
+        public string Description { get; set; }
         public int Level { get; set; }
         
         /// <summary>

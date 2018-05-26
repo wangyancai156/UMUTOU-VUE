@@ -13,10 +13,10 @@ namespace WangYc.Models.HR {
 
         public  Organization() { }
 
-        public  Organization( Organization parent, string name, string descriptin, int level ) {
+        public  Organization( Organization parent, string name, string description, int level ) {
 
             this.Name = name;
-            this.Descriptin = descriptin;
+            this.Description = description;
             this.Level = level;
             this.CreateDate = DateTime.Now;
             this.Parent = parent;
@@ -37,7 +37,7 @@ namespace WangYc.Models.HR {
         /// <summary>
         /// 描述
         /// </summary>
-        public virtual string Descriptin { get; set; }
+        public virtual string Description { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -78,10 +78,10 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual void UpdateOrganization(string name, string descriptin) {
+        public virtual void UpdateOrganization(string name, string description) {
 
             this.Name = name;
-            this.Descriptin = descriptin;
+            this.Description = description;
         }
 
 
