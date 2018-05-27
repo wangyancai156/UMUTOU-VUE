@@ -67,15 +67,15 @@ namespace WangYc.Controllers.Controllers.HR {
         public ActionResult AddRigths(string roleid) {
 
             int id = Convert.ToInt32(1002);
-            RoleView model = this._roleService.GetRoleViewById(id);
-            return View(model);
+            RoleView model;
+            return View("");
         }
 
         public JsonResult GetRigths(string roleid) {
 
             int id = Convert.ToInt32(roleid);
-            RoleView model = this._roleService.GetRoleViewById(id);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            RoleView model;
+            return Json("", JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetRightsTreeView() {
 

@@ -32,7 +32,7 @@ namespace WangYc.Services.Implementations.HR {
         }
 
         #region 查询
-        public IEnumerable<DataTreeView> GetOrganizationTreeView() {
+        public IEnumerable<DataTree> GetOrganizationTreeView() {
             
             Query query = new Query();
             query.Add(Criterion.Create<Organization>(c => c.Id, 0, CriteriaOperator.Equal));

@@ -12,6 +12,7 @@ namespace WangYc.Services.Messaging.HR {
         public string Name { get; set; }
         public string Url { get; set; }
         public bool IsShow { get; set; }
+        public bool IsLeaf { get; set; }
         public string Description { get; set; }
 
     }

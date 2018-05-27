@@ -27,7 +27,7 @@ namespace WangYc.Controllers.Controllers.HR {
         /// <returns></returns>
         public JsonResult GetRights() {
 
-            IEnumerable<RightsView> rights = this._rightsService.GetRightsView(0);
+            RightsView rights = this._rightsService.GetRightsView(0);
             return Json(rights, JsonRequestBehavior.AllowGet);
         }
 

@@ -23,6 +23,12 @@ namespace WangYc.Models.HR {
             this.Level = level;
             this.CreateDate = DateTime.Now;
             this.Parent = parent;
+            this.IsLeaf = true;
+            if (level == 2) {
+                this.PathName = parent.Name;
+            } else if (level > 2) {
+                this.PathName = parent.PathName + "/" + parent.Name;
+            }
 
         }
         /// <summary>
@@ -58,7 +64,10 @@ namespace WangYc.Models.HR {
         /// 是否显示
         /// </summary>
         public virtual bool IsShow { get; set; }
+        public virtual bool IsLeaf { get; set; }
 
+        public virtual string PathName { get; set; }
+        
         #endregion
 
         #region 方法
@@ -69,9 +78,9 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual Rights AddChild(string name,string url, string descriptin, bool isshow) {
+        public virtual Rights AddChild(string name,string url, string descriptin, bool isshow ) {
 
-            Rights rights = new Rights(this, name, url, descriptin, isshow, this.Level + 1);
+            Rights rights = new Rights(this, name, url, descriptin, isshow,  this.Level + 1);
             if (Child == null) {
                 Child = new List<Rights>();
                 Child.Add(rights);
@@ -79,7 +88,11 @@ namespace WangYc.Models.HR {
             else {
                 Child.Add(rights);
             }
-
+            if (this.Child.Count > 0) {
+                this.IsLeaf = false;
+            } else {
+                this.IsLeaf = true;
+            }
             return rights;
         }
 
@@ -95,6 +108,12 @@ namespace WangYc.Models.HR {
             this.Description = description;
             this.IsShow = isshow;
             this.Url = url;
+ 
+            if (this.Level == 2) {
+                this.PathName = this.Parent.Name;
+            } else if (this.Level > 2) {
+                this.PathName = this.Parent.PathName + "/" + this.Parent.Name;
+            }
         }
 
 

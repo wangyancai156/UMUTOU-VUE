@@ -82,6 +82,19 @@ namespace WangYc.Models.HR {
             }
         }
 
+        public virtual void CancelRigths(string[] rightid) {
+
+            int[] ids = Array.ConvertAll<string, int>(rightid, s => int.Parse(s));
+            IEnumerable<Rights> rights = this.Rights.Where(s => ids.Contains(s.Id));
+
+            for (int i = this.Rights.Count - 1; i > -1; i--) {
+
+                if (ids.Contains(this.Rights[i].Id)) {
+                    this.Rights.Remove(this.Rights[i]);
+                }
+            }
+        }
+
 
         protected override void Validate() {
             throw new NotImplementedException();

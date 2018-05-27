@@ -63,19 +63,34 @@ namespace WangYc.Controllers.WebApi.HR {
 
 
         #region 权限功能
+       
+      
         [HttpGet]
-        public HttpResponseMessage AddRigths(string roleid) {
+        public HttpResponseMessage GetRoleRightsNotIn(int roleid, int rightid) {
+            
+            IEnumerable<RightsView> model = this._roleService.GetRoleRightsNotIn(roleid, rightid); 
+            return ToJson(model);
+        }
+        
+        [HttpGet]
+        public HttpResponseMessage GetRoleRights(int id) {
 
-            int id = Convert.ToInt32(1002);
-            RoleView model = this._roleService.GetRoleViewById(id);
+            IEnumerable<RightsView> model = this._roleService.GetRoleRights(id);
             return ToJson(model);
         }
         [HttpGet]
-        public HttpResponseMessage GetRigths(string roleid) {
+        public HttpResponseMessage RelationRigths(int roleId, string rightid) {
+            string[] ids = rightid.Split('|');
+           
+            this._roleService.RelationRigths(roleId, ids);
+            return ToJson("");
+        }
+        [HttpGet]
+        public HttpResponseMessage CancelRelationRigths(int roleId, string rightid) {
 
-            int id = Convert.ToInt32(roleid);
-            RoleView model = this._roleService.GetRoleViewById(id);
-            return ToJson(model);
+            string[] ids = rightid.Split('|');
+            this._roleService.CancelRelationRigths(roleId, ids);
+            return ToJson("");
         }
         [HttpGet]
         public HttpResponseMessage GetRightsTreeView() {

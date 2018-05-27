@@ -8,10 +8,7 @@ namespace WangYc.Services.ViewModels.HR {
     public class RightsView {
         public int Id { get; set; }
 
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string PathName { get; set; }
+       
         /// <summary>
         /// 名称
         /// </summary>
@@ -28,6 +25,10 @@ namespace WangYc.Services.ViewModels.HR {
         /// 是否显示
         /// </summary>
         public bool IsShow { get; set; }
+        /// <summary>
+        /// 是否叶子节点
+        /// </summary>
+        public bool IsLeaf { get; set; }
         /// <summary>
         /// 等级
         /// </summary>
@@ -48,5 +49,10 @@ namespace WangYc.Services.ViewModels.HR {
         public IEnumerable<RightsView> Child { get; set; }
 
         public int ParentId { get; set; }
+ 
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string PathName { get; set; }
     }
 }

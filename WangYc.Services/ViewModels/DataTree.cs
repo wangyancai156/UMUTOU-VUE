@@ -8,5 +8,6 @@ namespace WangYc.Services.ViewModels {
     public class DataTree {
         public string value { get; set; }
         public string label { get; set; }
+         
     }
 }

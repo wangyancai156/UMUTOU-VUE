@@ -33,7 +33,7 @@ namespace WangYc.Controllers.Controllers.HR {
         /// <returns></returns>
         public JsonResult GetOrganizationTree() {
 
-            IEnumerable<DataTreeView> organization = this._organizationService.GetOrganizationTreeView();
+            IEnumerable<DataTree> organization = this._organizationService.GetOrganizationTreeView();
             return Json(organization, JsonRequestBehavior.AllowGet);
 
         }

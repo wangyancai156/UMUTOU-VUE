@@ -25,7 +25,7 @@ namespace WangYc.Controllers.WebApi.HR {
         /// <returns></returns>
         public HttpResponseMessage GetOrganizationTree() {
 
-            IEnumerable<DataTreeView> organization = this._organizationService.GetOrganizationTreeView();
+            IEnumerable<DataTree> organization = this._organizationService.GetOrganizationTreeView();
             return ToJson(organization);
 
         }

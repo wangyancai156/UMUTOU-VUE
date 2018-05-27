@@ -20,15 +20,12 @@ using WangYc.Services.Mapping.HR;
 using WangYc.Services.ViewModels.HR;
 using WangYc.Services.Interfaces.HR;
 
-namespace WangYc.Services.Tests
-{
+namespace WangYc.Services.Tests {
     [TestClass]
-     public class RightsServiceTest
-    {
+    public class RightsServiceTest {
 
         private readonly IRightsService _rightsService;
-        public RightsServiceTest()
-         {
+        public RightsServiceTest() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             IRightsRepository _rightsRepository = new RightsRepository(uow);
@@ -37,12 +34,19 @@ namespace WangYc.Services.Tests
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
 
-         [TestCategory("货期所有职位信息")]
-         [TestMethod]
-         public void FindUsersByTest()
-         {
-             IEnumerable<RightsView> user = _rightsService.GetRightsView(1002);
-         }
+        [TestCategory("货期所有职位信息")]
+        [TestMethod]
+        public void FindUsersByTest() {
+
+            RightsView user = _rightsService.GetRightsView(0);
+        }
+
+        [TestMethod]
+        public void GetRightsIsLeafView() {
+
+            IEnumerable<RightsView> user = _rightsService.GetRightsIsLeafView(0);
+        }
+
 
     }
 }

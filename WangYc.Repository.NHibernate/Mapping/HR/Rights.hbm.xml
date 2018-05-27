@@ -14,8 +14,11 @@
     <property name="Url" column="Url"></property>
     <property name="Description" column="Description"></property>
     <property name="IsShow" column="IsShow"></property>
+    <property name="IsLeaf" column="IsLeaf"></property>
     <property name="CreateDate" column="CreateDate"></property>
     <property name="Level" column="Level"></property>
+    <property name="PathName" column="PathName"></property>
+    
 
     <!--多对一，也可用于一对一-->
     <many-to-one name="Parent" class="Rights" column="ParentId" unique="true" />

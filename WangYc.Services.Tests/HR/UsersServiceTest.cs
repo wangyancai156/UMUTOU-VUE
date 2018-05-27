@@ -57,7 +57,7 @@ namespace WangYc.Services.Tests
 
         [TestMethod]
         public void GetOrganization() {
-            IEnumerable<DataTreeView> organization = this._organizationService.GetOrganizationTreeView();
+            IEnumerable<DataTree> organization = this._organizationService.GetOrganizationTreeView();
         }
 
         [TestMethod]

@@ -15,6 +15,7 @@ using WangYc.Services.Interfaces.HR;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.ViewModels;
 using WangYc.Services.Messaging.HR;
+using System;
 
 namespace WangYc.Services.Implementations.HR {
     public class RightsService : IRightsService {
@@ -28,25 +29,108 @@ namespace WangYc.Services.Implementations.HR {
         }
 
         #region 查询
-        public IEnumerable<Rights> GetRights() {
-            
-            IEnumerable<Rights> rights = _rightsRepository.FindAll();
-            return rights;
-        }
-        public  Rights GetRightsById(int id) {
+
+        #region 查询对象
+       
+        /// <summary>
+        /// 根据ID获取功能
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Rights GetRights(int id) {
 
             return this._rightsRepository.FindBy(id);
         }
-        public IEnumerable<Rights> GetRightsById(string[] rightsIdList) {
+        /// <summary>
+        /// 根据ID数据获取功能列表
+        /// </summary>
+        /// <param name="rightsIdList"></param>
+        /// <returns></returns>
+        public IEnumerable<Rights> GetRights(string[] rightsIdList) {
 
+            int[] ids = Array.ConvertAll<string, int>(rightsIdList, s => int.Parse(s));
             Query query = new Query();
             if (rightsIdList != null)
-                query.Add(Criterion.Create<Rights>(p => p.Id, rightsIdList, CriteriaOperator.InOfInt32));
+                query.Add(Criterion.Create<Rights>(p => p.Id, ids, CriteriaOperator.InOfInt32));
 
             IEnumerable<Rights> rights = this._rightsRepository.FindBy(query);
             return rights;
         }
+        #endregion
 
+        #region 查询视图
+
+        /// <summary>
+        /// 根据Id获取功能视图
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public RightsView GetRightsView(int id) {
+
+            return this.GetRights(id).ConvertToRightsView();
+        }
+
+        /// <summary>
+        /// 根据Id获取
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<RightsView> GetRightsIsLeafView(int id) {
+
+            RightsView model = this.GetRights(id).ConvertToRightsView();
+
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(id.ToString());
+            }
+            return ForeachChild(model, true);
+        }
+
+        /// <summary>
+        /// 根据Id和权限ID获取权限没有的功能
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<RightsView> GetRightsIsLeafView(int id, int roleid) {
+
+            RightsView model = this.GetRights(id).ConvertToRightsView();
+
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(id.ToString());
+            }
+            return ForeachChild(model, true);
+        }
+
+        private IList<RightsView> ForeachChild(RightsView model, bool isleaf) {
+
+            IList<RightsView> reslut = new List<RightsView>();
+            foreach (RightsView item in model.Child) {
+
+                if (item.IsLeaf) {
+                    reslut.Add(item);
+                } else {
+                    IList<RightsView> child = ForeachChild(item, isleaf);
+                    foreach (RightsView childitem in child) {
+                        reslut.Add(childitem);
+                    }
+                }
+            }
+            return reslut;
+        }
+
+        public IEnumerable<RightsView> GetRightsViewByRole(int roleid) {
+
+            Query query = new Query();
+            query.Add(new Criterion("fndbyroleid", roleid, CriteriaOperator.Equal));
+            IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
+            return rights.ConvertToRightsView();
+        }
+        #endregion
+
+        #region 查询树
+        /// <summary>
+        /// 获取功能树视图
+        /// </summary>
+        /// <returns></returns>
         public IList<DataTree> GetRightsTreeView() {
 
             Query query = new Query();
@@ -55,23 +139,19 @@ namespace WangYc.Services.Implementations.HR {
             return rights.ConvertToDataTreeView();
         }
 
-        public IEnumerable<RightsView> GetRightsView(int id) {
+        /// <summary>
+        /// 获取功能树视图（不包括叶子节点）
+        /// </summary>
+        /// <returns></returns>
+        public IList<DataTree> GetRightsTreeNoLeafView() {
 
             Query query = new Query();
-            query.Add(Criterion.Create<Rights>(c => c.Id, id, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToRightsView();
+            return rights.ConvertToDataTreeNoLeafView();
         }
+        #endregion
 
-        public IEnumerable<RightsView> GetRightsViewByRole(int roleid ) {
-
-            Query query = new Query();
-            query.Add(new Criterion("fndbyroleid", roleid, CriteriaOperator.Equal));
-            IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToRightsView();
-        }
-
-      
         #endregion
 
         #region 添加

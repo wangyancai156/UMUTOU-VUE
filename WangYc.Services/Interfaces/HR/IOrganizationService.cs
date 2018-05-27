@@ -10,7 +10,7 @@ using WangYc.Services.ViewModels.HR;
 namespace WangYc.Services.Interfaces.HR {
     public interface IOrganizationService {
         #region 查询
-        IEnumerable<DataTreeView> GetOrganizationTreeView();
+        IEnumerable<DataTree> GetOrganizationTreeView();
         Organization GetOrganization(int id);
         IEnumerable<OrganizationView> GetOrganizationView(int id);
 

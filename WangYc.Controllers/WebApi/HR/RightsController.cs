@@ -19,15 +19,17 @@ namespace WangYc.Controllers.WebApi.HR {
 
             this._rightsService = rightsService;
         }
+
         #region 查询
+
         /// <summary>
-        /// 获取组织树结构
+        /// 获取组织树结构（没有叶子节点的）
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GetRightsTreeView() {
+        public HttpResponseMessage GetRightsTreeNoLeafView() {
 
-            IList<DataTree> organization = this._rightsService.GetRightsTreeView();
+            IList<DataTree> organization = this._rightsService.GetRightsTreeNoLeafView();
             return ToJson(organization);
 
         }
@@ -37,11 +39,26 @@ namespace WangYc.Controllers.WebApi.HR {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GetRightsView(int id ) {
+        public HttpResponseMessage GetRightsView(int id) {
 
-            IEnumerable<RightsView> rights = this._rightsService.GetRightsView(id);
+            RightsView rights = this._rightsService.GetRightsView(id);
             return ToJson(rights);
         }
+
+        /// <summary>
+        /// 获取功能列表，只搜索子节点
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage GetRightsIsLeafView(int id) {
+
+            IEnumerable<RightsView> rights = this._rightsService.GetRightsIsLeafView(id);
+            return ToJson(rights);
+        }
+
+        
+
         #endregion
 
         #region 编辑

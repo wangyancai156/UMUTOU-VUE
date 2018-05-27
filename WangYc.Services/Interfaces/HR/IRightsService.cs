@@ -12,16 +12,48 @@ namespace WangYc.Services.Interfaces.HR {
     public interface IRightsService {
 
         #region 查询
-        IEnumerable<Rights> GetRights();
-        Rights GetRightsById(int id);
-        IEnumerable<Rights> GetRightsById(string[] rightsIdList);
 
-        IList<DataTree> GetRightsTreeView();
+        #region 查询对象
 
-        IEnumerable<RightsView> GetRightsView(int id);
+        /// <summary>
+        /// 根据ID获取功能
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         Rights GetRights(int id);
+        /// <summary>
+        /// 根据ID数据获取功能列表
+        /// </summary>
+        /// <param name="rightsIdList"></param>
+        /// <returns></returns>
+         IEnumerable<Rights> GetRights(string[] rightsIdList);
+        #endregion
 
+        #region 查询视图
+
+        RightsView GetRightsView(int id);
+
+        IEnumerable<RightsView> GetRightsIsLeafView(int id);
+
+        
         IEnumerable<RightsView> GetRightsViewByRole(int roleid);
 
+        #endregion
+
+        #region 查询树
+        /// <summary>
+        /// 获取功能树视图
+        /// </summary>
+        /// <returns></returns>
+        IList<DataTree> GetRightsTreeView();
+
+        /// <summary>
+        /// 获取功能树视图（不包括叶子节点）
+        /// </summary>
+        /// <returns></returns>
+        IList<DataTree> GetRightsTreeNoLeafView();
+
+        #endregion
 
         #endregion
 

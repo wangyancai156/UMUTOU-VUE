@@ -11,26 +11,39 @@ namespace WangYc.Services.Interfaces.HR {
     public interface IRoleService {
 
         #region 查询
+
         /// <summary>
-        /// 获取所有的权限
+        /// 根据ID获取岗位
         /// </summary>
+        /// <param name="id"></param>
         /// <returns></returns>
-        IEnumerable<Role> GetRole();
+        Role GetRole(int id);
+        /// <summary>
+        /// 根据ID数据获取岗位
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        IEnumerable<Role> GetRole(string[] id);
+        /// <summary>
+        /// 根据权限ID获取权限的功能
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        IEnumerable<RightsView> GetRoleRights(int id);
+        /// <summary>
+        /// 获取权限中没有的功能
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        IEnumerable<RightsView> GetRoleRightsNotIn(int roleid, int rightid);
         /// <summary>
         /// 获取所有的权限视图
         /// </summary>
         /// <returns></returns>
         IEnumerable<RoleView> GetRoleView(int organizationId);
-
-        /// <summary>
-        /// 根据Id获取权限视图
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        RoleView GetRoleViewById(int id);
+       
 
         #endregion
-
 
         #region 添加
 
@@ -43,11 +56,15 @@ namespace WangYc.Services.Interfaces.HR {
 
         RoleView UpdateRole(AddRoleRequest request);
 
+        void RelationRigths(int roleid, string[] rightid);
+
+        void CancelRelationRigths(int roleid, string[] rightid);
+
         #endregion
 
         #region 删除
 
-        void DeleteRole(string [] id);
+        void DeleteRole(string[] id);
 
         #endregion
 
