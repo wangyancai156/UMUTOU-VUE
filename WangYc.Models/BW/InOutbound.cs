@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
+using WangYc.Models.HR;
 using WangYc.Models.SD;
 
 namespace WangYc.Models.BW {
@@ -49,7 +50,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual int CreateUserId {
+        public virtual Users User {
             get;
             set;
         }
@@ -62,25 +63,25 @@ namespace WangYc.Models.BW {
     public class InBound : InOutBound {
 
         public InBound() { }
-        public InBound(Product product, Warehouse warehouse, WarehouseShelf warehouseShelf, int qty, float price, string currency
-            , string note, int createUserId
+        public InBound(Product product, Warehouse warehouse, WarehouseShelf warehouseShelf, InOutReason inOutReason, int qty, float price, string currency
+            , string note, Users user
         ) {
 
             this.Product = product;
             this.Warehouse = warehouse;
+            this.InOutReason = inOutReason;
             this.Qty = qty;
             this.CurrentQty = qty;
             this.Price = price;
             this.Currency = currency;
             this.Note = note;
-            this.CreateUserId = createUserId;
+            this.User = user;
             this.CreateDate = DateTime.Now;
-            InBoundOfShelf one = new InBoundOfShelf(this, warehouseShelf, qty, note, createUserId);
+            InBoundOfShelf one = new InBoundOfShelf(this, warehouseShelf, qty, note, user.Id);
             this.AddInBoundOfShelf(one);
 
         }
-
-
+         
         public virtual IList<OutBound> OutBounds {
             get;
             set;
@@ -100,18 +101,20 @@ namespace WangYc.Models.BW {
             InBoundOfShelf.Add(inBoundOfShelf);
         }
         //添加出库记录
-        public virtual void AddOutBound(int qty, float price, string note, int createUserId, int inboundShelfId) {
+        public virtual void AddOutBound(InOutReason inOutReason, int qty, string note, Users user) {
 
             if (this.OutBounds == null) {
                 this.OutBounds = new List<OutBound>();
             }
-            OutBound one = new OutBound(this, qty, price, null, note, createUserId);
-
+            //新建入库记录
+            OutBound one = new OutBound(this, inOutReason, qty, note, user);
+            //新建货架号出库库记录
             InBoundOfShelf shelf = new InBoundOfShelf();
             if (this.InBoundOfShelf != null) {
-                shelf = this.InBoundOfShelf.Where(e => e.Id == inboundShelfId).First();
+                shelf = this.InBoundOfShelf.OrderBy(s=> s.CreateDate).First();
             }
-            shelf.AddOutBoundOfShelf(one, qty, note, createUserId);
+            shelf.AddOutBoundOfShelf(one, qty, note, user.Id);
+            //更新现货库存
             shelf.RefreshCurrentQty();
             this.OutBounds.Add(one);
             this.RefreshCurrentQty();
@@ -130,16 +133,17 @@ namespace WangYc.Models.BW {
 
     public class OutBound : InOutBound {
         public OutBound() { }
-        public OutBound(InBound inBound, int qty, float price, string currency, string note, int createUserId) {
+        public OutBound(InBound inBound, InOutReason inOutReason, int qty, string note, Users user) {
 
             this.InBound = inBound;
             this.Product = inBound.Product;
             this.Warehouse = inBound.Warehouse;
+            this.InOutReason = inOutReason;
             this.Qty = qty;
-            this.Price = price;
-            this.Currency = currency;
+            this.Price = inBound.Price;
+            this.Currency = inBound.Currency;
             this.Note = note;
-            this.CreateUserId = createUserId;
+            this.User = user;
             this.CreateDate = DateTime.Now;
   
         }

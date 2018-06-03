@@ -35,7 +35,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual int CreateUserId {
+        public virtual string CreateUserId {
             get;
             set;
         }
@@ -48,7 +48,7 @@ namespace WangYc.Models.BW {
     public class InBoundOfShelf : InOutBoundOfShelf {
 
         public InBoundOfShelf() { }
-        public InBoundOfShelf(InBound inBound, WarehouseShelf warehouseShelf, int qty, string note, int createUserId) {
+        public InBoundOfShelf(InBound inBound, WarehouseShelf warehouseShelf, int qty, string note, string createUserId) {
 
             this.InBound = inBound;
             this.WarehouseShelf = warehouseShelf;
@@ -69,7 +69,7 @@ namespace WangYc.Models.BW {
         }
 
         //添加货架出库记录
-        public virtual void AddOutBoundOfShelf(OutBound outBound, int qty, string note, int createUserId) {
+        public virtual void AddOutBoundOfShelf(OutBound outBound, int qty, string note, string createUserId) {
 
             if (this.OutBoundOfShelfs == null) {
                 this.OutBoundOfShelfs = new List<OutBoundOfShelf>();
@@ -91,7 +91,7 @@ namespace WangYc.Models.BW {
 
     public class OutBoundOfShelf : InOutBoundOfShelf {
         public OutBoundOfShelf() { }
-        public OutBoundOfShelf(InBoundOfShelf inBoundOfShelf,OutBound outBound, int qty, string note, int createUserId) {
+        public OutBoundOfShelf(InBoundOfShelf inBoundOfShelf,OutBound outBound, int qty, string note, string createUserId) {
 
             this.OutBound = outBound;
             this.InBoundOfShelf = inBoundOfShelf;

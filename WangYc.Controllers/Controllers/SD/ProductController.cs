@@ -21,7 +21,7 @@ namespace WangYc.Controllers.Controllers.SD {
 
         public JsonResult GetProduct() {
 
-           IEnumerable<ProductView> model = this._productService.GetProductViewByAll();
+           IEnumerable<ProductView> model = this._productService.GetProductView();
            return Json(model, JsonRequestBehavior.AllowGet);
         }
 

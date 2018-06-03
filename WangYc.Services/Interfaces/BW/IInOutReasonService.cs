@@ -18,6 +18,11 @@ namespace WangYc.Services.Interfaces.BW {
         /// 获取项目
         /// </summary>
         /// <returns></returns>
+        InOutReason GetInOutReason( int id);
+        /// <summary>
+        /// 获取项目
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<InOutReason> GetInOutReason(Query request);
 
         /// <summary>
@@ -29,7 +34,7 @@ namespace WangYc.Services.Interfaces.BW {
         /// 获取所有项目视图
         /// </summary>
         /// <returns></returns>
-        IEnumerable<InOutReasonView> GetInOutReasonViewByAll();
+        IEnumerable<InOutReasonView> GetInOutReasonView(int type);
 
         /// <summary>
         /// 根据项目号获取项目视图

@@ -52,10 +52,10 @@ namespace WangYc.Services.Implementations.HR {
             return users;
         }
 
-        public Users FindBy(string userId) {
+        public Users GetUsers(string id) {
 
-            Users user = _usersRepository.FindBy(userId);
-            return user;
+            return this._usersRepository.FindBy(id);
+
         }
 
         public UsersView FindUsersBy(string userid) {
@@ -107,7 +107,7 @@ namespace WangYc.Services.Implementations.HR {
             string result = "删除成功";
             foreach (string id in userid) {
                 try {
-                    Users user = FindBy(id);
+                    Users user = GetUsers(id);
                     user.SignState = 0;
                     this._usersRepository.Save(user);
                 } catch (Exception ex) {

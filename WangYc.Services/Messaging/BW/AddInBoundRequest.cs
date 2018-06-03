@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace WangYc.Services.Messaging.BW {
     public class AddInBoundRequest {
+      
         public int ProductId {
-            get;
-            set;
-        }
-        public string Type {
             get;
             set;
         }
@@ -19,6 +16,10 @@ namespace WangYc.Services.Messaging.BW {
             set;
         }
         public int WarehouseShelfId {
+            get;
+            set;
+        }
+        public int InOutReasonId {
             get;
             set;
         }
@@ -38,12 +39,7 @@ namespace WangYc.Services.Messaging.BW {
             get;
             set;
         }
-        public int ParentId {
-            get;
-            set;
-        }
-
-        public int CreateUserId {
+        public string CreateUserId {
             get;
             set;
         }

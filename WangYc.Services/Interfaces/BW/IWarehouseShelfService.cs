@@ -13,7 +13,7 @@ namespace WangYc.Services.Interfaces.BW {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        IEnumerable<WarehouseShelfView> GetWarehouseShelfViewByWarehoseId(int warehouseid);
+        IEnumerable<WarehouseShelfView> GetWarehouseShelfView(int warehouseid);
 
     }
 }

@@ -27,13 +27,21 @@ namespace WangYc.Services.Implementations.BW {
             }
 
 
-            #region 查找
+        #region 查找
 
-            /// <summary>
-            /// 获取项目
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<InOutReason> GetInOutReason(Query request) {
+        /// <summary>
+        /// 获取项目
+        /// </summary>
+        /// <returns></returns>
+         public InOutReason GetInOutReason(int id) {
+
+            return this._inOutReasonRepository.FindBy(id);
+        }
+        /// <summary>
+        /// 获取项目
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<InOutReason> GetInOutReason(Query request) {
 
                 IEnumerable<InOutReason> model = this._inOutReasonRepository.FindBy(request);
                 return model;
@@ -48,15 +56,17 @@ namespace WangYc.Services.Implementations.BW {
                 IEnumerable<InOutReason> model = _inOutReasonRepository.FindBy(request);
                 return model.ConvertToInOutReasonView();
             }
-            /// <summary>
-            /// 获取所有项目视图
-            /// </summary>
-            /// <returns></returns>
-            public IEnumerable<InOutReasonView> GetInOutReasonViewByAll() {
+        /// <summary>
+        /// 获取所有项目视图
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<InOutReasonView> GetInOutReasonView(int type) {
 
-                return this._inOutReasonRepository.FindAll().ConvertToInOutReasonView();
+            Query query = new Query();
+            query.Add(Criterion.Create<InOutReason>(c => c.InOutType, type, CriteriaOperator.Equal));
+            return this._inOutReasonRepository.FindBy(query).ConvertToInOutReasonView();
 
-            }
+        }
 
             /// <summary>
             /// 根据项目号获取项目视图

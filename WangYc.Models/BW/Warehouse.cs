@@ -17,7 +17,7 @@ namespace WangYc.Models.BW {
             this.Note = note;
             this.WarehouseTypeId = warehouseTypeId;
             this.CreateDate = DateTime.Now;
-            this.State = true;
+            this.IsValid = true;
         }
 
         public virtual string Name {
@@ -33,7 +33,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual bool State {
+        public virtual bool IsValid {
             get;
             set;
         }

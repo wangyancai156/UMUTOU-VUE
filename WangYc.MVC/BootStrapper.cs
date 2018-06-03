@@ -62,6 +62,11 @@ namespace WangYc.MVC
 
                 #region BW
 
+                For<ISpotInventoryRepository>().Use<SpotInventoryRepository>();
+                For<ISpotInventoryService>().Use<SpotInventoryService>();
+                
+                For<IInOutReasonRepository>().Use<InOutReasonRepository>();
+                For<IInOutReasonService>().Use<InOutReasonService>(); 
 
                 For<IInOutBoundRepository>().Use<InOutBoundRepository>();
                 For<IOutBoundRepository>().Use<OutBoundRepository>();

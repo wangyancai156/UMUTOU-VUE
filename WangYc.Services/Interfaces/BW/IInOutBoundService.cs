@@ -65,7 +65,7 @@ namespace WangYc.Services.Interfaces.BW
         /// </summary>
         /// <param name="productid"></param>
         /// <returns></returns>
-        IEnumerable<InBoundView> GetSpotInventory(int? productid);
+        InBound GetFirstInBound(int productid, int warehouseid);
 
         /// <summary>
         /// 加载分页数据
@@ -87,7 +87,7 @@ namespace WangYc.Services.Interfaces.BW
         /// 添加入库
         /// </summary>
         /// <param name="request"></param>
-        void AddOutBound(int inboundId, int inboundShelfId, int qty, float price, string note, int createUserId);
+        void AddOutBound(AddOutBoundRequest request);
 
 
         #endregion

@@ -12,7 +12,7 @@
     <property name="Name" column="Name"></property>
     <property name="Note" column="Note" ></property>
     <property name="WarehouseTypeId" column="WarehouseTypeId" ></property>
-    <property name="State" column="State" ></property>
+    <property name="IsValid" column="IsValid" ></property>
     <property name="CreateDate" column="CreateDate"></property>
 
     <!--货架-->

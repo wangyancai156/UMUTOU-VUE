@@ -14,7 +14,8 @@
     <property name="Currency" column="Currency" ></property>
     <property name="Note" column="Note" ></property>
     <property name="CurrentQty" column="CurrentQty" ></property>
-    <property name="CreateUserId" column="CreateUserId"></property>
+    <!--员工-->
+    <many-to-one name="User" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
     <!--库房-->
     <many-to-one name="Warehouse" class="Warehouse" column="WarehouseId" ></many-to-one>

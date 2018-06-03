@@ -13,7 +13,11 @@ namespace WangYc.Services.Interfaces.BW {
     public interface IWarehouseService {
 
         #region 查找
-
+        /// <summary>
+        /// 获库房
+        /// </summary>
+        /// <returns></returns>
+        Warehouse GetWarehouse(int id);
         /// <summary>
         /// 获库房
         /// </summary>

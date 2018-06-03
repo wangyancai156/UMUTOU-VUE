@@ -30,6 +30,12 @@ namespace WangYc.Controllers.WebApi.BW
             IEnumerable<WarehouseView> model = this._warehouseService.GetWarehouseViewByAll();
             return ToJson(model);
         }
+
+        public HttpResponseMessage GetWarehouseShelf(int warehoseId) {
+
+            IEnumerable<WarehouseShelfView> model = this._warehouseShelfService.GetWarehouseShelfView(warehoseId);
+            return ToJson(model);
+        }
     }
  
 }

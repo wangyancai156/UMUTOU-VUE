@@ -18,6 +18,11 @@ namespace WangYc.Services.Interfaces.SD {
         /// 获取产品
         /// </summary>
         /// <returns></returns>
+        Product GetProduct(int id);
+        /// <summary>
+        /// 获取产品
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<Product> GetProduct(Query request);
 
         /// <summary>
@@ -29,7 +34,7 @@ namespace WangYc.Services.Interfaces.SD {
         /// 获取所有产品
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ProductView> GetProductViewByAll();
+        IEnumerable<ProductView> GetProductView();
         /// <summary>
         /// 根据名称获取产品
         /// </summary>

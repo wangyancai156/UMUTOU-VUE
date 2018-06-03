@@ -11,6 +11,7 @@ namespace WangYc.Services.Interfaces.HR
 {
     public interface IUsersService
     {
+        
         /// <summary>
         /// IEnumerable与IList等其它类型的集合的区别？？
         /// </summary>
@@ -27,7 +28,7 @@ namespace WangYc.Services.Interfaces.HR
         /// <returns></returns>
         UsersView FindUsersBy(string username, string pass);
 
-        Users FindBy(string userId);
+        Users GetUsers(string id);
 
         void DeleteUsers(string [] userid);
 

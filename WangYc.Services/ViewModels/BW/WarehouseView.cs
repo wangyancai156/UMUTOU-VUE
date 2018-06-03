@@ -31,10 +31,6 @@ namespace WangYc.Services.ViewModels.BW {
             get;
             set;
         }
-
-        public IList<WarehouseShelfView> Shelf {
-            get;
-            set;
-        }
+ 
     }
 }

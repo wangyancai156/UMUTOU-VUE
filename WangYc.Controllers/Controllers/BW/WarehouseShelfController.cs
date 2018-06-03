@@ -30,7 +30,7 @@ namespace WangYc.Controllers.Controllers.BW {
 
         public JsonResult GetWarehouseShelf(int warehouseId) {
 
-            IEnumerable<WarehouseShelfView> model = this._warehouseShelfService.GetWarehouseShelfViewByWarehoseId(warehouseId);
+            IEnumerable<WarehouseShelfView> model = this._warehouseShelfService.GetWarehouseShelfView(warehouseId);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

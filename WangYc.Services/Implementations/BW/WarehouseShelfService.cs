@@ -56,7 +56,7 @@ namespace WangYc.Services.Implementations.BW {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<WarehouseShelfView> GetWarehouseShelfViewByWarehoseId(int warehouseid) {
+        public IEnumerable<WarehouseShelfView> GetWarehouseShelfView(int warehouseid) {
 
             Query query = new Query();
             query.Add(Criterion.Create<WarehouseShelf>(c => c.WarehouseId, warehouseid, CriteriaOperator.Equal));

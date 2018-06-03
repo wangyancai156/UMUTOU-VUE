@@ -74,7 +74,7 @@ namespace WangYc.Controllers.Controllers.BW
         public JsonResult GetWarehouseShelf(int warehoseId)
         {
 
-            IEnumerable<WarehouseShelfView> model = this._warehouseShelfService.GetWarehouseShelfViewByWarehoseId(warehoseId);
+            IEnumerable<WarehouseShelfView> model = this._warehouseShelfService.GetWarehouseShelfView(warehoseId);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
         /// <summary>
@@ -87,16 +87,7 @@ namespace WangYc.Controllers.Controllers.BW
             IEnumerable<ProductView> model = this._productService.GetProductViewByName(name);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-        /// <summary>
-        /// 获取现货库存
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult GetSpotInventory(int? productid)
-        {
-
-            IEnumerable<InOutBoundView> model = this._inOutBoundService.GetSpotInventory(productid);
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
+        
 
         /// <summary>
         ///  获取现货库存（分页方法）
@@ -125,10 +116,10 @@ namespace WangYc.Controllers.Controllers.BW
         /// 出库
         /// </summary>
         /// <returns></returns>
-        public JsonResult AddOutBound(int InboundId, int InboundShelfId, int Qty, float Price, string Note, int CreateUserId)
+        public JsonResult AddOutBound(AddOutBoundRequest request)
         {
 
-            this._inOutBoundService.AddOutBound(InboundId, InboundShelfId, Qty, Price, Note, CreateUserId);
+            this._inOutBoundService.AddOutBound(request);
             return Json("出库成功", JsonRequestBehavior.AllowGet);
 
         }

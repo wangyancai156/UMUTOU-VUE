@@ -41,7 +41,7 @@ namespace WangYc.Services.Tests.BW {
             this._productRepository = new ProductRepository(uow);
             this._warehouseRepository = new WarehouseRepository(uow);
             this._warehouseShelfRepository = new WarehouseShelfRepository(uow);
-            this._inOutBoundService = new InOutBoundService(_inOutBoundRsponstroy, _outBoundRsponstroy, _inBoundRsponstroy, _productRepository, _warehouseRepository, _warehouseShelfRepository, uow);
+            this._inOutBoundService = new InOutBoundService(_inOutBoundRsponstroy, _outBoundRsponstroy, _inBoundRsponstroy, _productRepository, _warehouseRepository, _warehouseShelfRepository, null, null,null, uow);
 
             this._inOutReasonRepository = new InOutReasonRepository(uow);
             this._inOutReasonService = new InOutReasonService(this._inOutReasonRepository, uow);
@@ -66,7 +66,7 @@ namespace WangYc.Services.Tests.BW {
         [TestMethod]
         public void GetGetInOutReason() {
 
-            this._inOutReasonService.GetInOutReasonViewByAll();
+            this._inOutReasonService.GetInOutReasonView(0);
         }
 
     }

@@ -40,7 +40,7 @@ namespace WangYc.Services.Implementations.BW {
 
             return this._warehouseRepository.FindBy(id);
         }
-
+ 
         /// <summary>
         /// 获库房列表
         /// </summary>
@@ -66,11 +66,11 @@ namespace WangYc.Services.Implementations.BW {
         /// </summary>
         /// <returns></returns>
         public IEnumerable<WarehouseView> GetWarehouseViewByAll() {
-            Query query = new Query();
-           
-                query.Add(Criterion.Create<Warehouse>(p => p.Id, 0, CriteriaOperator.NotEqual));
 
-            return this._warehouseRepository.FindBy(query, 2,1).ConvertToWarehouseView();
+            Query query = new Query();
+            query.Add(Criterion.Create<Warehouse>(p => p.IsValid, true, CriteriaOperator.Equal));
+
+            return this._warehouseRepository.FindBy(query).ConvertToWarehouseView();
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace WangYc.Services.Implementations.BW {
             if (model == null) {
                 throw new EntityIsInvalidException<string>(id.ToString());
             }
-            model.State = false;
+            model.IsValid = false;
             this._warehouseRepository.Save(model);
             this._uow.Commit();
         }

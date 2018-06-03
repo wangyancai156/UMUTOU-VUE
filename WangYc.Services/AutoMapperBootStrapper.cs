@@ -28,6 +28,10 @@ namespace WangYc.Services
 
             #region BW
 
+            Mapper.CreateMap<SpotInventory, SpotInventoryView>();
+
+            Mapper.CreateMap<InOutReason, InOutReasonView>(); 
+             
             Mapper.CreateMap<Warehouse, WarehouseView>();
             Mapper.CreateMap<WarehouseShelf, WarehouseShelfView>();
             

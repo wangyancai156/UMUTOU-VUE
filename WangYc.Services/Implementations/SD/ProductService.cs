@@ -33,7 +33,14 @@ namespace WangYc.Services.Implementations.SD {
 
         #region 查找
 
+        /// <summary>
+        /// 获取产品
+        /// </summary>
+        /// <returns></returns>
+        public Product GetProduct(int id) {
 
+            return this._productRepository.FindBy(id);
+        }
         /// <summary>
         /// 获取产品
         /// </summary>
@@ -57,7 +64,7 @@ namespace WangYc.Services.Implementations.SD {
         /// 获取所有产品
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ProductView> GetProductViewByAll() {
+        public IEnumerable<ProductView> GetProductView() {
 
             return this._productRepository.FindAll().ConvertToProductView();
 
