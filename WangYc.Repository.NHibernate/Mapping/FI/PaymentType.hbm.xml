@@ -8,7 +8,7 @@
       <generator class="identity" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-    <property name="Description" column="Description"></property>
+    <property name="Name" column="Name"></property>
     <property name="Note" column="Note"></property>
     <property name="IsValid" column="IsValid"></property>
     <property name="CreateUserId" column="CreateUserId"></property>

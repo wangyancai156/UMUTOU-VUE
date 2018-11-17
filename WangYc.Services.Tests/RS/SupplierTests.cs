@@ -32,7 +32,7 @@ namespace WangYc.Services.Tests.RS {
 
 
         public SupplierTests() {
-
+            AutoMapperBootStrapper.ConfigureAutoMapper();
             IUnitOfWork uow = new NHUnitOfWork();
 
             this._supplierProductRepository = new SupplierProductRepository(uow);

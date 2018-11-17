@@ -17,6 +17,8 @@ namespace WangYc.Services.Interfaces.RS {
         /// </summary>
         /// <returns></returns>
         IEnumerable<SupplierView> GetSupplierView(Query request);
+
+        IEnumerable<SupplierView> GetSupplierView(string infromition);
         /// <summary>
         /// 获取所有供应商视图
         /// </summary>

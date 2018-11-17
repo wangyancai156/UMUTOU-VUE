@@ -9,7 +9,7 @@ using WangYc.Services.ViewModels.RS;
 namespace WangYc.Services.ViewModels.PO {
     public class PurchaseOrderView {
 
-        public int Id {
+        public string Id {
             get;
             set;
         }

@@ -6,5 +6,9 @@ using System.Threading.Tasks;
 
 namespace WangYc.Services.ViewModels.FI {
     public class PaymentTypeView {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
     }
 }

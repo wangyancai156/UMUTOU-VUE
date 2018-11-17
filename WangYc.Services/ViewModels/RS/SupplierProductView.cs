@@ -8,5 +8,6 @@ namespace WangYc.Services.ViewModels.RS {
    public  class SupplierProductView {
 
         public int Id { get; set; }
+       
     }
 }

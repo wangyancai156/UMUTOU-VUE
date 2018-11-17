@@ -7,6 +7,6 @@ using WangYc.Core.Infrastructure.Domain;
 using WangYc.Models.PO;
 
 namespace WangYc.Models.Repository.PO {
-    public interface IPurchaseOrderRepository : IRepository<PurchaseOrder, int> {
+    public interface IPurchaseOrderRepository : IRepository<PurchaseOrder, string> {
     }
 }

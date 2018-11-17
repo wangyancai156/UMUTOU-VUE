@@ -19,6 +19,8 @@ using WangYc.Models.PP;
 using WangYc.Services.ViewModels.PP;
 using WangYc.Models.Common;
 using WangYc.Services.ViewModels.Common;
+using WangYc.Services.ViewModels.RS;
+using WangYc.Models.RS;
 
 namespace WangYc.Services
 {
@@ -75,7 +77,15 @@ namespace WangYc.Services
             Mapper.CreateMap<PurchaseOrder, PurchaseOrderView>();
             Mapper.CreateMap<PurchaseOrderDetail, PurchaseOrderDetailView>();
             Mapper.CreateMap<PurchaseType, PurchaseTypeView>();
- 
+
+            #endregion
+
+            #region RS
+
+            Mapper.CreateMap<Supplier, SupplierView>();
+            Mapper.CreateMap<SupplierProduct, SupplierProductView>();
+            
+
             #endregion
 
             #region SD

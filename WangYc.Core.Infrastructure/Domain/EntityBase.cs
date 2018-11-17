@@ -50,8 +50,10 @@ namespace WangYc.Core.Infrastructure.Domain {
             return (!(entity1 == entity2));
         }
 
+        #region 获取中文首字母(大写)
+       
         /// <summary>
-        /// 获取中文首字母
+        /// 获取一段文字每个的大写字母
         /// </summary>
         /// <param name="strText"></param>
         /// <returns></returns>
@@ -61,9 +63,13 @@ namespace WangYc.Core.Infrastructure.Domain {
             for (int i = 0; i < len; i++) {
                 myStr += getSpell(strText.Substring(i, 1));
             }
-            return myStr;
+            return myStr.ToUpper();
         }
-
+        /// <summary>
+        /// 获取某一个文字的首字母
+        /// </summary>
+        /// <param name="cnChar"></param>
+        /// <returns></returns>
         public virtual string getSpell(string cnChar) {
             byte[] arrCN = Encoding.Default.GetBytes(cnChar);
             if (arrCN.Length > 1) {
@@ -82,5 +88,12 @@ namespace WangYc.Core.Infrastructure.Domain {
             } else
                 return cnChar;
         }
+        #endregion
+
+        public virtual string GetDateString() {
+
+            return DateTime.Now.ToString("yyyyMMdd");
+        }
+
     }
 }

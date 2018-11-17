@@ -27,8 +27,8 @@ namespace WangYc.Services.Implementations.Common {
 
             //插入新活动前，先保存当前所处活动
             WorkflowActivity activityBeforUpdate = GetCurrentActivity(request.ObjectId);
-
-            WorkflowActivity activity = new WorkflowActivity(request.ObjectId, request.ObjectTypeId,request.WorkflowNodeId,request.CreateUserId, activityBeforUpdate.Id);
+            
+            WorkflowActivity activity = new WorkflowActivity(request.ObjectId, request.ObjectTypeId,request.WorkflowNodeId,request.CreateUserId, activityBeforUpdate);
 
             this._workflowActivityRepository.Save(activity);
 
@@ -48,7 +48,7 @@ namespace WangYc.Services.Implementations.Common {
 
             WorkflowActivity activity = null;
             Query query = new Query();
-            query.Add(Criterion.Create<WorkflowActivity>(a => a.ObjectId, objectId, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<WorkflowActivity>(a => a.Id, objectId, CriteriaOperator.Equal));
             query.Add(Criterion.Create<WorkflowActivity>(a => a.EndTime, null, CriteriaOperator.IsNull));
 
             activity = this._workflowActivityRepository.FindBy(query).FirstOrDefault();
@@ -61,7 +61,7 @@ namespace WangYc.Services.Implementations.Common {
         /// <returns></returns>
         public IEnumerable<WorkflowActivityView> GetCurrentActivityHistory(string objectId) {
             Query query = new Query();
-            query.Add(Criterion.Create<WorkflowActivity>(a => a.ObjectId, objectId, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<WorkflowActivity>(a => a.Id, objectId, CriteriaOperator.Equal));
             return this._workflowActivityRepository.FindBy(query).ConvertToWorkflowActivityView();
         }
     }

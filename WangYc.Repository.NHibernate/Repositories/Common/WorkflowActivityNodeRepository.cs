@@ -8,7 +8,7 @@ using WangYc.Models.Common;
 using WangYc.Models.Repository.Common;
 
 namespace WangYc.Repository.NHibernate.Repositories.Common {
-    public class WorkflowActivityNodeRepository : Repository<WorkflowActivityNode, int>, IWorkflowActivityNodeRepository {
+    public class WorkflowActivityNodeRepository : Repository<WorkflowActivityNode, string>, IWorkflowActivityNodeRepository {
         public WorkflowActivityNodeRepository(IUnitOfWork uow)
             : base(uow) { }
     }

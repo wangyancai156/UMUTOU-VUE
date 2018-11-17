@@ -4,15 +4,14 @@
                    assembly="WangYc.Models">
   <class name="WorkflowActivityNode" abstract="true" table="WorkflowActivityNode" >
     <!--主键ID必须命名为Id-->
-    <id name="Id" column="Id" type="int" unsaved-value="0">
+    <id name="Id" column="StatusId" type="string" unsaved-value="0">
       <generator class="identity" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-    
-    <property name="StatusId" column="StatusId" type="string"></property>
+ 
+    <property name="WorkFlowType" column="WorkFlowType" type="string"></property>
     <property name="StatusName" column="StatusName" type="string"></property>
     <property name="StatusNote" column="StatusNote" type="string"></property>
-    <property name="WorkFlowType" column="WorkFlowType" type="string"></property>
-
+ 
   </class>
 </hibernate-mapping>

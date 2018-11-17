@@ -32,7 +32,7 @@ namespace WangYc.Services.Implementations.PO {
         /// 获取项目
         /// </summary>
         /// <returns></returns>
-        public  PurchaseOrderDetail GetPurchaseOrderDetail(int id) {
+        public  PurchaseOrderDetail GetPurchaseOrderDetailById(int id) {
 
             return this._purchaseOrderDetailRepository.FindBy(id);
         }
@@ -40,7 +40,7 @@ namespace WangYc.Services.Implementations.PO {
         /// 获取项目
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetail(Query request) {
+        public IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetailBy(Query request) {
 
             IEnumerable<PurchaseOrderDetail> model = this._purchaseOrderDetailRepository.FindBy(request);
             return model;
@@ -50,30 +50,21 @@ namespace WangYc.Services.Implementations.PO {
         /// 获取项目视图
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailView(Query request) {
+        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewBy(Query request) {
 
             IEnumerable<PurchaseOrderDetail> model = _purchaseOrderDetailRepository.FindBy(request);
             return model.ConvertToPurchaseOrderDetailView();
         }
-        /// <summary>
-        /// 获取所有项目视图
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByAll() {
-
-            return this._purchaseOrderDetailRepository.FindAll().ConvertToPurchaseOrderDetailView();
-
-        }
-
+        
         /// <summary>
         /// 根据项目号获取项目视图
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewById(int id) {
+        public IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByPurchaseOrderId(string purchaseOrderId) {
 
             Query query = new Query();
-            query.Add(Criterion.Create<PurchaseOrderDetail>(c => c.Id, id, CriteriaOperator.Equal));
-            return this._purchaseOrderDetailRepository.FindBy(query).ConvertToPurchaseOrderDetailView();
+            query.Add(Criterion.Create<PurchaseOrderDetail>(c => c.PurchaseOrder.Id, purchaseOrderId, CriteriaOperator.Equal));
+            return GetPurchaseOrderDetailViewBy(query);
 
         }
         #endregion

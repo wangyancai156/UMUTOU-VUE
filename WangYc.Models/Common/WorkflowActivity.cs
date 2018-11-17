@@ -13,7 +13,7 @@ namespace WangYc.Models.Common {
         }
         public WorkflowActivity() { }
 
-        public WorkflowActivity(string objectId, string objectTypeId, string workflowNodeId, string createUserId, int parentId) {
+        public WorkflowActivity(string objectId, string objectTypeId, string workflowNodeId, string createUserId, WorkflowActivity parent) {
 
             this.ObjectId = objectId;
             this.ObjectTypeId = objectTypeId;
@@ -22,10 +22,8 @@ namespace WangYc.Models.Common {
             this.CreateUserId = createUserId;
             this.StartTime = DateTime.Now;
             this.EndTime = (DateTime?)null;
-            this.ParentId = parentId;
+            this.Parent = parent;
         }
-
-       
 
         public virtual string ObjectId { get; set; }
         public virtual string ObjectTypeId { get; set; }
@@ -34,7 +32,7 @@ namespace WangYc.Models.Common {
         public virtual DateTime StartTime { get; set; }
         public virtual DateTime? EndTime { get; set; }
         public virtual string CreateUserId { get; set; }
-        public virtual int ParentId { get; set; }
+        public virtual WorkflowActivity Parent { get; set; }
 
 
 

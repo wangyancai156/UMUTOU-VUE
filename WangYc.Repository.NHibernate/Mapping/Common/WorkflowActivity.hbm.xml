@@ -8,7 +8,7 @@
       <generator class="identity" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-
+ 
     <property name="ObjectId" column="ObjectId"></property>
     <property name="ObjectTypeId" column="ObjectTypeId"></property>
     <property name="WorkflowNodeId" column="WorkflowNodeId"></property>
@@ -16,7 +16,6 @@
     <property name="StartTime" column="StartTime"></property>
     <property name="EndTime" column="EndTime"></property>
     <property name="CreateUserId" column="CreateUserId"></property>
-    <property name="ParentId" column="ParentId"></property>
-    
+    <many-to-one name="Parent" class="WorkflowActivity" column="ParentId" lazy="false" ></many-to-one>
   </class>
 </hibernate-mapping>

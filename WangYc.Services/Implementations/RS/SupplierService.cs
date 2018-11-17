@@ -54,13 +54,22 @@ namespace WangYc.Services.Implementations.RS {
             IEnumerable<Supplier> model = _supplierRepository.FindBy(request);
             return model.ConvertToSupplierView();
         }
+        public IEnumerable<SupplierView> GetSupplierView(string infromition) {
+
+            Query query = new Query();
+            query.Add(Criterion.Create<Supplier>(c => c.Name, infromition + "%", CriteriaOperator.Like));
+            query.Add(Criterion.Create<Supplier>(c => c.MobilePhone, infromition, CriteriaOperator.Equal));
+            query.QueryOperator = QueryOperator.Or;
+            return this.GetSupplierView(query);
+       }
         /// <summary>
         /// 获取所有采购单类型视图
         /// </summary>
         /// <returns></returns>
         public IEnumerable<SupplierView> GetSupplierViewByAll() {
 
-            return this._supplierRepository.FindAll().ConvertToSupplierView();
+            IEnumerable<Supplier> model = this._supplierRepository.FindAll();
+            return model.ConvertToSupplierView();
 
         }
 

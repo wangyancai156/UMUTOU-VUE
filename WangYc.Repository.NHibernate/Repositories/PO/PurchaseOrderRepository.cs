@@ -8,7 +8,7 @@ using WangYc.Models.PO;
 using WangYc.Models.Repository.PO;
 
 namespace WangYc.Repository.NHibernate.Repositories.PO {
-    public class PurchaseOrderRepository : Repository<PurchaseOrder, int>, IPurchaseOrderRepository {
+    public class PurchaseOrderRepository : Repository<PurchaseOrder, string>, IPurchaseOrderRepository {
         public PurchaseOrderRepository(IUnitOfWork uow)
             : base(uow) { }
     }

@@ -10,7 +10,7 @@ namespace WangYc.Services.Messaging.PO {
             get;
             set;
         }
-        public int PurchaseOrderId {
+        public string PurchaseOrderId {
             get;
             set;
         }

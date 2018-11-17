@@ -45,6 +45,7 @@ using WangYc.Models.Repository.Common;
 using WangYc.Repository.NHibernate.Repositories.Common;
 using WangYc.Services.Interfaces.Common;
 using WangYc.Services.Implementations.Common;
+using WangYc.Models.PO;
 
 namespace WangYc.MVC
 {
@@ -118,6 +119,7 @@ namespace WangYc.MVC
 
                 For<IPurchaseOrderRepository>().Use<PurchaseOrderRepository>();
                 For<IPurchaseOrderService>().Use<PurchaseOrderService>();
+                For<IIdGenerator<PurchaseOrder, string>>().Use<IdGenerator<PurchaseOrder>>();
 
                 For<IPurchaseTypeRepository>().Use<PurchaseTypeRepository>();
                 For<IPurchaseTypeService>().Use<PurchaseTypeService>();

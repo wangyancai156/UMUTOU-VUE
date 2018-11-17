@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
 
 namespace WangYc.Models.Common {
-   public class WorkflowActivityNode : EntityBase<int>, IAggregateRoot {
+   public class WorkflowActivityNode : EntityBase<string>, IAggregateRoot {
 
         protected override void Validate() {
             throw new NotImplementedException();
         }
-
-        public virtual string StatusId { get; set; }
+ 
         public virtual string StatusName { get; set; }
         public virtual string StatusNote { get; set; }
         public virtual string WorkFlowType { get; set; }
        
     }
+ 
 }

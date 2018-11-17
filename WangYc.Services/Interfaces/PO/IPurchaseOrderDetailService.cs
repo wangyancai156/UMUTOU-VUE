@@ -17,24 +17,20 @@ namespace WangYc.Services.Interfaces.PO {
         /// 获取项目
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetail(Query request);
+        IEnumerable<PurchaseOrderDetail> GetPurchaseOrderDetailBy(Query request);
 
         /// <summary>
         /// 获取项目视图
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailView(Query request);
-        /// <summary>
-        /// 获取所有项目视图
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByAll();
+        IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewBy(Query request);
 
         /// <summary>
         /// 根据项目号获取项目视图
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewById(int id);
+        IEnumerable<PurchaseOrderDetailView> GetPurchaseOrderDetailViewByPurchaseOrderId(string purchaseOrderId);
+
         #endregion
 
         #region 添加

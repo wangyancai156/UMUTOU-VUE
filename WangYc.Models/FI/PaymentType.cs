@@ -11,7 +11,7 @@ namespace WangYc.Models.FI {
         protected override void Validate() {
             throw new NotImplementedException();
         }
-        public virtual string Description {
+        public virtual string Name {
             get;
             set;
         }
