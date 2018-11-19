@@ -48,7 +48,14 @@ namespace WangYc.Controllers.WebApi.PO {
             ListPaged<PurchaseOrderView> model = this._purchaseOrderService.GetPurchaseOrderViewByStatus(request);
             return ToJson(model);
         }
-         
+
+        [HttpGet]
+        public HttpResponseMessage GetPurchaseOrderViewHaveStatus([FromUri] GetPurchaseOrderRequest request) {
+
+            ListPaged<PurchaseOrderView> model = this._purchaseOrderService.GetPurchaseOrderViewHaveStatus(request);
+            return ToJson(model);
+        }
+ 
         [HttpGet]
         public HttpResponseMessage AddPurchaseOrder([FromUri] AddPurchaseOrderRequest request) {
 

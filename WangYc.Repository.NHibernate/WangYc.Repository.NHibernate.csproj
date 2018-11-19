@@ -66,7 +66,7 @@
     <Compile Include="Repositories\BW\PurchaseReceiptDetailRepository.cs" />
     <Compile Include="Repositories\BW\PurchaseReceiptRepository.cs" />
     <Compile Include="Repositories\BW\SpotInventoryRepository.cs" />
-    <Compile Include="Repositories\BW\WaitArrivalRepository.cs" />
+    <Compile Include="Repositories\BW\PurchaseNoticeRepository.cs" />
     <Compile Include="Repositories\Common\WorkflowActivityNodeRepository.cs" />
     <Compile Include="Repositories\Common\WorkflowActivityRepository.cs" />
     <Compile Include="Repositories\FI\PaymentRepository.cs" />
@@ -207,7 +207,7 @@
     <EmbeddedResource Include="Mapping\Common\WorkflowActivityNode.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\BW\WaitArrival.hbm.xml" />
+    <EmbeddedResource Include="Mapping\BW\PurchaseNotice.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\BW\SpotInventory.hbm.xml" />

@@ -141,6 +141,7 @@ namespace WangYc.Models.PO {
 
             WorkflowActivity activity = new WorkflowActivity(this.Id, "PurchaseOrder", "PO-030", operatorId, beforActivity);
             this.WorkflowActivity.Add(activity);
+             
         }
 
         public virtual void Reject(string operatorId) {
@@ -161,7 +162,21 @@ namespace WangYc.Models.PO {
 
         #endregion
 
+        #region 通知到货
         #endregion
+
+        public virtual void AddPurchaseNotice(string operatorId) {
+
+            if (this.Detail != null) {
+                foreach (PurchaseOrderDetail one in this.Detail) {
+                    one.AddPurchaseNotice(operatorId, one.Qty);
+                }
+            }
+        }
+
+        #endregion
+
+
 
         protected override void Validate() {
             throw new NotImplementedException();

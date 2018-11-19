@@ -15,10 +15,12 @@ using WangYc.Services.ViewModels.BW;
 namespace WangYc.Controllers.WebApi.BW {
     public class InOutBoundController : BaseApiController {
 
-        private IInOutBoundService _inOutBoundService;
+        private readonly IInOutBoundService _inOutBoundService;
+        private readonly IPurchaseNoticeService _purchaseNoticeService;
 
-        public InOutBoundController(IInOutBoundService inOutBoundService) {
+        public InOutBoundController(IInOutBoundService inOutBoundService, IPurchaseNoticeService purchaseNoticeService) {
             this._inOutBoundService = inOutBoundService;
+            this._purchaseNoticeService = purchaseNoticeService;
 
         }
         /// <summary>
@@ -52,6 +54,8 @@ namespace WangYc.Controllers.WebApi.BW {
             ListPaged<InBoundView> datalist = this._inOutBoundService.GetSpotInventoryPageList(pageIndex, pageSize, productid);
             return ToJson(datalist);
         }
+
+
 
 
     }

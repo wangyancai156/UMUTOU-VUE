@@ -57,7 +57,7 @@
     <Compile Include="Implementations\BW\InOutReasonService.cs" />
     <Compile Include="Implementations\BW\PurchaseReceiptService.cs" />
     <Compile Include="Implementations\BW\SpotInventoryService.cs" />
-    <Compile Include="Implementations\BW\WaitArrivalService.cs" />
+    <Compile Include="Implementations\BW\PurchaseNoticeService.cs" />
     <Compile Include="Implementations\Common\WorkflowActivityService.cs" />
     <Compile Include="Implementations\FI\PaymentService.cs" />
     <Compile Include="Implementations\FI\PaymentTypeService.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="Interfaces\BW\IInOutReasonService.cs" />
     <Compile Include="Interfaces\BW\IPurchaseReceiptService.cs" />
     <Compile Include="Interfaces\BW\ISpotInventoryService.cs" />
-    <Compile Include="Interfaces\BW\IWaitArrivalService.cs" />
+    <Compile Include="Interfaces\BW\IPurchaseNoticeService.cs" />
     <Compile Include="Interfaces\Common\IWorkflowActivityService.cs" />
     <Compile Include="Interfaces\FI\IPaymentService.cs" />
     <Compile Include="Interfaces\HR\IOrganizationService.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="Mapping\BW\PurchaseReceiptDetailMapper.cs" />
     <Compile Include="Mapping\BW\PurchaseReceiptMapper.cs" />
     <Compile Include="Mapping\BW\SpotInventoryMapper.cs" />
-    <Compile Include="Mapping\BW\WaitArrivalMapper.cs" />
+    <Compile Include="Mapping\BW\PurchaseNoticeMapper.cs" />
     <Compile Include="Mapping\Common\WorkflowActivityMapper.cs" />
     <Compile Include="Mapping\FI\PaymentMapper.cs" />
     <Compile Include="Mapping\FI\PaymentTypeMapper.cs" />
@@ -140,10 +140,11 @@
     <Compile Include="Messaging\BW\AddInOutReasonRequest.cs" />
     <Compile Include="Messaging\BW\AddPurchaseReceiptRequest.cs" />
     <Compile Include="Messaging\BW\AddPurchaseReceiptDetailRequest.cs" />
-    <Compile Include="Messaging\BW\AddWaitArrivalRequest.cs" />
+    <Compile Include="Messaging\BW\AddPurchaseNoticeRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseShelfRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseRequest.cs" />
     <Compile Include="Messaging\BW\AddInOutBoundOfShelfRequest.cs" />
+    <Compile Include="Messaging\BW\GePurchaseNoticeRequest.cs" />
     <Compile Include="Messaging\BW\GetSpotInventoryRequest.cs" />
     <Compile Include="Messaging\Common\AddWorkflowActivityRequest.cs" />
     <Compile Include="Messaging\FI\AddPaymentRequest.cs" />
@@ -173,7 +174,7 @@
     <Compile Include="ViewModels\BW\PurchaseReceiptDetailView.cs" />
     <Compile Include="ViewModels\BW\PurchaseReceiptView.cs" />
     <Compile Include="ViewModels\BW\SpotInventoryView.cs" />
-    <Compile Include="ViewModels\BW\WaitArrivalView.cs" />
+    <Compile Include="ViewModels\BW\PurchaseNoticeView.cs" />
     <Compile Include="ViewModels\Common\WorkflowActivityView.cs" />
     <Compile Include="ViewModels\DataGridView.cs" />
     <Compile Include="ViewModels\DataTree.cs" />

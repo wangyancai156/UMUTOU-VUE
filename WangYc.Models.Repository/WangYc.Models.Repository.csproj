@@ -62,7 +62,7 @@
     <Compile Include="BW\IPurchaseReceiptDetailRepository.cs" />
     <Compile Include="BW\IPurchaseReceiptRepository.cs" />
     <Compile Include="BW\ISpotInventoryRepository.cs" />
-    <Compile Include="BW\IWaitArrivalRepository.cs" />
+    <Compile Include="BW\IPurchaseNoticeRepository.cs" />
     <Compile Include="Common\IWorkflowActivityNodeRepository.cs" />
     <Compile Include="Common\IWorkflowActivityRepository.cs" />
     <Compile Include="FI\IPaymentRepository.cs" />

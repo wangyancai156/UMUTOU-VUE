@@ -69,14 +69,27 @@ namespace WangYc.Models.PO {
             set;
         }
 
-        public virtual IList<WaitArrival> WaitArrival {
+        public virtual IList<PurchaseNotice> PurchaseNotice {
             get;
             set;
         }
 
         #endregion
 
-     
+        #region 方法
+
+        public virtual void AddPurchaseNotice(string operatorId, int qty) {
+
+            if (this.PurchaseNotice == null) {
+                this.PurchaseNotice = new List<PurchaseNotice>();
+            }
+            PurchaseNotice one = new PurchaseNotice(this, qty, operatorId);
+            this.PurchaseNotice.Add(one);
+        }
+
+        #endregion
+
+
     }
 }
     

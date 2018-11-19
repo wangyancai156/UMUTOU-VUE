@@ -106,6 +106,18 @@ namespace WangYc.Services.Implementations.PO {
             query.Add(Criterion.Create<PurchaseOrder>(c => c.IsValid, true, CriteriaOperator.Equal));
             return this._purchaseOrderRepository.PagedFindBy(query, request.PageIndex, request.PageSize).ConvertToPurchaseOrderPagedView();
         }
+        /// <summary>
+        /// 获取已经处理过的采购单
+        /// </summary>
+        /// <param name="purchaseOrderId"></param>
+        /// <returns></returns>
+        public ListPaged<PurchaseOrderView> GetPurchaseOrderViewHaveStatus(GetPurchaseOrderRequest request) {
+
+            Query query = new Query();
+            query.Add(new Criterion("WorkflowActivity.WorkflowNodeId", request.StatuId, CriteriaOperator.Equal));
+            query.Add(new Criterion("WorkflowActivity.CreateUserId", request.OperatorId, CriteriaOperator.Equal));
+            return this._purchaseOrderRepository.PagedFindBy(query, request.PageIndex, request.PageSize).ConvertToPurchaseOrderPagedView();
+        }
 
         /// <summary>
         /// 获取采购明细视图
@@ -117,6 +129,7 @@ namespace WangYc.Services.Implementations.PO {
             PurchaseOrder model = this.GetPurchaseOrderById(purchaseOrderId);
             return model.Detail.ConvertToPurchaseOrderDetailView();
         }
+
 
 
         #endregion
@@ -212,9 +225,11 @@ namespace WangYc.Services.Implementations.PO {
                     throw new EntityIsInvalidException<string>(id.ToString());
                 }
                 model.Approval(operatorId);
+                model.AddPurchaseNotice(operatorId);
                 this._purchaseOrderRepository.Save(model);
                 this._uow.Commit();
-            } catch {
+            } catch ( Exception ex) {
+                string ss = ex.ToString();
                 return false;
             }
             return true;
@@ -253,9 +268,9 @@ namespace WangYc.Services.Implementations.PO {
                 }
             } catch (Exception ex) {
                 result = "修改失败：" + ex.Message;
-            }       
+            }
             this._uow.Commit();
- 
+
         }
 
         public void RemovePurchaseOrderDetail(string id, int itemid) {

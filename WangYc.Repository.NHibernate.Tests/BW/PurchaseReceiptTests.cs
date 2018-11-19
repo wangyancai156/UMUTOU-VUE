@@ -15,13 +15,13 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
         private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
         private readonly IPurchaseReceiptDetailRepository _purchaseReceiptDetailRepository;
-        private readonly IWaitArrivalRepository _waitArrivalRepository;
+        private readonly IPurchaseNoticeRepository _purchaseNoticeRepository;
         public PurchaseReceiptTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._purchaseReceiptRepository = new PurchaseReceiptRepository(uow);
             this._purchaseReceiptDetailRepository = new PurchaseReceiptDetailRepository(uow);
-            this._waitArrivalRepository = new WaitArrivalRepository(uow);
+            this._purchaseNoticeRepository = new PurchaseNoticeRepository(uow);
         }
        
         [TestMethod]
@@ -39,9 +39,9 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
 
         [TestMethod]
-        public void GetWaitArrival() {
+        public void GetPurchaseNotice() {
 
-            IEnumerable<WaitArrival> model = this._waitArrivalRepository.FindAll();
+            IEnumerable<PurchaseNotice> model = this._purchaseNoticeRepository.FindAll();
         }
 
     }

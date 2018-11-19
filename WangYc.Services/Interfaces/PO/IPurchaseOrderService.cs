@@ -30,6 +30,12 @@ namespace WangYc.Services.Interfaces.PO {
         /// <returns></returns>
         ListPaged<PurchaseOrderView> GetPurchaseOrderViewByStatus(GetPurchaseOrderRequest request);
         /// <summary>
+        /// 获取已经处理过的采购单
+        /// </summary>
+        /// <param name="purchaseOrderId"></param>
+        /// <returns></returns>
+        ListPaged<PurchaseOrderView> GetPurchaseOrderViewHaveStatus(GetPurchaseOrderRequest request);
+        /// <summary>
         /// 获取采购明细列表
         /// </summary>
         /// <param name="purchaseOrderId"></param>

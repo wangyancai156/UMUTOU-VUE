@@ -9,5 +9,6 @@ namespace WangYc.Services.Messaging.PO {
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
         public string StatuId { get; set; }
+        public string OperatorId { get; set; }
     }
 }

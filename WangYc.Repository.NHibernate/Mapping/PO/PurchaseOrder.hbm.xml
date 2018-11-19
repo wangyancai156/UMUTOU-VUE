@@ -8,7 +8,7 @@
       <generator class="assigned" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-    <bag name="Detail"  inverse="true" cascade="all">
+    <bag name="Detail" inverse="false" cascade="all">
       <key column="PurchaseOrderId"></key>
       <one-to-many class="PurchaseOrderDetail" />
     </bag>
