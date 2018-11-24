@@ -129,6 +129,7 @@
     <Compile Include="WebApi\Account\BaseApiController.cs" />
     <Compile Include="WebApi\BW\InOutBoundController.cs" />
     <Compile Include="WebApi\BW\InOutReasonController.cs" />
+    <Compile Include="WebApi\BW\PurchaseNoticeController.cs" />
     <Compile Include="WebApi\BW\SpotInventoryController.cs" />
     <Compile Include="WebApi\BW\WarehouseController.cs" />
     <Compile Include="WebApi\HR\OrganizationController.cs" />

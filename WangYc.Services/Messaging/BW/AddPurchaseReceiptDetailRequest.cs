@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 namespace WangYc.Services.Messaging.BW {
     public class AddPurchaseReceiptDetailRequest {
 
-        public virtual int Id {
-            get;
-            set;
-        }
-
-        public virtual int PurchaseReceiptId {
+        
+        public virtual int PurchaseNoticeId {
             get;
             set;
         }

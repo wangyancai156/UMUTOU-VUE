@@ -53,7 +53,7 @@ namespace WangYc.Services.Interfaces.BW {
         ///添加库房
         /// </summary>
         /// <param name="request"></param>
-        void AddPurchaseReceipt(AddPurchaseReceiptRequest request);
+        PurchaseReceipt AddPurchaseReceipt(AddPurchaseReceiptRequest request);
 
         void AddPurchaseReceiptDetail(AddPurchaseReceiptDetailRequest request);
 

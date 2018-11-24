@@ -14,24 +14,32 @@ using WangYc.Services.Mapping.BW;
 using WangYc.Services.Messaging.BW;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.Interfaces.BW;
+using WangYc.Models.PO;
 
 namespace WangYc.Services.Implementations.BW {
     public  class PurchaseNoticeService : IPurchaseNoticeService {
 
         private readonly IPurchaseNoticeRepository _purchaseNoticeRepository;
         private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
+        private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
+        private readonly PurchaseReceiptService _purchaseReceiptService;   
         private readonly IWorkflowActivityService _workflowActivityService;
+
         private readonly IUnitOfWork _uow;
 
         public PurchaseNoticeService(
             IPurchaseNoticeRepository purchaseNoticeRepository,
             IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
+            IPurchaseReceiptRepository purchaseReceiptRepository,
+            PurchaseReceiptService purchaseReceiptService,
             IWorkflowActivityService workflowActivityService,
             IUnitOfWork uow
         ) {
 
             this._purchaseNoticeRepository = purchaseNoticeRepository;
             this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
+            this._purchaseReceiptRepository = purchaseReceiptRepository;
+            this._purchaseReceiptService = purchaseReceiptService;
             this._workflowActivityService = workflowActivityService;
             this._uow = uow;
         }
@@ -89,6 +97,26 @@ namespace WangYc.Services.Implementations.BW {
 
         #region 添加
 
+        public bool AddPurchaseReceipt(AddPurchaseReceiptDetailRequest request) {
+
+            PurchaseNotice model = this._purchaseNoticeRepository.FindBy(request.PurchaseNoticeId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
+            }
+
+            PurchaseOrderDetail purchaseOrderDetail = this._purchaseOrderDetailRepository.FindBy(request.PurchaseOrderDetailId);
+            if (purchaseOrderDetail == null) {
+                throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
+            }
+            AddPurchaseReceiptRequest addreceipt = new AddPurchaseReceiptRequest();
+            addreceipt.CreateUserId = request.CreateUserId;
+            addreceipt.Note = "";
+            PurchaseReceipt receipt =this._purchaseReceiptService.AddPurchaseReceipt(addreceipt);
+             
+            model.AddReceiptDetail(purchaseOrderDetail, receipt, request.Qty, request.Note, request.CreateUserId);
+
+            return true;
+        }
         #endregion
 
         #region 修改

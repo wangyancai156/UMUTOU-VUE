@@ -75,12 +75,14 @@ namespace WangYc.Models.BW {
 
         #region 方法
 
-        public virtual void AddReceiptDetail(PurchaseReceiptDetail model) {
+        public virtual void AddReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, PurchaseReceipt purchaseReceipt, int qty, string note, string createUserId ) {
 
             if (this.ReceiptDetail == null) {
                 this.ReceiptDetail = new List<PurchaseReceiptDetail>() { };
             }
+            PurchaseReceiptDetail model = new PurchaseReceiptDetail(this, purchaseReceipt, qty, note, createUserId);
             this.ReceiptDetail.Add(model);
+
             //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结
             this.ArrivalQty = this.ReceiptDetail.Sum(s => s.Qty);
         }

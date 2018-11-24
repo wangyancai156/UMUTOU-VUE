@@ -44,6 +44,8 @@ namespace WangYc.Services.Interfaces.BW {
 
         #region 添加
 
+        bool AddPurchaseReceipt(AddPurchaseReceiptDetailRequest request);
+
         #endregion
 
         #region 修改

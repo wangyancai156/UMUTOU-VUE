@@ -16,13 +16,13 @@ namespace WangYc.Models.BW {
         public PurchaseReceiptDetail() { }
 
 
-        public PurchaseReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, PurchaseReceipt purchaseReceipt, int qty, string note,  bool isValid, string createUserId) {
+        public PurchaseReceiptDetail(PurchaseNotice purchaseNotice, PurchaseReceipt purchaseReceipt, int qty, string note, string createUserId) {
 
-            this.PurchaseOrderDetail = purchaseOrderDetail;
+            this.PurchaseNotice = purchaseNotice;
             this.PurchaseReceipt = purchaseReceipt;
             this.Qty = qty;
             this.Note = note;
-            this.IsValid = isValid;
+            this.IsValid = true;
             this.CreateUserId = createUserId;
             this.CreateDate = DateTime.Now;
         }
@@ -31,7 +31,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual PurchaseOrderDetail PurchaseOrderDetail {
+        public virtual PurchaseNotice PurchaseNotice {
             get;
             set;
         }

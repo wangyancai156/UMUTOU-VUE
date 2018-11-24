@@ -109,7 +109,7 @@ namespace WangYc.Services.Implementations.BW {
             return this._purchaseReceiptRepository.PagedFindBy(query, pageIndex, pageSize).ConvertToPagedView();
         }
 
-     
+
 
         #endregion
 
@@ -119,11 +119,13 @@ namespace WangYc.Services.Implementations.BW {
         /// 添加接货单
         /// </summary>
         /// <param name="request"></param>
-        public void AddPurchaseReceipt(AddPurchaseReceiptRequest request) {
+        public PurchaseReceipt AddPurchaseReceipt(AddPurchaseReceiptRequest request) {
 
-            PurchaseReceipt model = new PurchaseReceipt(request.Note,request.IsValid, request.CreateUserId);
+            PurchaseReceipt model = new PurchaseReceipt(request.Note, request.IsValid, request.CreateUserId);
             this._purchaseReceiptRepository.Add(model);
             this._uow.Commit();
+
+            return model;
         }
 
         /// <summary>
@@ -163,9 +165,9 @@ namespace WangYc.Services.Implementations.BW {
                 throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
             }
 
-            PurchaseReceiptDetail receiptDetail = new PurchaseReceiptDetail(model, receipt, request.Qty, request.Note, request.IsValid, request.CreateUserId);
+            //PurchaseReceiptDetail receiptDetail = new PurchaseReceiptDetail(model, receipt, request.Qty, request.Note, request.IsValid, request.CreateUserId);
             //model.AddReceiptDetail(receiptDetail);
-            this._purchaseOrderDetailRepository.Save(model);
+            //this._purchaseOrderDetailRepository.Save(model);
 
             //如果已经全部到齐结束采购单
             if (model.PurchaseOrder.Detail.Where(s => s.Qty > s.ArrivalQty).Count() > 0) {
@@ -262,10 +264,10 @@ namespace WangYc.Services.Implementations.BW {
         /// <param name="request"></param>
         public void UpdatePurchaseDetailReceipt(AddPurchaseReceiptDetailRequest request) {
 
-            PurchaseReceiptDetail model = this._purchaseReceiptDetailRepository.FindBy(request.Id);
+            PurchaseReceiptDetail model = this._purchaseReceiptDetailRepository.FindBy(request.PurchaseNoticeId);
 
             if (model == null) {
-                throw new EntityIsInvalidException<string>(request.Id.ToString());
+                throw new EntityIsInvalidException<string>(request.PurchaseNoticeId.ToString());
             }
 
             model.Note = request.Note;
