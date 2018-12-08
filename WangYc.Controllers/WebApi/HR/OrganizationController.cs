@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WangYc.Controllers.Account.WebApi;
+using WangYc.Controllers.WebApi.Account;
 using WangYc.Services.Interfaces.HR;
 using WangYc.Services.ViewModels;
 using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Controllers.WebApi.HR {
+     
     public class OrganizationController : BaseApiController {
 
         private readonly IOrganizationService _organizationService;

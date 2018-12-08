@@ -77,6 +77,7 @@
     <Compile Include="Repositories\BW\InOutBoundRepository.cs" />
     <Compile Include="Repositories\BW\WarehouseRepository.cs" />
     <Compile Include="Repositories\BW\WarehouseShelfRepository.cs" />
+    <Compile Include="Repositories\HR\UserDeviceRepository.cs" />
     <Compile Include="Repositories\PO\PurchaseOrderDetailRepository.cs" />
     <Compile Include="Repositories\PO\PurchaseOrderRepository.cs" />
     <Compile Include="Repositories\PO\PurchaseTypeRepository.cs" />
@@ -211,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\BW\SpotInventory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\HR\UserDevice.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

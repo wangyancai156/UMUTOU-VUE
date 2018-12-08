@@ -70,6 +70,7 @@ namespace WangYc.Services
 
             Mapper.CreateMap<Role, RoleView>();
             Mapper.CreateMap<Users, UsersView>();
+            Mapper.CreateMap<UserDevice, UserDeviceView>();
             #endregion 
 
             #region PO

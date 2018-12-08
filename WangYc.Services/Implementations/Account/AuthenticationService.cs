@@ -2,15 +2,22 @@
 using System.Web;
 using System.Web.Security;
 using WangYc.Core.Infrastructure.CookieStorage;
+using WangYc.Services.Interfaces.Account;
+using WangYc.Services.Interfaces.HR;
+using WangYc.Services.ViewModels.HR;
 
-namespace WangYc.Core.Infrastructure.Account {
-    public class AuthenticationService:IAuthenticationService {
+namespace WangYc.Services.Implementations.Account {
+
+    public class AuthenticationService : IAuthenticationService {
 
         ICookieStorageService _cookieStorageService;
-        public AuthenticationService(ICookieStorageService cookieStorageService) {
-
+        IUserDeviceService _userDeviceService;
+        public AuthenticationService(ICookieStorageService cookieStorageService, IUserDeviceService userDeviceService) {
             this._cookieStorageService = cookieStorageService;
+            this._userDeviceService = userDeviceService;
         }
+
+        #region  MVC登陆验证
 
         /// <summary>
         /// 添加用户Form验证 Cookie
@@ -34,8 +41,7 @@ namespace WangYc.Core.Infrastructure.Account {
             try {
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookieValue);
                 return ticket;
-            }
-            catch {
+            } catch {
                 return null;
             }
         }
@@ -81,5 +87,27 @@ namespace WangYc.Core.Infrastructure.Account {
                 return true;
             }
         }
+        #endregion
+
+        #region 前后端分离登陆验证
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        /// <returns></returns>
+        public bool ApiVerification(string userId, string sessionKey) {
+
+            UserDeviceView model = this._userDeviceService.GetUserDeviceView(userId, "win", sessionKey);
+
+            if (model == null || model.ExpiredTime > DateTime.Now) {
+                return false;
+            }
+            return true;
+
+        }
+
+        #endregion
+
     }
 }
+

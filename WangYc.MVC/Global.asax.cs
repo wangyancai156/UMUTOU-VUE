@@ -5,11 +5,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.Configuration;
 using WangYc.Core.Infrastructure.Logging;
 using WangYc.Services;
-
+using WangYc.Services.Interfaces.Account;
 
 namespace WangYc.MVC {
     // 注意: 有关启用 IIS6 或 IIS7 经典模式的说明，

@@ -13,7 +13,7 @@ namespace WangYc.Models.HR {
     public class Users : EntityBase<string>, IAggregateRoot {
         public Users() { }
         public Users(Organization organization, string id, string username, string userpwd, string telephone) {
-           
+
             this.Organization = organization;
             this.Id = id;
             this.UserName = username;
@@ -74,34 +74,53 @@ namespace WangYc.Models.HR {
         public virtual IList<Role> Role { set; get; }
 
 
+        public virtual IList<UserDevice> Device { set; get; }
+
+
         #endregion Model
 
 
         #region 事件
 
+        #region 权限
+
         /// <summary>
         /// 添加权限
         /// </summary>
         /// <param name="role"></param>
-        public virtual void AddRole(Role role)
-        {
-            if (this.Role == null)
-            {
+        public virtual void AddRole(Role role) {
+            if (this.Role == null) {
                 this.Role = new List<Role>();
             }
-            Role.Add(role);
+            this.Role.Add(role);
         }
-        
+        #endregion
+
+        #region 设备登陆
+
+        /// <summary>
+        /// 添加登陆记录
+        /// </summary>
+        /// <param name="device"></param>
+        public virtual void AddDevice(UserDevice device) {
+            if (this.Device == null) {
+                this.Device = new List<UserDevice>();
+            }
+            this.Device.Add(device);
+        }
+
+        #endregion
+
         #endregion
         protected override void Validate() {
             throw new NotImplementedException();
         }
         public override string GenerateIdPrefix() {
 
-            return GetChineseSpell(this.UserName.Substring(0, 1)); 
+            return GetChineseSpell(this.UserName.Substring(0, 1));
         }
 
-      
+
     }
 }
 

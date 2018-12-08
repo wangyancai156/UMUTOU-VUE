@@ -4,7 +4,6 @@ using WangYc.Core.Infrastructure.Configuration;
 using WangYc.Core.Infrastructure.UnitOfWork;
 using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Core.Infrastructure.Logging;
-using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.Domain;
 
 using WangYc.Models.HR;
@@ -46,6 +45,8 @@ using WangYc.Repository.NHibernate.Repositories.Common;
 using WangYc.Services.Interfaces.Common;
 using WangYc.Services.Implementations.Common;
 using WangYc.Models.PO;
+using WangYc.Services.Interfaces.Account;
+using WangYc.Services.Implementations.Account;
 
 namespace WangYc.MVC
 {
@@ -82,8 +83,11 @@ namespace WangYc.MVC
 
                 For<IPurchaseReceiptService>().Use<PurchaseReceiptService>();
                 For<IPurchaseReceiptRepository>().Use<PurchaseReceiptRepository>();
+                
+                For<IPurchaseReceiptDetailRepository>().Use<PurchaseReceiptDetailRepository>(); 
 
-
+                For<IPurchaseNoticeService>().Use<PurchaseNoticeService>();
+                For<IPurchaseNoticeRepository>().Use<PurchaseNoticeRepository>();
 
                 #endregion
 
@@ -103,6 +107,9 @@ namespace WangYc.MVC
                 For<IUsersRepository>().Use<WangYc.Repository.NHibernate.Repositories.HR.UsersRepository>();
                 For<IUsersService>().Use<UsersService>();
                 For<IIdGenerator<Users, string>>().Use<IdGenerator<Users>>();
+
+                For<IUserDeviceService>().Use<UserDeviceService>();
+                For<IUserDeviceRepository>().Use<UserDeviceRepository>();
 
                 For<IOrganizationRepository>().Use<WangYc.Repository.NHibernate.Repositories.HR.OrganizationRepository>();
                 For<IOrganizationService>().Use<OrganizationService>();

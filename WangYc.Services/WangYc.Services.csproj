@@ -46,6 +46,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperBootStrapper.cs" />
+    <Compile Include="Implementations\Account\AuthenticationService.cs" />
     <Compile Include="Implementations\BW\InOutReasonService.cs" />
     <Compile Include="Implementations\BW\PurchaseReceiptService.cs" />
     <Compile Include="Implementations\BW\SpotInventoryService.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Implementations\FI\PaymentTypeService.cs" />
     <Compile Include="Implementations\HR\OrganizationService.cs" />
     <Compile Include="Implementations\HR\RoleService.cs" />
+    <Compile Include="Implementations\HR\UserDeviceService.cs" />
     <Compile Include="Implementations\HR\UsersService.cs" />
     <Compile Include="Implementations\BW\InOutBoundService.cs" />
     <Compile Include="Implementations\BW\WarehouseService.cs" />
@@ -79,6 +82,8 @@
     <Compile Include="Implementations\RS\SupplierService.cs" />
     <Compile Include="Implementations\SD\ProductService.cs" />
     <Compile Include="Implementations\SD\ProductTypeService.cs" />
+    <Compile Include="Interfaces\Account\AuthenticationFactory.cs" />
+    <Compile Include="Interfaces\Account\IAuthenticationService.cs" />
     <Compile Include="Interfaces\BW\IInOutReasonService.cs" />
     <Compile Include="Interfaces\BW\IPurchaseReceiptService.cs" />
     <Compile Include="Interfaces\BW\ISpotInventoryService.cs" />
@@ -88,6 +93,7 @@
     <Compile Include="Interfaces\HR\IOrganizationService.cs" />
     <Compile Include="Interfaces\HR\IRightsService.cs" />
     <Compile Include="Interfaces\HR\IRoleService.cs" />
+    <Compile Include="Interfaces\HR\IUserDeviceService.cs" />
     <Compile Include="Interfaces\HR\IUsersService.cs" />
     <Compile Include="Interfaces\BW\IInOutBoundService.cs" />
     <Compile Include="Interfaces\BW\IWarehouseService.cs" />
@@ -117,6 +123,7 @@
     <Compile Include="Mapping\HR\OrganizationMapper.cs" />
     <Compile Include="Mapping\HR\RightsMapper.cs" />
     <Compile Include="Mapping\HR\RoleMapper.cs" />
+    <Compile Include="Mapping\HR\UserDeviceMapper.cs" />
     <Compile Include="Mapping\HR\UsersMapper.cs" />
     <Compile Include="Implementations\HR\RightsService.cs" />
     <Compile Include="Mapping\BW\InBoundMapper.cs" />
@@ -184,6 +191,7 @@
     <Compile Include="ViewModels\HR\OrganizationView.cs" />
     <Compile Include="ViewModels\HR\RightsView.cs" />
     <Compile Include="ViewModels\HR\RoleView.cs" />
+    <Compile Include="ViewModels\HR\UserDeviceView.cs" />
     <Compile Include="ViewModels\HR\UsersView.cs" />
     <Compile Include="ViewModels\BW\InOutBoundView.cs" />
     <Compile Include="ViewModels\BW\WarehouseShelfView.cs" />

@@ -31,11 +31,10 @@
       <many-to-many class="Rights" column="RoleId" />
     </bag>
 
-    <!--<set name="Rights" table="WangYc.dbo.UserRole" generic="true" inverse="true">
-      <key column="UserRoleID" />
-      <one-to-many class="UserRole"/>
-    </set>-->
-
+    <bag name="Device" cascade="all-delete-orphan" inverse="true">
+      <key column="UserId"></key>
+      <one-to-many class="WangYc.Models.HR.UserDevice" />
+    </bag>
 
   </class>
 </hibernate-mapping>

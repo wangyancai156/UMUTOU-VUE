@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using WangYc.Core.Infrastructure.Account;
+using WangYc.Services.Interfaces.Account;
 
 namespace WangYc.Controllers.WebApi.Account {
     public class AuthFilterOutside : AuthorizeAttribute {

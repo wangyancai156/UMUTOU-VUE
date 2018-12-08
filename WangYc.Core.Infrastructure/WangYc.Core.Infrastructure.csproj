@@ -49,9 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AuthenticationFactory.cs" />
-    <Compile Include="Account\AuthenticationService.cs" />
-    <Compile Include="Account\IAuthenticationService.cs" />
     <Compile Include="Configuration\ApplicationSettingFactory.cs" />
     <Compile Include="Configuration\IApplicationSettings.cs" />
     <Compile Include="Configuration\WebConfigApplicationSettings.cs" />

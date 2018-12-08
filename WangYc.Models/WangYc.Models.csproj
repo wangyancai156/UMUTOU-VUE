@@ -52,6 +52,7 @@
     <Compile Include="HR\Organization.cs" />
     <Compile Include="HR\Rights.cs" />
     <Compile Include="HR\Role.cs" />
+    <Compile Include="HR\UserDevice.cs" />
     <Compile Include="HR\Users.cs" />
     <Compile Include="BW\InOutBound.cs" />
     <Compile Include="BW\Warehouse.cs" />

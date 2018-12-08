@@ -70,6 +70,7 @@
     <Compile Include="HR\IOrganizationRepository.cs" />
     <Compile Include="HR\IRightsRepository.cs" />
     <Compile Include="HR\IRoleRepository.cs" />
+    <Compile Include="HR\IUserDeviceRepository.cs" />
     <Compile Include="HR\IUsersRepository.cs" />
     <Compile Include="BW\IInOutBoundRepository.cs" />
     <Compile Include="BW\IWarehouseRepository.cs" />

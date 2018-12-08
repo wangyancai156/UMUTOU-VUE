@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.Configuration;
+using WangYc.Services.Interfaces.Account;
 
 namespace WangYc.Controllers.Controllers {
     public class BaseController : Controller {

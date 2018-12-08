@@ -11,10 +11,10 @@ using WangYc.Core.Infrastructure.Security;
 using System.Web;
 using System.Web.Security;
 using WangYc.Services.ViewModels.HR;
-using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Core.Infrastructure.Configuration;
 using WangYc.Services.Messaging;
+using WangYc.Services.Interfaces.Account;
 
 namespace WangYc.Controllers.Controllers.Account {
     public class AccountController:Controller {

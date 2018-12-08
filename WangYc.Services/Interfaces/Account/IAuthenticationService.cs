@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
 
-namespace WangYc.Core.Infrastructure.Account {
+namespace WangYc.Services.Interfaces.Account {
     public interface IAuthenticationService {
 
         /// <summary>
@@ -22,9 +22,16 @@ namespace WangYc.Core.Infrastructure.Account {
         FormsAuthenticationTicket RetrieveTicket();
 
         /// <summary>
-        /// 验证
+        /// MVC验证
         /// </summary>
         /// <returns></returns>
         bool Verification { get; }
+        /// <summary>
+        /// 前后端分离验证
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="sessionKey"></param>
+        /// <returns></returns>
+        bool ApiVerification(string userId, string sessionKey);
     }
 }

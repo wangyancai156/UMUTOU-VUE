@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="WangYc.Models.HR"
+                   assembly="WangYc.Models">
+  <class name="UserDevice" abstract="true" table="WangYc.dbo.UserDevice" >
+    <!--主键ID必须命名为Id-->
+    <id name="Id" column="Id" type="int" unsaved-value="0">
+      <generator class="identity" />
+      <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
+    </id>
+    <property name="UserId" column="UserId"></property>
+    <property name="CreateTime" column="CreateTime"></property>
+    <property name="ActiveTime" column="ActiveTime"></property>
+    <property name="ExpiredTime" column="ExpiredTime"></property>
+    <property name="DeviceType" column="DeviceType"></property>
+    <property name="SessionKey" column="SessionKey"></property>
+  </class>
+</hibernate-mapping>

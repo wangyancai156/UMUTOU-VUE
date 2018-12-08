@@ -43,5 +43,6 @@ namespace WangYc.Services.ViewModels.HR {
             get;
             set;
         }
+        public IList<UserDeviceView> Device { get; set; }
     }
 }

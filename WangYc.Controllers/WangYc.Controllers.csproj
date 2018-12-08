@@ -125,8 +125,10 @@
     <Compile Include="Controllers\HR\UsersController.cs" />
     <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="WebApi\Account\AccountController.cs" />
+    <Compile Include="WebApi\Account\AccountView.cs" />
     <Compile Include="WebApi\Account\AuthFilterOutside.cs" />
     <Compile Include="WebApi\Account\BaseApiController.cs" />
+    <Compile Include="WebApi\Account\ApiAuthFilterOutside.cs" />
     <Compile Include="WebApi\BW\InOutBoundController.cs" />
     <Compile Include="WebApi\BW\InOutReasonController.cs" />
     <Compile Include="WebApi\BW\PurchaseNoticeController.cs" />

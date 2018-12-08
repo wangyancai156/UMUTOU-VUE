@@ -16,7 +16,6 @@ using WangYc.Services.ViewModels;
 using WangYc.Models.BW;
 using WangYc.Services.Interfaces.SD;
 using WangYc.Services.ViewModels.SD;
-using WangYc.Core.Infrastructure.Account;
 using WangYc.Core.Infrastructure.CookieStorage;
 
 namespace WangYc.Controllers.Controllers.BW {
