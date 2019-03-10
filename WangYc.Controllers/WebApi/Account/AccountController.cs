@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Security;
 using WangYc.Controllers.Account.WebApi;
-using WangYc.Core.Infrastructure.Configuration;
 using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Services.Interfaces.Account;
 using WangYc.Services.Interfaces.HR;
-using WangYc.Services.Messaging;
+using WangYc.Services.ViewModels.Account;
 using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Controllers.WebApi.Account {
@@ -74,10 +66,10 @@ namespace WangYc.Controllers.WebApi.Account {
                     UserDeviceView existsDevice = this._serDeviceService.GetUserDeviceView(LoginName, "win", sessionKey);
 
                     if (existsDevice == null) {
-                        this._serDeviceService.CrateUserDevice(LoginName, 1, "win", sessionKey);
+                        this._serDeviceService.CrateUserDevice(LoginName, "win", sessionKey);
 
                     } else {
-                        this._serDeviceService.UpdateUserDevice(LoginName, 1, "win", sessionKey);
+                        this._serDeviceService.UpdateUserDevice(LoginName, "win", sessionKey);
                     }
 
                     account.Result = true;
@@ -96,6 +88,13 @@ namespace WangYc.Controllers.WebApi.Account {
             }
             return ToJson(account);
         }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="Userkey"></param>
+        /// <returns></returns>
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Verification(string UserId, string Userkey) {
 
@@ -145,8 +144,5 @@ namespace WangYc.Controllers.WebApi.Account {
             StreamReader sr = new StreamReader(cst);
             return sr.ReadToEnd();
         }
-
-
-
     }
 }

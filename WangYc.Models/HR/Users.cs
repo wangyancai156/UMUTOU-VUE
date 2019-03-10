@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using WangYc.Core.Infrastructure.Domain;
 
@@ -14,7 +11,7 @@ namespace WangYc.Models.HR {
         public Users() { }
         public Users(Organization organization, string id, string username, string userpwd, string telephone) {
 
-            this.Organization = organization;
+            this.AddOrganization(organization);
             this.Id = id;
             this.UserName = username;
             this.UserPwd = userpwd;
@@ -25,7 +22,7 @@ namespace WangYc.Models.HR {
 
         #region Model
 
-        public virtual Organization Organization {
+        public virtual IList<Organization> Organization {
             get;
             set;
         }
@@ -84,6 +81,16 @@ namespace WangYc.Models.HR {
 
         #region 权限
 
+        /// <summary>
+        /// 添加权限
+        /// </summary>
+        /// <param name="role"></param>
+        public virtual void AddOrganization(Organization model) {
+            if (this.Organization == null) {
+                this.Organization = new List<Organization>();
+            }
+            this.Organization.Add(model);
+        }
         /// <summary>
         /// 添加权限
         /// </summary>

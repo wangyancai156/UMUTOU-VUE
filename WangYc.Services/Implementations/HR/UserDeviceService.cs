@@ -30,9 +30,8 @@ namespace WangYc.Services.Implementations.HR {
             Query query = new Query();
             query.Add(Criterion.Create<UserDevice>(p => p.UserId, userId, CriteriaOperator.Equal));
             query.Add(Criterion.Create<UserDevice>(p => p.DeviceType, deviceType, CriteriaOperator.Equal));
-            if (sessionKey == "") {
-                query.Add(Criterion.Create<UserDevice>(p => p.SessionKey, sessionKey, CriteriaOperator.Equal));
-            }
+            query.Add(Criterion.Create<UserDevice>(p => p.SessionKey, sessionKey, CriteriaOperator.Equal));
+
             IEnumerable<UserDevice> model = this._userDeviceRepository.FindBy(query);
             return model;
         }
@@ -44,16 +43,16 @@ namespace WangYc.Services.Implementations.HR {
 
         public UserDeviceView GetUserDeviceView(string userId, string deviceType, string sessionKey) {
  
-            return this.GetUserDeviceList(userId, deviceType, sessionKey).LastOrDefault().ConvertToUserDeviceView();
+            return this.GetUserDevice(userId, deviceType, sessionKey).ConvertToUserDeviceView();
         }
 
-        public UserDeviceView CrateUserDevice(string userId, int timeout, string deviceType,string passkey) {
+        public UserDeviceView CrateUserDevice(string userId, string deviceType,string passkey) {
 
             UserDevice existsDevice = new UserDevice() {
                 UserId = userId,
-                CreateTime = DateTime.UtcNow,
-                ActiveTime = DateTime.UtcNow,
-                ExpiredTime = DateTime.UtcNow.AddMinutes(timeout),
+                CreateTime = DateTime.Now,
+                ActiveTime = DateTime.Now,
+                ExpiredTime = DateTime.Now.AddMinutes(30),
                 DeviceType = deviceType,
                 SessionKey = passkey
             };
@@ -61,12 +60,12 @@ namespace WangYc.Services.Implementations.HR {
             return existsDevice.ConvertToUserDeviceView();
         }
 
-        public void UpdateUserDevice(string userId, int timeout, string deviceType, string passkey) {
+        public void UpdateUserDevice(string userId, string deviceType, string passkey) {
 
             UserDevice model = GetUserDevice(userId, deviceType, passkey);
-            model.ExpiredTime = DateTime.UtcNow.AddMinutes(timeout);
-            model.ActiveTime = DateTime.UtcNow;
+            model.ExpiredTime = DateTime.Now.AddMinutes(30);
             this._userDeviceRepository.Save(model);
+            this._uow.Commit();
         }
 
 

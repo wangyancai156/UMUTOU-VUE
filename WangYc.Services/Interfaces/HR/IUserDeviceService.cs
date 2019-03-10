@@ -11,9 +11,9 @@ namespace WangYc.Services.Interfaces.HR {
 
         UserDeviceView GetUserDeviceView(string userId, string deviceType, string sessionKey);
 
-        UserDeviceView CrateUserDevice(string userId, int timeout, string deviceType, string passkey);
+        UserDeviceView CrateUserDevice(string userId, string deviceType, string passkey);
 
-        void UpdateUserDevice(string userId, int timeout, string deviceType, string passkey);
+        void UpdateUserDevice(string userId, string deviceType, string passkey);
 
 
     }

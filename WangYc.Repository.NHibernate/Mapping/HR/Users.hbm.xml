@@ -10,9 +10,9 @@
     </id>
     <!--<many-to-one name="Organization" class="Organization" column="OrganizationId" />-->
     
-    <many-to-one name="Organization" class="Organization" lazy="false" fetch="select" >
+    <!--<many-to-one name="Organization" class="Organization" lazy="false" fetch="select" >
       <column name="OrganizationId" sql-type="int" ></column>
-    </many-to-one>
+    </many-to-one>-->
 
     <property name="Telephone" column="Telephone" ></property>
     <property name="UserName" column="UserName" ></property>
@@ -25,7 +25,11 @@
       <key column="UserID"></key>
       <one-to-many class="UserRole" />
     </bag>-->
-
+    <bag name="Organization" table="WangYc.dbo.OrganizationUsers"  >
+      <key column="UserID"></key>
+      <many-to-many class="Organization" column="OrganizationId" />
+    </bag>
+    
     <bag name="Role" table="dbo.UserRole"  >
       <key column="UserID"></key>
       <many-to-many class="Rights" column="RoleId" />

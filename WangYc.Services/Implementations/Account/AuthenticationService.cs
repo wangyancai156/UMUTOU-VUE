@@ -99,11 +99,12 @@ namespace WangYc.Services.Implementations.Account {
 
             UserDeviceView model = this._userDeviceService.GetUserDeviceView(userId, "win", sessionKey);
 
-            if (model == null || model.ExpiredTime > DateTime.Now) {
+            if (model == null || model.ExpiredTime <= DateTime.Now) {
                 return false;
+            } else {
+                this._userDeviceService.UpdateUserDevice(userId, "win", sessionKey);
+                return true;
             }
-            return true;
-
         }
 
         #endregion

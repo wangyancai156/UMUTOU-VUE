@@ -155,3 +155,12 @@ D:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.
 D:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csproj.CopyComplete
 D:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.dll
 D:\工作\优木头\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\WangYc.Core.Infrastructure.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\WangYc.Core.Infrastructure.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\log4net.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\bin\Debug\log4net.xml
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csprojAssemblyReference.cache
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csproj.CoreCompileInputs.cache
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csproj.CopyComplete
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.pdb

@@ -83,10 +83,10 @@ namespace WangYc.Services.Implementations.HR {
 
         public IEnumerable<UsersView> GetUsersView(SearchUsersRequest request) {
 
-            int[] allnode = this._organizationService.GetOrganizationChildNode(request.OrganizationId).ToArray();
+            int[] nodeArray = this._organizationService.GetOrganizationChildNode(request.OrganizationId).ToArray();
            
             Query query = new Query();
-            query.Add(Criterion.Create<Users>(c => c.Organization.Id, allnode, CriteriaOperator.InOfInt32));
+            query.Add(new Criterion("Organization.Id", nodeArray, CriteriaOperator.InOfInt32));
             //query.Add(Criterion.Create<Users>(c => c.UserName, request.Name+ "%", CriteriaOperator.Like));
             query.QueryOperator = QueryOperator.And;
             IEnumerable<Users> users = _usersRepository.FindBy(query);
@@ -175,7 +175,7 @@ namespace WangYc.Services.Implementations.HR {
                 throw new EntityIsInvalidException<string>(organization.ToString());
             }
 
-            user.Organization = organization;
+            user.AddOrganization( organization);
             user.Telephone = request.Telephone;
             user.UserName = request.Name;
             user.UserPwd = request.Pwd;
