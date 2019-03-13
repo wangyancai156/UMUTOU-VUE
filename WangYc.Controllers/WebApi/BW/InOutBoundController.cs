@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using WangYc.Controllers.Account.WebApi;
+using WangYc.Controllers.WebApi.Account;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.Interfaces.BW;
 using WangYc.Services.Messaging.BW;
 using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Controllers.WebApi.BW {
+     
     public class InOutBoundController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;

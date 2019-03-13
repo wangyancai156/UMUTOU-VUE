@@ -7,16 +7,25 @@ using WangYc.Services.Interfaces.Account;
 namespace WangYc.Controllers.WebApi.Account {
     public class ApiAuthFilterOutside : AuthorizeAttribute {
 
-        public const string SessionKey = "SessionKey";
+        public const string Token = "Token";
         public const string UserId = "UserId";
          
         public override void OnAuthorization(HttpActionContext actionContext) {
+          
+            string sessionKey = "";
+            string userId = "";
+          //从http请求的头里面获取身份验证信息，验证是否是请求发起方的ticket
+            var authorization = actionContext.Request.Headers.Authorization;
+            if ((authorization != null) && (authorization.Scheme != null)) {
+                //解密用户ticket,并校验用户名密码是否匹配
+                string[] scheme  = actionContext.Request.Headers.Authorization.Scheme.Split('|');
+                sessionKey = scheme[0];
+                userId = scheme[1];
+            }
 
-            var qs = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
-            string sessionKey = qs[SessionKey];
-            string userId = qs[UserId];
-
+            //var qs = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
             if (AuthenticationFactory.Authentication().ApiVerification(userId, sessionKey)) {
+            
                 base.IsAuthorized(actionContext);
             } else {
                 var attributes = actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().OfType<AllowAnonymousAttribute>();

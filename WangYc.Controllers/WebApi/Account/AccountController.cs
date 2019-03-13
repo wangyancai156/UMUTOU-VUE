@@ -2,6 +2,9 @@
 using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
+using System.Text;
+using System.Web.Http;
+using System.Web.Script.Serialization;
 using WangYc.Controllers.Account.WebApi;
 using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Services.Interfaces.Account;
@@ -11,7 +14,8 @@ using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Controllers.WebApi.Account {
 
-    public class AccountController : BaseApiController {
+    [AllowAnonymous]
+    public class AccountController : ApiController {
 
         private readonly IUsersService _usersService;
         private readonly ICookieStorageService _cookieStorageService;
@@ -100,6 +104,18 @@ namespace WangYc.Controllers.WebApi.Account {
 
             bool result = AuthenticationFactory.Authentication().ApiVerification(UserId, Userkey);
             return ToJson(result);
+        }
+
+        public HttpResponseMessage ToJson(Object obj) {
+            String str;
+            if (obj is String || obj is Char) {
+                str = obj.ToString();
+            } else {
+                var serializer = new JavaScriptSerializer();
+                str = serializer.Serialize(obj);
+            }
+            var result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };
+            return result;
         }
 
         public static string _KEY = "HQDCKEY1";  //密钥  

@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WangYc.Controllers.Account.WebApi;
+using WangYc.Controllers.WebApi.Account;
 using WangYc.Services.Interfaces.BW;
 using WangYc.Services.Messaging.BW;
 
 namespace WangYc.Controllers.WebApi.BW {
+     
     public class SpotInventoryController : BaseApiController {
 
         private ISpotInventoryService _spotInventoryService;
