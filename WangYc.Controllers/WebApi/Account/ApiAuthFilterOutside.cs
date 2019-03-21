@@ -8,7 +8,7 @@ namespace WangYc.Controllers.WebApi.Account {
     public class ApiAuthFilterOutside : AuthorizeAttribute {
          
         public override void OnAuthorization(HttpActionContext actionContext) {
-          
+ 
             string sessionKey = "";
             string userId = "";
           //从http请求的头里面获取身份验证信息，验证是否是请求发起方的ticket

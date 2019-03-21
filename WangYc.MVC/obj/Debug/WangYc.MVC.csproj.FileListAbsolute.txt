@@ -2447,9 +2447,6 @@ D:\工作\优木头\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CoreCompil
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CopyComplete
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.dll
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.pdb
-D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll.config
-D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll
-D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.pdb
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\Antlr3.Runtime.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\DotNetOpenAuth.AspNet.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\DotNetOpenAuth.Core.dll
@@ -2573,6 +2570,9 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\zh-Hans\System.Spatial.resources.dl
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\zh-Hant\System.Spatial.resources.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csprojAssemblyReference.cache
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CoreCompileInputs.cache
-D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll.config
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CopyComplete
