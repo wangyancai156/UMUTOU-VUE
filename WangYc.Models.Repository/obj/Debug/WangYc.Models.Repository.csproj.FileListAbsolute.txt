@@ -299,5 +299,3 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\obj\Debug\WangYc.Models.R
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\obj\Debug\WangYc.Models.Repository.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\obj\Debug\WangYc.Models.Repository.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\obj\Debug\WangYc.Models.Repository.pdb
-D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\bin\Debug\NHibernate.Caches.SysCache.dll
-D:\wangyancai.work\UMUTOU-VUE\WangYc.Models.Repository\bin\Debug\NHibernate.Caches.SysCache2.dll

@@ -11,12 +11,6 @@ namespace WangYc.Services.Interfaces.HR
 {
     public interface IUsersService
     {
-        
-        /// <summary>
-        /// IEnumerable与IList等其它类型的集合的区别？？
-        /// </summary>
-        IEnumerable<Users> GetUsers();
-
         IEnumerable<UsersView> GetUsersView(SearchUsersRequest request);
 
         UsersView FindUsersBy(string userid);

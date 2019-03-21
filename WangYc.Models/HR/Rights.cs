@@ -117,6 +117,32 @@ namespace WangYc.Models.HR {
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private List<int> GetRightsId(Rights model) {
+
+            List<int> result = new List<int>();
+            result.Add(model.Id);
+            List<int> l = GetRightsId(model.Parent);
+            foreach (int one in l ) {
+                if (!result.Contains(one)) {
+                    result.Add(one);
+                }
+            }
+            return null;
+        }
+
+
+        public virtual IList<int> RightsList {
+            get {
+                return GetRightsId(this);
+            }
+
+        }
+        
         #endregion
 
 

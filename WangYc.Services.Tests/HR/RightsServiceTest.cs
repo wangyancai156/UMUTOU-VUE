@@ -30,7 +30,7 @@ namespace WangYc.Services.Tests {
             IUnitOfWork uow = new NHUnitOfWork();
             IRightsRepository _rightsRepository = new RightsRepository(uow);
 
-            this._rightsService = new RightsService(_rightsRepository, uow);
+            this._rightsService = new RightsService(_rightsRepository, null, uow);
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
 

@@ -70,6 +70,19 @@ namespace WangYc.Models.HR {
 
         public virtual IList<Role> Role { set; get; }
 
+        public virtual List<int> RightsIdList {
+            get {
+                List<int> result = new List<int>();
+                foreach (Role one in this.Role) {
+                    foreach (int two in one.RightsList) {
+                        if (!result.Contains(two)) {
+                            result.Add(two);
+                        }
+                    }
+                }
+                return result;
+            }
+        }
 
         public virtual IList<UserDevice> Device { set; get; }
 

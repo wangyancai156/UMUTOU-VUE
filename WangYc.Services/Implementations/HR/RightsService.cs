@@ -20,10 +20,12 @@ using System;
 namespace WangYc.Services.Implementations.HR {
     public class RightsService : IRightsService {
         private readonly IRightsRepository _rightsRepository;
+        private readonly IUsersRepository _usersRepository;
         private readonly IUnitOfWork _uow;
 
-        public RightsService(IRightsRepository rightsRepository, IUnitOfWork uow) {
+        public RightsService(IRightsRepository rightsRepository, IUsersRepository usersRepository, IUnitOfWork uow) {
             this._rightsRepository = rightsRepository;
+            this._usersRepository = usersRepository;
             this._uow = uow;
 
         }
@@ -150,6 +152,23 @@ namespace WangYc.Services.Implementations.HR {
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
             return rights.ConvertToDataTreeNoLeafView();
         }
+
+        /// <summary>
+        /// 获取功能树视图（不包括叶子节点）
+        /// </summary>
+        /// <returns></returns>
+        public IList<DataTree> GetRightsTreeViewByUserId( string userid ) {
+
+            Users user = this._usersRepository.FindBy(userid);
+            Query query = new Query();
+            query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
+            IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
+            return rights.ConvertToDataTreeView(user.RightsIdList);
+        }
+
+
+
+
         #endregion
 
         #endregion

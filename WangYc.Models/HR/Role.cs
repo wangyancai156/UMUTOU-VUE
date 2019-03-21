@@ -52,7 +52,21 @@ namespace WangYc.Models.HR {
         /// <summary>
         /// 权限
         /// </summary>
-        public virtual IList<Rights> Rights { set; get; } 
+        public virtual IList<Rights> Rights { set; get; }
+
+        public virtual IList<int> RightsList {
+            get {
+                IList<int> result = new List<int>();
+                foreach (Rights one in this.Rights) {
+                    foreach (int two in one.RightsList) {
+                        if (!result.Contains(two)) {
+                            result.Add(two);
+                        }
+                    }
+                }
+                return result;
+            }
+        }
 
         #endregion Model
 

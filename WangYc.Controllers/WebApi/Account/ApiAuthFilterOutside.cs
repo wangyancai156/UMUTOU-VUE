@@ -6,9 +6,6 @@ using WangYc.Services.Interfaces.Account;
 
 namespace WangYc.Controllers.WebApi.Account {
     public class ApiAuthFilterOutside : AuthorizeAttribute {
-
-        public const string Token = "Token";
-        public const string UserId = "UserId";
          
         public override void OnAuthorization(HttpActionContext actionContext) {
           

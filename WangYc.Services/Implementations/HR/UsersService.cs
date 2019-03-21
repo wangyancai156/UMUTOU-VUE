@@ -41,28 +41,14 @@ namespace WangYc.Services.Implementations.HR {
 
 
         #region 查找
-
-        /// <summary>
-        /// 获取所有用户
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Users> GetUsers() {
-            IEnumerable<Users> users = _usersRepository.FindAll();
-
-            return users;
-        }
-
+ 
         public Users GetUsers(string id) {
 
             return this._usersRepository.FindBy(id);
-
         }
 
         public UsersView FindUsersBy(string userid) {
             Users user = _usersRepository.FindBy(userid);
-            //Query query = new Query();
-            //query.Add(Criterion.Create<Users>(c=>c.UserName,userid,CriteriaOperator.Equal));
-            //IEnumerable<Users> user = _usersRepository.FindBy(query);
             return user.ConvertToUsersView();
         }
 
@@ -81,6 +67,11 @@ namespace WangYc.Services.Implementations.HR {
             return users.FirstOrDefault();
         }
 
+        /// <summary>
+        /// 根据条件获取客户列表
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public IEnumerable<UsersView> GetUsersView(SearchUsersRequest request) {
 
             int[] nodeArray = this._organizationService.GetOrganizationChildNode(request.OrganizationId).ToArray();
@@ -93,7 +84,12 @@ namespace WangYc.Services.Implementations.HR {
             return users.ConvertToUsersView();
         }
 
-
+        public IList<int> GetUserRoleIdArray(string id) {
+         
+            Users model = this.GetUsers(id);
+            return model.RightsIdList;
+        }
+         
 
         #endregion
 
