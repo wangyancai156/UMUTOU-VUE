@@ -11,7 +11,10 @@ namespace WangYc.Controllers.WebApi.Account {
  
             string sessionKey = "";
             string userId = "";
-          //从http请求的头里面获取身份验证信息，验证是否是请求发起方的ticket
+            if (actionContext.Request.Method.ToString().Equals("OPTIONS")) {
+                actionContext.Response.StatusCode = System.Net.HttpStatusCode.OK;
+            }
+            //从http请求的头里面获取身份验证信息，验证是否是请求发起方的ticket
             var authorization = actionContext.Request.Headers.Authorization;
             if ((authorization != null) && (authorization.Scheme != null)) {
                 //解密用户ticket,并校验用户名密码是否匹配
@@ -19,6 +22,7 @@ namespace WangYc.Controllers.WebApi.Account {
                 sessionKey = scheme[0];
                 userId = scheme[1];
             }
+           
 
             //var qs = HttpUtility.ParseQueryString(actionContext.Request.RequestUri.Query);
             if (AuthenticationFactory.Authentication().ApiVerification(userId, sessionKey)) {

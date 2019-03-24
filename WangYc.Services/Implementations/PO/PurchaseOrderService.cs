@@ -20,6 +20,8 @@ using WangYc.Models.Repository.SD;
 using WangYc.Services.Interfaces.PO;
 using WangYc.Services.Messaging.Common;
 using WangYc.Services.Interfaces.Common;
+using WangYc.Models.HR;
+using WangYc.Models.Repository.HR;
 
 namespace WangYc.Services.Implementations.PO {
     public class PurchaseOrderService : IPurchaseOrderService {
@@ -30,6 +32,7 @@ namespace WangYc.Services.Implementations.PO {
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
         private readonly IWorkflowActivityService _workflowActivityService;
+        private readonly IUsersRepository _usersRepository;
         private readonly IIdGenerator<PurchaseOrder, string> _purchaseOrderIdGenerator;
         private readonly IUnitOfWork _uow;
 
@@ -40,6 +43,7 @@ namespace WangYc.Services.Implementations.PO {
             ISupplierRepository supplierRepository,
             IProductRepository productRepository,
             IWorkflowActivityService workflowActivityService,
+            IUsersRepository usersRepository,
             IIdGenerator<PurchaseOrder, string> purchaseOrderIdGenerator,
             IUnitOfWork uow
             ) {
@@ -48,6 +52,7 @@ namespace WangYc.Services.Implementations.PO {
             this._paymentTypeRepository = paymentTypeRepository;
             this._supplierRepository = supplierRepository;
             this._productRepository = productRepository;
+            this._usersRepository = usersRepository;
             this._workflowActivityService = workflowActivityService;
             this._purchaseOrderIdGenerator = purchaseOrderIdGenerator;
             this._uow = uow;
@@ -97,6 +102,7 @@ namespace WangYc.Services.Implementations.PO {
 
         /// <summary>
         /// 根据状态获取采购单视图
+        /// 用于获取当前状态的采购单，在自己范围所辖范围内的
         /// </summary>
         /// <returns></returns>
         public ListPaged<PurchaseOrderView> GetPurchaseOrderViewByStatus(GetPurchaseOrderRequest request) {
@@ -108,6 +114,7 @@ namespace WangYc.Services.Implementations.PO {
         }
         /// <summary>
         /// 获取已经处理过的采购单
+        /// 用于获取之前被处理过的采购单
         /// </summary>
         /// <param name="purchaseOrderId"></param>
         /// <returns></returns>
@@ -150,9 +157,13 @@ namespace WangYc.Services.Implementations.PO {
             if (supplier == null) {
                 throw new EntityIsInvalidException<string>(request.SupplierId.ToString());
             }
-            PurchaseOrder model = new PurchaseOrder(purchaseType, paymentType, supplier, request.CreateUserId, request.Note);
+            Users users = this._usersRepository.FindBy(request.CreateUserId);
+            if (supplier == null) {
+                throw new EntityIsInvalidException<string>(request.CreateUserId.ToString());
+            }
+            PurchaseOrder model = new PurchaseOrder(purchaseType, paymentType, supplier, users, request.Note);
             model.Id = this._purchaseOrderIdGenerator.NewIntId(model, 3);
-            model.Initial(model.CreateUserId);
+            model.Initial(model.CreateUser.Id);
             this._purchaseOrderRepository.Add(model);
             this._uow.Commit();
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Models.Common;
 using WangYc.Models.FI;
+using WangYc.Models.HR;
 using WangYc.Models.RS;
 
 namespace WangYc.Models.PO {
@@ -17,13 +18,13 @@ namespace WangYc.Models.PO {
         public PurchaseOrder() { }
 
 
-        public PurchaseOrder(PurchaseType purchaseType, PaymentType paymentType, Supplier supplier, string createUserId, string note) {
+        public PurchaseOrder(PurchaseType purchaseType, PaymentType paymentType, Supplier supplier, Users createUser, string note) {
 
             this.PurchaseType = purchaseType;
             this.PaymentType = paymentType;
             this.Supplier = supplier;
             this.Note = note;
-            this.CreateUserId = createUserId;
+            this.CreateUser = createUser;
             this.CreateDate = DateTime.Now;
             this.IsValid = true;
             this.StatuId = "PO-010";
@@ -56,7 +57,7 @@ namespace WangYc.Models.PO {
             get;
             set;
         }
-        public virtual string CreateUserId {
+        public virtual Users CreateUser {
             get;
             set;
         }
@@ -146,7 +147,7 @@ namespace WangYc.Models.PO {
 
         public virtual void Reject(string operatorId) {
 
-            this.StatuId = "PO-021";
+            this.StatuId = "PO-040";
             WorkflowActivity beforActivity = new WorkflowActivity();
             IEnumerable<WorkflowActivity> list = this.WorkflowActivity.Where(s => s.EndTime == null);
             if (list.Count() > 0) {
@@ -154,7 +155,7 @@ namespace WangYc.Models.PO {
                 beforActivity.EndTime = DateTime.Now;
             }
 
-            WorkflowActivity activity = new WorkflowActivity(this.Id, "PurchaseOrder", "PO-021", operatorId, beforActivity);
+            WorkflowActivity activity = new WorkflowActivity(this.Id, "PurchaseOrder", "PO-040", operatorId, beforActivity);
             this.WorkflowActivity.Add(activity);
         }
 

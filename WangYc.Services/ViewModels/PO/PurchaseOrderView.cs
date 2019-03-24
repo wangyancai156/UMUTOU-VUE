@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangYc.Services.ViewModels.FI;
+using WangYc.Services.ViewModels.HR;
 using WangYc.Services.ViewModels.RS;
 
 namespace WangYc.Services.ViewModels.PO {
@@ -38,7 +39,7 @@ namespace WangYc.Services.ViewModels.PO {
             get;
             set;
         }
-        public string CreateUserId {
+        public UsersView CreateUser {
             get;
             set;
         }

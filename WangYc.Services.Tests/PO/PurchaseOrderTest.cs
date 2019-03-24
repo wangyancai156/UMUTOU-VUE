@@ -48,7 +48,7 @@ namespace WangYc.Services.Tests.PO {
             this._productRepository = new ProductRepository(uow);
             this._uersRepository = new UsersRepository(uow);
             this._purchaseTypeService = new PurchaseTypeService(this._purchaseTypeRepository, this._uersRepository, uow);
-            this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository,null, null, uow);
+            this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository,null, null, null, uow);
 
             this._purchaseOrderDetailRepository = new PurchaseOrderDetailRepository(uow);
             this._purchaseOrderDetailService = new PurchaseOrderDetailService(this._purchaseOrderDetailRepository,uow);
