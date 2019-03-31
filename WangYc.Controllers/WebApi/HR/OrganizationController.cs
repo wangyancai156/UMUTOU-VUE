@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -39,7 +40,12 @@ namespace WangYc.Controllers.WebApi.HR {
         public HttpResponseMessage GetOrganizationView(int id) {
 
             IEnumerable<OrganizationView> organization = this._organizationService.GetOrganizationView(id);
-            return ToJson(organization);
+
+            JsonSerializerSettings setting = new JsonSerializerSettings() {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            var ret = JsonConvert.SerializeObject(organization, setting);
+            return ToJson(ret);
 
         }
 

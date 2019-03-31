@@ -24,16 +24,22 @@ namespace WangYc.Controllers.WebApi.HR {
 
         #region 角色管理
         [HttpGet]
-        public HttpResponseMessage GetRoleView(int organizationId) {
+        public HttpResponseMessage GetRoleView(int roleId) {
 
-            IEnumerable<RoleView> model = this._roleService.GetRoleView(organizationId);
+            RoleView model = this._roleService.GetRoleView(roleId);
             return ToJson(model);
         }
         [HttpGet]
-        public HttpResponseMessage AddRole([FromUri] AddRoleRequest request) {
+        public HttpResponseMessage GetRoleTreeView(int roleId) {
 
-            int organization = Convert.ToInt32(request.Organizationid);
-            RoleView model = this._roleService.AddRole(organization, request.Name, request.Description, request.Name);
+            IList<DataTree> model = this._roleService.GetRoleTreeView(roleId);
+            return ToJson(model);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage AddRole([FromUri] AddRoleRequest request) {
+             
+            RoleView model = this._roleService.AddRole(request);
             return ToJson(model);
         }
         [HttpGet]
@@ -49,7 +55,7 @@ namespace WangYc.Controllers.WebApi.HR {
             return ToJson(result);
         }
         [HttpGet]
-        public HttpResponseMessage UpdateRole([FromUri] AddRoleRequest request) {
+        public HttpResponseMessage UpdateRole([FromUri] EditRoleRequest request) {
             string result = "";
             try {
                 this._roleService.UpdateRole(request);
@@ -59,39 +65,21 @@ namespace WangYc.Controllers.WebApi.HR {
             }
             return ToJson(result);
         }
+        
+        
         #endregion
 
 
         #region 权限功能
-       
-      
-        [HttpGet]
-        public HttpResponseMessage GetRoleRightsNotIn(int roleid, int rightid) {
-            
-            IEnumerable<RightsView> model = this._roleService.GetRoleRightsNotIn(roleid, rightid); 
-            return ToJson(model);
-        }
-        
-        [HttpGet]
-        public HttpResponseMessage GetRoleRights(int id) {
-
-            IEnumerable<RightsView> model = this._roleService.GetRoleRights(id);
-            return ToJson(model);
-        }
+         
         [HttpGet]
         public HttpResponseMessage RelationRigths(int roleId, string rightid) {
+
             string[] ids = rightid.Split('|');
-           
             this._roleService.RelationRigths(roleId, ids);
             return ToJson("");
         }
-        [HttpGet]
-        public HttpResponseMessage CancelRelationRigths(int roleId, string rightid) {
-
-            string[] ids = rightid.Split('|');
-            this._roleService.CancelRelationRigths(roleId, ids);
-            return ToJson("");
-        }
+       
         [HttpGet]
         public HttpResponseMessage GetRightsTreeView() {
 

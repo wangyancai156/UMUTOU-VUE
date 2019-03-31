@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WangYc.Services.ViewModels.HR {
     public class UsersView {
-         
+
         public string Id {
             get;
             set;
@@ -35,7 +35,12 @@ namespace WangYc.Services.ViewModels.HR {
             get;
             set;
         }
+
+        public IList<OrganizationView> Organization { get; set; }
+
         public IList<UserDeviceView> Device { get; set; }
- 
+
+        public virtual List<int> RoleId { get; set; }
+
     }
 }

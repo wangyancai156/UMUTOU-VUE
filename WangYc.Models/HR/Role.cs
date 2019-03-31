@@ -17,9 +17,9 @@ namespace WangYc.Models.HR {
 
         public Role() { }
 
-        public Role(Organization organization, string name, string description) {
+        public Role(Role parent, string name, string description) {
 
-            this.Organization = organization;
+            this.Parent = parent;
             this.Name = name;
             this.Description = description;
             this.CreateDate = DateTime.Now;
@@ -39,24 +39,39 @@ namespace WangYc.Models.HR {
         /// </summary>
         public virtual DateTime CreateDate { set; get; }
         /// <summary>
+        /// 父节点
+        /// </summary>
+        public virtual Role Parent { set; get; }
+        /// <summary>
+        /// 子节点
+        /// </summary>
+        public virtual IList<Role> Child { get; set; }
+        /// <summary>
         /// 是否有效
         /// </summary>
         public virtual bool IsValid { get; set; }
-        ///// <summary>
-        ///// 组织
-        ///// </summary>
-        public virtual Organization Organization {
-            get;
-            set;
-        }
+
         /// <summary>
         /// 权限
         /// </summary>
         public virtual IList<Rights> Rights { set; get; }
 
-        public virtual IList<int> RightsList {
+        //获取权限的功能
+        public virtual List<int> RightsId {
             get {
-                IList<int> result = new List<int>();
+                List<int> result = new List<int>();
+                if (this.Rights != null) {
+                    foreach (Rights one in this.Rights) {
+                        result.Add(one.Id);
+                    }
+                }
+                return result;
+            }
+        }
+        //获取权限的功能（包括功能的父节点）
+        public virtual List<int> RightsIdContainParent {
+            get {
+                List<int> result = new List<int>();
                 foreach (Rights one in this.Rights) {
                     foreach (int two in one.RightsList) {
                         if (!result.Contains(two)) {
@@ -81,6 +96,24 @@ namespace WangYc.Models.HR {
             this.Description = description;
         }
 
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="descriptin"></param>
+        /// <returns></returns>
+        public virtual Role AddChild(string name, string descriptin) {
+
+            Role role = new Role(this, name, descriptin);
+            if (Child == null) {
+                Child = new List<Role>();
+                Child.Add(role);
+            } else {
+                Child.Add(role);
+            }
+            return role;
+        }
+
         /// <summary>添加权限
         /// 添加权限
         /// </summary>
@@ -92,19 +125,8 @@ namespace WangYc.Models.HR {
             }
 
             foreach (Rights rights in rightsList) {
-                Rights.Add(rights);
-            }
-        }
-
-        public virtual void CancelRigths(string[] rightid) {
-
-            int[] ids = Array.ConvertAll<string, int>(rightid, s => int.Parse(s));
-            IEnumerable<Rights> rights = this.Rights.Where(s => ids.Contains(s.Id));
-
-            for (int i = this.Rights.Count - 1; i > -1; i--) {
-
-                if (ids.Contains(this.Rights[i].Id)) {
-                    this.Rights.Remove(this.Rights[i]);
+                if (rights.IsLeaf) {
+                    Rights.Add(rights);
                 }
             }
         }

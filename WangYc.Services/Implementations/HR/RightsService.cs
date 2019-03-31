@@ -154,7 +154,7 @@ namespace WangYc.Services.Implementations.HR {
         }
 
         /// <summary>
-        /// 获取功能树视图（不包括叶子节点）
+        /// 获取用户的功能
         /// </summary>
         /// <returns></returns>
         public IList<DataTree> GetRightsTreeViewByUserId( string userid ) {
@@ -163,7 +163,7 @@ namespace WangYc.Services.Implementations.HR {
             Query query = new Query();
             query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToDataTreeView(user.RightsIdList);
+            return rights.ConvertToDataTreeView(user.RightsIdContainParent);
         }
 
 

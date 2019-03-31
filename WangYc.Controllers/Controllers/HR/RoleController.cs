@@ -29,16 +29,10 @@ namespace WangYc.Controllers.Controllers.HR {
 
         public JsonResult GetRole() {
 
-            IEnumerable<RoleView> model = this._roleService.GetRoleView(0);
+            RoleView model = this._roleService.GetRoleView(0);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult AddRole(string Organizationid, string Name, string Description, string rightsIds) {
-
-            int organization = Convert.ToInt32(Organizationid);
-            RoleView model = this._roleService.AddRole(organization, Name, Description, rightsIds);
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
 
         public ActionResult DeleteRole(int id) {
             try {
@@ -50,7 +44,7 @@ namespace WangYc.Controllers.Controllers.HR {
             }
         }
 
-        public ActionResult UpdateRole(AddRoleRequest request) {
+        public ActionResult UpdateRole(EditRoleRequest request) {
             try {
 
                 this._roleService.UpdateRole(request);

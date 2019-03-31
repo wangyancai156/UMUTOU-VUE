@@ -12,6 +12,7 @@ using WangYc.Services.ViewModels.HR;
 using WangYc.Services.Mapping.HR;
 using WangYc.Services.Messaging.HR;
 using WangYc.Core.Infrastructure.Querying;
+using WangYc.Services.ViewModels;
 
 namespace WangYc.Services.Implementations.HR {
     public class RoleService : IRoleService {
@@ -56,65 +57,40 @@ namespace WangYc.Services.Implementations.HR {
             IEnumerable<Role> model = _roleRepository.FindBy(query);
             return model;
         }
-       
+
         /// <summary>
         /// 获取所有的权限视图
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<RoleView> GetRoleView(int organizationId) {
+        public RoleView GetRoleView(int roleId) {
 
-            Query query = new Query();
-            query.Add(Criterion.Create<Role>(c => c.Organization.Id, organizationId, CriteriaOperator.Equal));
-            IEnumerable<Role> role = this._roleRepository.FindBy(query);
+            Role role = this._roleRepository.FindBy(roleId);
             return role.ConvertToRoleView();
         }
-
+    
         /// <summary>
-        /// 根据权限ID获取权限的功能
+        /// 获取所有的权限视图
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
-        public IEnumerable<RightsView> GetRoleRights(int id) {
-
-            Role model = this.GetRole(id);
-            if (model == null) {
-                throw new EntityIsInvalidException<string>(id.ToString());
-            }
-            return model.Rights.ConvertToRightsView();
+        public IList<DataTree> GetRoleTreeView(int roleId) {
+            
+            Query query = new Query();
+            query.Add(Criterion.Create<Role>(c => c.Id, roleId, CriteriaOperator.Equal));
+            IEnumerable<Role> role = _roleRepository.FindBy(query);
+            return role.ConvertToDataTreeView();
         }
-
-        /// <summary>
-        /// 获取权限中没有的功能
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IEnumerable<RightsView> GetRoleRightsNotIn(int roleid,int rightid) {
-
-            IEnumerable<RightsView> model = this._rightsService.GetRightsIsLeafView(rightid);
-            IEnumerable<RightsView> modelhas = this.GetRoleRights(roleid);
-            int[] ids = modelhas.Select(s => s.Id).ToArray();
-             
-            return model.Where(s => !ids.Contains(s.Id));
-        }
-
 
         #endregion
 
         #region 添加
 
-        public RoleView AddRole(int organizationid, string name, string description, string rightsIds) {
+        public RoleView AddRole(AddRoleRequest request) {
 
-            string[] rightsIdList = rightsIds.Split('|');
-            Organization orgmodel = this._organizationRepository.FindBy(organizationid);
-            if (orgmodel == null) {
-                throw new EntityIsInvalidException<string>(organizationid.ToString());
+            Role model = this._roleRepository.FindBy(request.ParentId);
+            if (model == null) {
+                throw new EntityIsInvalidException<string>(request.ParentId.ToString());
             }
-
-            Role model = new Role(orgmodel, name, description);
-            //IEnumerable<Rights> rightslList = this._rightsService.GetRightsById(rightsIdList);
-            //model.AddRights(rightslList);
-
-            this._roleRepository.Add(model);
+            model.AddChild(request.Name, request.Description);
             this._uow.Commit();
             return model.ConvertToRoleView();
         }
@@ -124,7 +100,12 @@ namespace WangYc.Services.Implementations.HR {
 
         #region 修改
 
-        public RoleView UpdateRole(AddRoleRequest request) {
+        /// <summary>
+        /// 修改岗位
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public RoleView UpdateRole(EditRoleRequest request) {
 
             Role model = this._roleRepository.FindBy(request.Id);
             if (model == null) {
@@ -136,27 +117,23 @@ namespace WangYc.Services.Implementations.HR {
             return model.ConvertToRoleView();
         }
 
+        /// <summary>
+        /// 为岗位添加功能
+        /// </summary>
+        /// <param name="roleid"></param>
+        /// <param name="rightid"></param>
         public void RelationRigths(int roleid, string[] rightid) {
-             
+
             Role model = this.GetRole(roleid);
             if (model == null) {
                 throw new EntityIsInvalidException<string>(roleid.ToString());
             }
+            model.Rights.Clear();
             IEnumerable<Rights> list = this._rightsService.GetRights(rightid);
             model.AddRights(list);
             this._uow.Commit();
         }
-
-        public void CancelRelationRigths(int roleid, string[] rightid) {
-
-            Role model = this.GetRole(roleid);
-            if (model == null) {
-                throw new EntityIsInvalidException<string>(roleid.ToString());
-            }
-
-            model.CancelRigths(rightid);
-            this._uow.Commit();
-        }
+ 
 
         #endregion
 

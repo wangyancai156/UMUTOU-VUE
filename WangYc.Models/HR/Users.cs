@@ -70,11 +70,21 @@ namespace WangYc.Models.HR {
 
         public virtual IList<Role> Role { set; get; }
 
-        public virtual List<int> RightsIdList {
+        public virtual List<int> RoleId {
             get {
                 List<int> result = new List<int>();
                 foreach (Role one in this.Role) {
-                    foreach (int two in one.RightsList) {
+                    result.Add(one.Id);
+                }
+                return result;
+            }
+        }
+         
+        public virtual List<int> RightsIdContainParent {
+            get {
+                List<int> result = new List<int>();
+                foreach (Role one in this.Role) {
+                    foreach (int two in one.RightsIdContainParent) {
                         if (!result.Contains(two)) {
                             result.Add(two);
                         }
@@ -95,12 +105,14 @@ namespace WangYc.Models.HR {
         #region 权限
 
         /// <summary>
-        /// 添加权限
+        /// 添加组织
         /// </summary>
         /// <param name="role"></param>
         public virtual void AddOrganization(Organization model) {
             if (this.Organization == null) {
                 this.Organization = new List<Organization>();
+            } else {
+                this.Organization.Clear();
             }
             this.Organization.Add(model);
         }
@@ -114,6 +126,17 @@ namespace WangYc.Models.HR {
             }
             this.Role.Add(role);
         }
+        /// <summary>添加权限
+        /// 添加权限
+        /// </summary>
+        /// <param name="rights"></param>
+        public virtual void AddRole(IEnumerable<Role> roleList) {
+            foreach (Role role in roleList) {
+                this.AddRole(role);
+            }
+        }
+
+
         #endregion
 
         #region 设备登陆

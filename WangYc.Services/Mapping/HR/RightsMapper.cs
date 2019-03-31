@@ -35,6 +35,11 @@ namespace WangYc.Services.Mapping.HR
             return Mapper.Map<Rights, DataTree>(rights);
         }
 
+        /// <summary>
+        /// 转换成树
+        /// </summary>
+        /// <param name="rights"></param>
+        /// <returns></returns>
         public static IList<DataTree> ConvertToDataTreeView(this IEnumerable<Rights> rights) {
 
             IList<DataTree> reslut = new List<DataTree>();
@@ -53,6 +58,12 @@ namespace WangYc.Services.Mapping.HR
             return reslut;
         }
 
+        /// <summary>
+        /// 根据条件转换成树
+        /// </summary>
+        /// <param name="rights"></param>
+        /// <param name="rightid"></param>
+        /// <returns></returns>
         public static IList<DataTree> ConvertToDataTreeView(this IEnumerable<Rights> rights, List<int> rightid) {
 
             IList<DataTree> reslut = new List<DataTree>();

@@ -11,16 +11,16 @@ namespace WangYc.Models.HR {
 
         #region 属性
 
-        public  Organization() { }
+        public Organization() { }
 
-        public  Organization( Organization parent, string name, string description, int level ) {
+        public Organization(Organization parent, string name, string description, int level) {
 
             this.Name = name;
             this.Description = description;
             this.Level = level;
             this.CreateDate = DateTime.Now;
             this.Parent = parent;
- 
+
         }
         /// <summary>
         /// 父节点
@@ -46,6 +46,32 @@ namespace WangYc.Models.HR {
         /// 等级
         /// </summary>
         public virtual int Level { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private List<int> GetOrganizationId(Organization model) {
+
+            List<int> result = new List<int>();
+            if (model != null && model.Level > 0) {
+                result.Add( model.Id);
+                List<int> l = GetOrganizationId(model.Parent);
+                foreach (int one in l) {
+                    if (!result.Contains(one)) {
+                        result.Add(one);
+                    }
+                }
+            }
+            return result;
+        }
+        public virtual List<int> OrganizationIdList {
+            get {
+                return GetOrganizationId(this).OrderBy(s=>s).ToList();
+            }
+        }
 
 
         #endregion

@@ -19,21 +19,21 @@ namespace WangYc.Services.Implementations.HR {
     public class UsersService : IUsersService {
         private readonly IUsersRepository _usersRepository;
         private readonly IOrganizationService _organizationService;
-        private readonly IRoleRepository _roleRepository;
+        private readonly IRoleService _roleService;
         private readonly IIdGenerator<Users, string> _usersIdGenerator;
         private readonly IUnitOfWork _uow;
 
         public UsersService(
                 IUsersRepository usersRepository,
                 IOrganizationService organizationService,
-                IRoleRepository roleRepository,
+                IRoleService roleService,
                 IIdGenerator<Users, string> usersIdGenerator,
                 IUnitOfWork uow
             ) {
 
             this._usersRepository = usersRepository;
             this._organizationService = organizationService;
-            this._roleRepository = roleRepository;
+            this._roleService = roleService;
             this._usersIdGenerator = usersIdGenerator;
             this._uow = uow;
         }
@@ -78,6 +78,7 @@ namespace WangYc.Services.Implementations.HR {
            
             Query query = new Query();
             query.Add(new Criterion("Organization.Id", nodeArray, CriteriaOperator.InOfInt32));
+            query.Add(Criterion.Create<Users>(c => c.SignState, 1, CriteriaOperator.Equal));
             //query.Add(Criterion.Create<Users>(c => c.UserName, request.Name+ "%", CriteriaOperator.Like));
             query.QueryOperator = QueryOperator.And;
             IEnumerable<Users> users = _usersRepository.FindBy(query);
@@ -87,7 +88,7 @@ namespace WangYc.Services.Implementations.HR {
         public IList<int> GetUserRoleIdArray(string id) {
          
             Users model = this.GetUsers(id);
-            return model.RightsIdList;
+            return model.RightsIdContainParent;
         }
          
 
@@ -137,21 +138,20 @@ namespace WangYc.Services.Implementations.HR {
         /// </summary>
         /// <param name="userid"></param>
         /// <param name="roleid"></param>
-        public void AddRole(string userid, int roleid) {
+        public void RelationRole(string userId, string[] roleId) {
 
-            Users user = this._usersRepository.FindBy(userid);
+            Users user = this._usersRepository.FindBy(userId);
             if (user == null) {
-                throw new EntityIsInvalidException<string>(userid.ToString());
+                throw new EntityIsInvalidException<string>(userId.ToString());
             }
-
-            Role role = this._roleRepository.FindBy(roleid);
-            if (role == null) {
-                throw new EntityIsInvalidException<string>(roleid.ToString());
-            }
-            user.AddRole(role);
+            user.Role.Clear();
+            IEnumerable<Role> list = this._roleService.GetRole(roleId);
+            user.AddRole(list);
             this._uow.Commit();
 
         }
+        
+
         #endregion
 
         #region 修改
@@ -170,13 +170,12 @@ namespace WangYc.Services.Implementations.HR {
             if (organization == null) {
                 throw new EntityIsInvalidException<string>(organization.ToString());
             }
-
-            user.AddOrganization( organization);
+             
+            user.AddOrganization(organization);
             user.Telephone = request.Telephone;
             user.UserName = request.Name;
             user.UserPwd = request.Pwd;
-
-            _uow.Commit();
+            this._uow.Commit();
         }
 
         /// <summary>

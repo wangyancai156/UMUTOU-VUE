@@ -29,6 +29,8 @@ namespace WangYc.Services.Interfaces.HR
         void InsertUsers(AddUsersRequest user);
 
         void UpdateUsers(AddUsersRequest request);
+
+        void RelationRole(string userId, string[] roleId);
         /// <summary>
         ///  更新最后登录时间
         /// </summary>

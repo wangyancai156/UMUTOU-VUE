@@ -11,10 +11,13 @@
     <property name="Name" column="Name" type="string"></property>
     <property name="Description" column="Description" type="string"></property>
     <property name="IsValid" column="IsValid" ></property>
-    
-    <many-to-one name="Organization" class="Organization" lazy="false" fetch="select" >
-      <column name="OrganizationId" sql-type="int" ></column>
-    </many-to-one>
+    <!--父节点-->
+    <many-to-one name="Parent" class="Role" column="ParentId" unique="true" />
+    <!--子节点一对多-->
+    <bag name="Child" where="IsValid=1"  cascade="all-delete-orphan" inverse="true" lazy="true"  >
+      <key column="ParentId" ></key>
+      <one-to-many class="Role"/>
+    </bag>
 
     <bag name="Rights" table="WangYc.dbo.RoleRights"  >
       <key column="RoleId"></key>

@@ -18,7 +18,7 @@ namespace WangYc.Controllers.WebApi.Account {
             var authorization = actionContext.Request.Headers.Authorization;
             if ((authorization != null) && (authorization.Scheme != null)) {
                 //解密用户ticket,并校验用户名密码是否匹配
-                string[] scheme  = actionContext.Request.Headers.Authorization.Scheme.Split('|');
+                string[] scheme  = actionContext.Request.Headers.Authorization.Parameter.Split('|');
                 sessionKey = scheme[0];
                 userId = scheme[1];
             }

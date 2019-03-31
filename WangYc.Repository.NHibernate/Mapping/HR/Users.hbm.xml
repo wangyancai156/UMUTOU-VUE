@@ -32,7 +32,7 @@
     
     <bag name="Role" table="dbo.UserRole"  >
       <key column="UserID"></key>
-      <many-to-many class="Rights" column="RoleId" />
+      <many-to-many class="Role" column="RoleId" />
     </bag>
 
     <bag name="Device" cascade="all-delete-orphan" inverse="true">

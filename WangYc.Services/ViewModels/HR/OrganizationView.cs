@@ -34,5 +34,7 @@ namespace WangYc.Services.ViewModels.HR {
         public IEnumerable<OrganizationView> Child { get; set; }
 
         public int ParentId { get; set; }
+
+        public List<string> OrganizationIdList { get; set; }
     }
 }

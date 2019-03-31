@@ -48,7 +48,7 @@ namespace WangYc.Controllers.WebApi.HR {
         }
 
         [HttpGet]
-        public HttpResponseMessage UpdateUsers(AddUsersRequest request) {
+        public HttpResponseMessage UpdateUsers([FromUri] AddUsersRequest request) {
 
             string result = "";
             try {
@@ -59,6 +59,15 @@ namespace WangYc.Controllers.WebApi.HR {
                 result = "修改失败：" + ex.Message;
             }
             return ToJson(result);
+        }
+
+        
+        [HttpGet]
+        public HttpResponseMessage RelationRole(string userId, string roleId) {
+
+            string[] ids = roleId.Split('|');
+            this._usersService.RelationRole(userId, ids);
+            return ToJson("");
         }
     }
 }

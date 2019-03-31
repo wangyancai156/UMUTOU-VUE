@@ -6,15 +6,7 @@ using System.Threading.Tasks;
 
 namespace WangYc.Services.ViewModels.HR {
     public class RoleView {
-
-        public int OrganizationId {
-            get;
-            set;
-        }
-        public string OrganizationName {
-            get;
-            set;
-        }
+ 
         public string Id {
             get;
             set;
@@ -31,6 +23,11 @@ namespace WangYc.Services.ViewModels.HR {
         }
         public bool IsValid { get; set; }
 
+        public int ParentId { get; set; }
+
+        public IEnumerable<RoleView> Child { get; set; }
+
+        public virtual List<int> RightsId { get; set; }
 
 
     }

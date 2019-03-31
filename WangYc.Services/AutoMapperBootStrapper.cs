@@ -69,6 +69,14 @@ namespace WangYc.Services
               .ForMember(d => d.label, t => t.MapFrom(s => s.Name));
 
             Mapper.CreateMap<Role, RoleView>();
+            Mapper.CreateMap<Role, DataTreeView>()
+               .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+               .ForMember(d => d.label, t => t.MapFrom(s => s.Name))
+               .ForMember(d => d.children, t => t.MapFrom(s => s.Child));
+            Mapper.CreateMap<Role, DataTree>()
+              .ForMember(d => d.value, t => t.MapFrom(s => s.Id))
+              .ForMember(d => d.label, t => t.MapFrom(s => s.Name));
+
             Mapper.CreateMap<Users, UsersView>();
             Mapper.CreateMap<UserDevice, UserDeviceView>();
             #endregion 

@@ -123,20 +123,22 @@ namespace WangYc.Models.HR {
         /// <param name="model"></param>
         /// <returns></returns>
         private List<int> GetRightsId(Rights model) {
-
+          
             List<int> result = new List<int>();
-            result.Add(model.Id);
-            List<int> l = GetRightsId(model.Parent);
-            foreach (int one in l ) {
-                if (!result.Contains(one)) {
-                    result.Add(one);
+            if (model != null) {
+                result.Add(model.Id);
+                List<int> l = GetRightsId(model.Parent);
+                foreach (int one in l) {
+                    if (!result.Contains(one)) {
+                        result.Add(one);
+                    }
                 }
             }
-            return null;
+            return result;
         }
 
 
-        public virtual IList<int> RightsList {
+        public virtual List<int> RightsList {
             get {
                 return GetRightsId(this);
             }

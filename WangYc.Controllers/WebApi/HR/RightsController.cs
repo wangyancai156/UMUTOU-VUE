@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WangYc.Controllers.Account.WebApi;
+using WangYc.Core.Infrastructure.Querying;
 using WangYc.Services.Interfaces.HR;
 using WangYc.Services.Messaging.HR;
 using WangYc.Services.ViewModels;
@@ -33,7 +34,7 @@ namespace WangYc.Controllers.WebApi.HR {
             return ToJson(organization);
 
         }
-
+  
         /// <summary>
         /// 获取功能列表
         /// </summary>

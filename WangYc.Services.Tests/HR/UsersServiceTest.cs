@@ -39,7 +39,7 @@ namespace WangYc.Services.Tests
             IOrganizationService _organizationService = new OrganizationService(_organizationRepository,uow);
             this._usersIdGenerator = new IdGenerator<Users>();
 
-            this._userService = new UsersService(_usersRepository, _organizationService, _roleRepository, this._usersIdGenerator, uow);
+            this._userService = new UsersService(_usersRepository, _organizationService, null, this._usersIdGenerator, uow);
             this._organizationService = new OrganizationService(_organizationRepository, uow);
             
             AutoMapperBootStrapper.ConfigureAutoMapper();
