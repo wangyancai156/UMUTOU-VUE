@@ -53,6 +53,13 @@ namespace WangYc.Services.Interfaces.HR {
         /// <returns></returns>
         IList<DataTree> GetRightsTreeNoLeafView();
 
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        IList<Menu> GetMenuView(string userid);
+
         #endregion
 
         #endregion

@@ -22,19 +22,7 @@ namespace WangYc.Controllers.WebApi.HR {
         }
 
         #region 查询
-
-        /// <summary>
-        /// 获取组织树结构（没有叶子节点的）
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public HttpResponseMessage GetRightsTreeNoLeafView() {
-
-            IList<DataTree> organization = this._rightsService.GetRightsTreeNoLeafView();
-            return ToJson(organization);
-
-        }
-  
+ 
         /// <summary>
         /// 获取功能列表
         /// </summary>
@@ -46,19 +34,19 @@ namespace WangYc.Controllers.WebApi.HR {
             return ToJson(rights);
         }
 
+
         /// <summary>
-        /// 获取功能列表，只搜索子节点
+        /// 获取功能列表
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GetRightsIsLeafView(int id) {
+        public HttpResponseMessage GetMenuView(string userId) {
 
-            IEnumerable<RightsView> rights = this._rightsService.GetRightsIsLeafView(id);
+            IList<Menu> rights = this._rightsService.GetMenuView(userId);
             return ToJson(rights);
         }
 
-        
+
 
         #endregion
 

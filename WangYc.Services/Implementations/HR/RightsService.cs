@@ -157,13 +157,13 @@ namespace WangYc.Services.Implementations.HR {
         /// 获取用户的功能
         /// </summary>
         /// <returns></returns>
-        public IList<DataTree> GetRightsTreeViewByUserId( string userid ) {
+        public IList<Menu> GetMenuView( string userid ) {
 
             Users user = this._usersRepository.FindBy(userid);
             Query query = new Query();
             query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToDataTreeView(user.RightsIdContainParent);
+            return rights.ConvertToDataMenuView(user.RightsIdContainParent);
         }
 
 
@@ -182,7 +182,7 @@ namespace WangYc.Services.Implementations.HR {
                 throw new EntityIsInvalidException<string>(request.ParentId.ToString());
             }
 
-            Rights result = rights.AddChild(request.Name, request.Url, request.Description, request.IsShow);
+            Rights result = rights.AddChild(request.Name, request.Url, request.Description, request.IsShow, request.Icon);
             this._uow.Commit();
             return result.ConvertToRightsView();
         }

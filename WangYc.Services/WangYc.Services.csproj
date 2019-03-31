@@ -197,6 +197,8 @@
     <Compile Include="ViewModels\BW\InOutBoundView.cs" />
     <Compile Include="ViewModels\BW\WarehouseShelfView.cs" />
     <Compile Include="ViewModels\BW\WarehouseView.cs" />
+    <Compile Include="ViewModels\Menu.cs" />
+    <Compile Include="ViewModels\MenuView.cs" />
     <Compile Include="ViewModels\PO\PurchaseOrderDetailView.cs" />
     <Compile Include="ViewModels\PO\PurchaseOrderView.cs" />
     <Compile Include="ViewModels\PO\PurchaseTypeView.cs" />

@@ -12,6 +12,7 @@
 
     <property name="Name" column="Name" ></property>
     <property name="Url" column="Url"></property>
+    <property name="Icon" column="Icon"></property>
     <property name="Description" column="Description"></property>
     <property name="IsShow" column="IsShow"></property>
     <property name="IsLeaf" column="IsLeaf"></property>

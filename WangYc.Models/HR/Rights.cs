@@ -14,7 +14,7 @@ namespace WangYc.Models.HR {
 
         public Rights() { }
 
-        public Rights(Rights parent, string name,string url, string description, bool isshow, int level) {
+        public Rights(Rights parent, string name,string url, string description, bool isshow, int level, string icon) {
 
             this.Name = name;
             this.Url = url;
@@ -29,6 +29,7 @@ namespace WangYc.Models.HR {
             } else if (level > 2) {
                 this.PathName = parent.PathName + "/" + parent.Name;
             }
+            this.Icon = icon;
 
         }
         /// <summary>
@@ -64,7 +65,14 @@ namespace WangYc.Models.HR {
         /// 是否显示
         /// </summary>
         public virtual bool IsShow { get; set; }
+        /// <summary>
+        /// 是否叶子节点
+        /// </summary>
         public virtual bool IsLeaf { get; set; }
+        /// <summary>
+        /// 标签
+        /// </summary>
+        public virtual string Icon { get; set; }
 
         public virtual string PathName { get; set; }
         
@@ -78,9 +86,9 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual Rights AddChild(string name,string url, string descriptin, bool isshow ) {
+        public virtual Rights AddChild(string name,string url, string descriptin, bool isshow,string icon) {
 
-            Rights rights = new Rights(this, name, url, descriptin, isshow,  this.Level + 1);
+            Rights rights = new Rights(this, name, url, descriptin, isshow,  this.Level + 1, icon);
             if (Child == null) {
                 Child = new List<Rights>();
                 Child.Add(rights);

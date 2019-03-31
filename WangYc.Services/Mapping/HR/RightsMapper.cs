@@ -58,26 +58,35 @@ namespace WangYc.Services.Mapping.HR
             return reslut;
         }
 
+
+        public static Menu ConvertToDataMenu(this Rights rights) {
+            Menu reslut = new Menu();
+            reslut.icon = rights.Icon;
+            reslut.index = rights.Url;
+            reslut.title = rights.Name;
+            return reslut;
+        }
         /// <summary>
         /// 根据条件转换成树
         /// </summary>
         /// <param name="rights"></param>
         /// <param name="rightid"></param>
         /// <returns></returns>
-        public static IList<DataTree> ConvertToDataTreeView(this IEnumerable<Rights> rights, List<int> rightid) {
+        public static IList<Menu> ConvertToDataMenuView(this IEnumerable<Rights> rights, List<int> rightid) {
 
-            IList<DataTree> reslut = new List<DataTree>();
+            IList<Menu> reslut = new List<Menu>();
 
             foreach (Rights item in rights) {
                 if (rightid.Contains(item.Id)) {
                     if (item.Child.Count > 0) {
-                        DataTreeView reslutChild = new DataTreeView();
-                        reslutChild.value = item.Id.ToString();
-                        reslutChild.label = item.Name;
-                        reslutChild.children = ConvertToDataTreeView(item.Child);
+                        MenuView reslutChild = new MenuView();
+                        reslutChild.icon = item.Icon;
+                        reslutChild.index = item.Url;
+                        reslutChild.title = item.Name;
+                        reslutChild.children = ConvertToDataMenuView(item.Child, rightid);
                         reslut.Add(reslutChild);
                     } else {
-                        reslut.Add(item.ConvertToDataTree());
+                        reslut.Add(item.ConvertToDataMenu());
                     }
                 }
             }
