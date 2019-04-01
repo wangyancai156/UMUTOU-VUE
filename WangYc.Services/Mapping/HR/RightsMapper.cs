@@ -13,6 +13,8 @@ namespace WangYc.Services.Mapping.HR
 {
     public static class RightsMapper
     {
+
+        #region 转换成普通视图
         public static RightsView ConvertToRightsView(this Rights permission)
         {
 
@@ -23,20 +25,15 @@ namespace WangYc.Services.Mapping.HR
         {
             return Mapper.Map<IEnumerable<Rights>, IEnumerable<RightsView>>(permissions);
         }
+        #endregion
 
-
-        public static DataTreeView ConvertToDataTreeView(this Rights rights) {
-
-            return Mapper.Map<Rights, DataTreeView>(rights);
-        }
-
+        #region 转换成树视图
         public static DataTree ConvertToDataTree(this Rights rights) {
 
             return Mapper.Map<Rights, DataTree>(rights);
         }
-
         /// <summary>
-        /// 转换成树
+        /// 转换成树转换成树试图
         /// </summary>
         /// <param name="rights"></param>
         /// <returns></returns>
@@ -57,8 +54,9 @@ namespace WangYc.Services.Mapping.HR
             }
             return reslut;
         }
+        #endregion
 
-
+        #region 转换成菜单视图
         public static Menu ConvertToDataMenu(this Rights rights) {
             Menu reslut = new Menu();
             reslut.icon = rights.Icon;
@@ -67,7 +65,7 @@ namespace WangYc.Services.Mapping.HR
             return reslut;
         }
         /// <summary>
-        /// 根据条件转换成树
+        /// 转换成菜单视图
         /// </summary>
         /// <param name="rights"></param>
         /// <param name="rightid"></param>
@@ -94,31 +92,7 @@ namespace WangYc.Services.Mapping.HR
             }
             return reslut;
         }
-
-        public static IList<DataTree> ConvertToDataTreeNoLeafView(this IEnumerable<Rights> rights) {
-
-            IList<DataTree> reslut = new List<DataTree>();
-            foreach (Rights item in rights) {
-                if (item.Child.Count > 0) {
-                    if (ConvertToDataTreeNoLeafView(item.Child).Count > 0) {
-                        DataTreeView reslutChild = new DataTreeView();
-                        reslutChild.value = item.Id.ToString();
-                        reslutChild.label = item.Name;
-                        reslutChild.children = ConvertToDataTreeNoLeafView(item.Child);
-                        reslut.Add(reslutChild);
-                    } else {
-                        reslut.Add(item.ConvertToDataTree());
-                    }
-                  
-                } else {
-                    if (!item.IsLeaf) {
-                        reslut.Add(item.ConvertToDataTree());
-                    }
-                }
-            }
-            return reslut;
-        }
-
+        #endregion
 
     }
 }

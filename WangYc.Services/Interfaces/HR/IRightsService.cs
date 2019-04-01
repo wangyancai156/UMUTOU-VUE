@@ -48,12 +48,6 @@ namespace WangYc.Services.Interfaces.HR {
         IList<DataTree> GetRightsTreeView();
 
         /// <summary>
-        /// 获取功能树视图（不包括叶子节点）
-        /// </summary>
-        /// <returns></returns>
-        IList<DataTree> GetRightsTreeNoLeafView();
-
-        /// <summary>
         /// 获取菜单
         /// </summary>
         /// <param name="userid"></param>

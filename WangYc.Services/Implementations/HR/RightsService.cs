@@ -140,19 +140,7 @@ namespace WangYc.Services.Implementations.HR {
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
             return rights.ConvertToDataTreeView();
         }
-
-        /// <summary>
-        /// 获取功能树视图（不包括叶子节点）
-        /// </summary>
-        /// <returns></returns>
-        public IList<DataTree> GetRightsTreeNoLeafView() {
-
-            Query query = new Query();
-            query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
-            IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToDataTreeNoLeafView();
-        }
-
+        
         /// <summary>
         /// 获取用户的功能
         /// </summary>
