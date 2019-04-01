@@ -72,18 +72,20 @@ namespace WangYc.Services.Mapping.HR
         /// <param name="rights"></param>
         /// <param name="rightid"></param>
         /// <returns></returns>
-        public static IList<Menu> ConvertToDataMenuView(this IEnumerable<Rights> rights, List<int> rightid) {
+        public static IList<Menu> ConvertToDataMenuView(this IEnumerable<Rights> rights, Users user) {
 
             IList<Menu> reslut = new List<Menu>();
+            List<int> userRightsId = user.RightsIdContainParent;
+            List<int> userRoleId = user.RoleId;
 
             foreach (Rights item in rights) {
-                if (rightid.Contains(item.Id)) {
+                if (userRightsId.Contains(item.Id)) {
                     if (item.Child.Count > 0) {
                         MenuView reslutChild = new MenuView();
                         reslutChild.icon = item.Icon;
                         reslutChild.index = item.Url;
                         reslutChild.title = item.Name;
-                        reslutChild.children = ConvertToDataMenuView(item.Child, rightid);
+                        reslutChild.children = ConvertToDataMenuView(item.Child, user);
                         reslut.Add(reslutChild);
                     } else {
                         reslut.Add(item.ConvertToDataMenu());

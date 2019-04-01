@@ -7,7 +7,7 @@ using WangYc.Controllers.WebApi.Account;
 
 namespace WangYc.Controllers.Account.WebApi {
     //添加验证
-    //[ApiAuthFilterOutside]
+    [ApiAuthFilterOutside]
     public class BaseApiController : ApiController
     {
      

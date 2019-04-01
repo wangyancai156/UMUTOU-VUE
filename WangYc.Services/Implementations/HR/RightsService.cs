@@ -163,7 +163,7 @@ namespace WangYc.Services.Implementations.HR {
             Query query = new Query();
             query.Add(Criterion.Create<Rights>(c => c.Parent, null, CriteriaOperator.IsNull));
             IEnumerable<Rights> rights = _rightsRepository.FindBy(query);
-            return rights.ConvertToDataMenuView(user.RightsIdContainParent);
+            return rights.ConvertToDataMenuView(user);
         }
 
 
