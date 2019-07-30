@@ -25,12 +25,12 @@
       <key column="UserID"></key>
       <one-to-many class="UserRole" />
     </bag>-->
-    <bag name="Organization" table="WangYc.dbo.OrganizationUsers"  >
+    <bag name="Organization" table="OrganizationUsers"  >
       <key column="UserID"></key>
       <many-to-many class="Organization" column="OrganizationId" />
     </bag>
     
-    <bag name="Role" table="dbo.UserRole"  >
+    <bag name="Role" table="UserRole"  >
       <key column="UserID"></key>
       <many-to-many class="Role" column="RoleId" />
     </bag>

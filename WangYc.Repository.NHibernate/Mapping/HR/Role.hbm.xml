@@ -19,7 +19,7 @@
       <one-to-many class="Role"/>
     </bag>
 
-    <bag name="Rights" table="WangYc.dbo.RoleRights"  >
+    <bag name="Rights" table="RoleRights"  >
       <key column="RoleId"></key>
       <many-to-many class="Rights" column="RightsId" />
     </bag>

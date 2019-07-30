@@ -40,7 +40,7 @@ namespace WangYc.Repository.NHibernate.Repositories.HR {
 
                 switch (criterion.PropertyName.ToLower()) {
                     case "fndbyroleid":
-                        result = Expression.Sql("{alias}.Id in (select RightsId from wangyc.dbo.RoleRights where RoleId=?)", args[0], types[0]);
+                        result = Expression.Sql("{alias}.Id in (select RightsId from RoleRights where RoleId=?)", args[0], types[0]);
                         break;
                     default:
                         throw new ApplicationException("No property defined");

@@ -3,11 +3,12 @@
 namespace WangYc.Services.ViewModels.Account {
     public class AccountView {
 
-        public bool Result { get; set; }
+        public int code { get; set; }
 
-        public string ResultDescription { get; set; }
+        public string message { get; set; }
 
-        public string SessionKey { get; set; }
+        public string token { get; set; }
+        public string tokenHead { get; set; }
 
         public UsersView User { get; set; }
     }

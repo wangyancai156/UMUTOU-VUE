@@ -2576,3 +2576,4 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll.config
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\WangYc.MVC.pdb
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\obj\Debug\WangYc.MVC.csproj.CopyComplete
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC\bin\Renci.SshNet.dll

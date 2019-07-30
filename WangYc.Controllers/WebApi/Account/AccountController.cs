@@ -50,12 +50,12 @@ namespace WangYc.Controllers.WebApi.Account {
 
             AccountView account = new AccountView();
             if (string.IsNullOrWhiteSpace(LoginName)) {
-                account.Result = false;
-                account.ResultDescription = "请输入用户名！";
+                account.code = 401;
+                account.message = "请输入用户名！";
             }
             if (string.IsNullOrWhiteSpace(PassWord)) {
-                account.Result = false;
-                account.ResultDescription = "密码错误！";
+                account.code = 401;
+                account.message = "密码错误！";
             }
 
             UsersView user = this._usersService.FindUsersBy(LoginName);
@@ -65,30 +65,32 @@ namespace WangYc.Controllers.WebApi.Account {
 
                     string strSource = LoginName + "|" + PassWord + Guid.NewGuid();
                     //获取密文字节数组
-                    string sessionKey = Encode(strSource);
+                    string token = Encode(strSource);
 
-                    UserDeviceView existsDevice = this._serDeviceService.GetUserDeviceView(LoginName, "win", sessionKey);
+                    UserDeviceView existsDevice = this._serDeviceService.GetUserDeviceView(LoginName, "win", token);
 
                     if (existsDevice == null) {
-                        this._serDeviceService.CrateUserDevice(LoginName, "win", sessionKey);
+                        this._serDeviceService.CrateUserDevice(LoginName, "win", token);
 
                     } else {
-                        this._serDeviceService.UpdateUserDevice(LoginName, "win", sessionKey);
+                        this._serDeviceService.UpdateUserDevice(LoginName, "win", token);
                     }
 
-                    account.Result = true;
-                    account.ResultDescription = "Success！";
-                    account.SessionKey = sessionKey;
+                    account.code = 200;
+                    account.message = "Success！";
+                    account.token = token;
+                    account.tokenHead = "bearer ";
                     account.User = user;
 
                 } else {
-                    account.Result = false;
-                    account.ResultDescription = "密码错误！";
+                    account.code = 401;
+                    account.message = "密码错误！";
                 }
 
             } else {
-                account.Result = false;
-                account.ResultDescription = "用户名错误！";
+
+                account.code = 401;
+                account.message = "用户名错误！";
             }
             return ToJson(account);
         }
