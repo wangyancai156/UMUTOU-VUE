@@ -189,6 +189,9 @@
     <File Include="bin/NHibernate.dll">
       <publishTime>01/28/2018 11:31:32</publishTime>
     </File>
+    <File Include="bin/Renci.SshNet.dll">
+      <publishTime>10/16/2017 20:53:06</publishTime>
+    </File>
     <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
       <publishTime>01/28/2018 11:31:11</publishTime>
     </File>
@@ -238,46 +241,49 @@
       <publishTime>01/28/2018 11:31:10</publishTime>
     </File>
     <File Include="bin/WangYc.Controllers.dll">
-      <publishTime>04/07/2018 20:31:08</publishTime>
+      <publishTime>08/01/2019 16:10:24</publishTime>
+    </File>
+    <File Include="bin/WangYc.Controllers.dll.config">
+      <publishTime>04/10/2018 23:16:12</publishTime>
     </File>
     <File Include="bin/WangYc.Controllers.pdb">
-      <publishTime>04/07/2018 20:31:08</publishTime>
+      <publishTime>08/01/2019 16:10:24</publishTime>
     </File>
     <File Include="bin/WangYc.Core.Infrastructure.dll">
-      <publishTime>04/07/2018 20:31:04</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.Core.Infrastructure.pdb">
-      <publishTime>04/07/2018 20:31:04</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.Models.dll">
-      <publishTime>04/07/2018 20:31:05</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.Models.pdb">
-      <publishTime>04/07/2018 20:31:05</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.Models.Repository.dll">
-      <publishTime>04/07/2018 20:31:05</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.Models.Repository.pdb">
-      <publishTime>04/07/2018 20:31:05</publishTime>
+      <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.MVC.dll">
-      <publishTime>04/07/2018 20:31:09</publishTime>
+      <publishTime>08/01/2019 16:10:25</publishTime>
     </File>
     <File Include="bin/WangYc.MVC.pdb">
-      <publishTime>04/07/2018 20:31:09</publishTime>
+      <publishTime>08/01/2019 16:10:25</publishTime>
     </File>
     <File Include="bin/WangYc.Repository.NHibernate.dll">
-      <publishTime>04/07/2018 20:31:06</publishTime>
+      <publishTime>07/30/2019 14:01:50</publishTime>
     </File>
     <File Include="bin/WangYc.Repository.NHibernate.pdb">
-      <publishTime>04/07/2018 20:31:06</publishTime>
+      <publishTime>07/30/2019 14:01:50</publishTime>
     </File>
     <File Include="bin/WangYc.Services.dll">
-      <publishTime>04/07/2018 20:31:07</publishTime>
+      <publishTime>08/01/2019 16:10:23</publishTime>
     </File>
     <File Include="bin/WangYc.Services.pdb">
-      <publishTime>04/07/2018 20:31:07</publishTime>
+      <publishTime>08/01/2019 16:10:23</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/28/2018 11:31:11</publishTime>
@@ -2734,10 +2740,10 @@
       <publishTime>01/28/2018 11:31:20</publishTime>
     </File>
     <File Include="nhibernate.config">
-      <publishTime>02/04/2018 11:06:41</publishTime>
+      <publishTime>07/30/2019 09:51:14</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/07/2018 14:22:23</publishTime>
+      <publishTime>05/17/2018 22:39:43</publishTime>
     </File>
     <File Include="Scripts/bootstrap-datetimepicker.min.js">
       <publishTime>01/28/2018 11:31:31</publishTime>
@@ -3304,7 +3310,7 @@
       <publishTime>01/28/2018 11:31:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/07/2018 20:31:11</publishTime>
+      <publishTime>07/30/2019 16:06:37</publishTime>
     </File>
   </ItemGroup>
 </Project>

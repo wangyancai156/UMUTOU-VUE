@@ -17,7 +17,7 @@ namespace WangYc.Repository.NHibernate {
             string result = saleOrder.GenerateIdPrefix();
             IList list = SessionFactory.GetCurrentSession().CreateCriteria(typeof(T))
                 .SetProjection(Projections.Max("Id"))
-                .Add(Expression.Like("Id", result + "[A-Z]"))
+                .Add(Expression.Like("Id", result + "%"))
                 .List();
 
             /*
@@ -90,7 +90,7 @@ namespace WangYc.Repository.NHibernate {
             }
             IList list = SessionFactory.GetCurrentSession().CreateCriteria(typeof(T))
                    .SetProjection(Projections.Max("Id"))
-                   .Add(Expression.Like("Id", result + likeString))
+                   .Add(Expression.Like("Id", result + "%"))
                    .List();
 
             string seed = "";

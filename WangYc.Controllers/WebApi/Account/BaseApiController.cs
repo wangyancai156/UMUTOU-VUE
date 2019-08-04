@@ -21,6 +21,7 @@ namespace WangYc.Controllers.Account.WebApi {
             else
             {
                 var serializer = new JavaScriptSerializer();
+                serializer.MaxJsonLength = Int32.MaxValue;
                 str = serializer.Serialize(obj);
             }
             var result = new HttpResponseMessage { Content = new StringContent(str, Encoding.GetEncoding("UTF-8"), "application/json") };

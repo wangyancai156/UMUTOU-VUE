@@ -42,5 +42,6 @@ namespace WangYc.Services.ViewModels.HR {
 
         public virtual List<int> RoleId { get; set; }
 
+        public IList<Menu> Menu { get; set; }
     }
 }

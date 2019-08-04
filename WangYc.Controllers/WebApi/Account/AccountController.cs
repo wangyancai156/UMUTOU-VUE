@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -9,6 +10,7 @@ using WangYc.Controllers.Account.WebApi;
 using WangYc.Core.Infrastructure.CookieStorage;
 using WangYc.Services.Interfaces.Account;
 using WangYc.Services.Interfaces.HR;
+using WangYc.Services.ViewModels;
 using WangYc.Services.ViewModels.Account;
 using WangYc.Services.ViewModels.HR;
 
@@ -21,19 +23,22 @@ namespace WangYc.Controllers.WebApi.Account {
         private readonly ICookieStorageService _cookieStorageService;
         private readonly IAuthenticationService _authenticationService;
         private readonly IUserDeviceService _serDeviceService;
+        private readonly IRightsService _rightsService;
 
 
         public AccountController(
             IUsersService usersService,
             ICookieStorageService cookieStorageService,
             IAuthenticationService authenticationService,
-            IUserDeviceService serDeviceService
+            IUserDeviceService serDeviceService,
+            IRightsService rightsService
         ) {
 
             this._usersService = usersService;
             this._cookieStorageService = cookieStorageService;
             this._authenticationService = authenticationService;
             this._serDeviceService = serDeviceService;
+            this._rightsService = rightsService;
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace WangYc.Controllers.WebApi.Account {
         /// <returns></returns>
         [System.Web.Http.HttpGet]
         public HttpResponseMessage Login(string LoginName, string PassWord) {
-
+            LoginName = LoginName.ToUpper();
             AccountView account = new AccountView();
             if (string.IsNullOrWhiteSpace(LoginName)) {
                 account.code = 401;
@@ -62,7 +67,7 @@ namespace WangYc.Controllers.WebApi.Account {
             if (user != null) {
 
                 if (user.UserPwd == PassWord) {
-
+                    user.Menu = this._rightsService.GetMenuView(user.Id);
                     string strSource = LoginName + "|" + PassWord + Guid.NewGuid();
                     //获取密文字节数组
                     string token = Encode(strSource);
