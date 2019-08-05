@@ -241,13 +241,13 @@
       <publishTime>01/28/2018 11:31:10</publishTime>
     </File>
     <File Include="bin/WangYc.Controllers.dll">
-      <publishTime>08/01/2019 16:10:24</publishTime>
+      <publishTime>08/04/2019 15:30:34</publishTime>
     </File>
     <File Include="bin/WangYc.Controllers.dll.config">
       <publishTime>04/10/2018 23:16:12</publishTime>
     </File>
     <File Include="bin/WangYc.Controllers.pdb">
-      <publishTime>08/01/2019 16:10:24</publishTime>
+      <publishTime>08/04/2019 15:30:34</publishTime>
     </File>
     <File Include="bin/WangYc.Core.Infrastructure.dll">
       <publishTime>07/30/2019 14:01:49</publishTime>
@@ -268,22 +268,22 @@
       <publishTime>07/30/2019 14:01:49</publishTime>
     </File>
     <File Include="bin/WangYc.MVC.dll">
-      <publishTime>08/01/2019 16:10:25</publishTime>
+      <publishTime>08/04/2019 15:53:06</publishTime>
     </File>
     <File Include="bin/WangYc.MVC.pdb">
-      <publishTime>08/01/2019 16:10:25</publishTime>
+      <publishTime>08/04/2019 15:53:06</publishTime>
     </File>
     <File Include="bin/WangYc.Repository.NHibernate.dll">
-      <publishTime>07/30/2019 14:01:50</publishTime>
+      <publishTime>08/04/2019 15:30:33</publishTime>
     </File>
     <File Include="bin/WangYc.Repository.NHibernate.pdb">
-      <publishTime>07/30/2019 14:01:50</publishTime>
+      <publishTime>08/04/2019 15:30:33</publishTime>
     </File>
     <File Include="bin/WangYc.Services.dll">
-      <publishTime>08/01/2019 16:10:23</publishTime>
+      <publishTime>08/04/2019 15:30:34</publishTime>
     </File>
     <File Include="bin/WangYc.Services.pdb">
-      <publishTime>08/01/2019 16:10:23</publishTime>
+      <publishTime>08/04/2019 15:30:34</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/28/2018 11:31:11</publishTime>
@@ -2740,7 +2740,7 @@
       <publishTime>01/28/2018 11:31:20</publishTime>
     </File>
     <File Include="nhibernate.config">
-      <publishTime>07/30/2019 09:51:14</publishTime>
+      <publishTime>08/04/2019 14:58:40</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>05/17/2018 22:39:43</publishTime>
@@ -3310,7 +3310,7 @@
       <publishTime>01/28/2018 11:31:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/30/2019 16:06:37</publishTime>
+      <publishTime>08/04/2019 15:52:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

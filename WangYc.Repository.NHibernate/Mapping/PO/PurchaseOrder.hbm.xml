@@ -8,7 +8,7 @@
       <generator class="assigned" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-    <bag name="Detail" inverse="false" cascade="all">
+    <bag name="Detail" cascade="all-delete-orphan" inverse="true">
       <key column="PurchaseOrderId"></key>
       <one-to-many class="PurchaseOrderDetail" />
     </bag>
@@ -20,11 +20,11 @@
     <property name="IsValid" column="IsValid"></property>
     <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
+    
     <bag name="WorkflowActivity"  where="ObjectTypeId='PurchaseOrder'" inverse="true" cascade="all">
       <key column="ObjectId"></key>
       <one-to-many class="WangYc.Models.Common.WorkflowActivity" />
     </bag>
-
 
   </class>
 </hibernate-mapping>

@@ -43,10 +43,13 @@ namespace WangYc.Services.ViewModels.PO {
             get;
             set;
         }
-
-        public DateTime CreateDate {
-            get;
-            set;
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        private DateTime createdate;
+        public string CreateDate {
+            get { return createdate.ToString("yyyy-MM-dd HH:mm:ss"); }
+            set { createdate = Convert.ToDateTime(value); }
         }
 
     }

@@ -35,7 +35,7 @@
       <many-to-many class="Role" column="RoleId" />
     </bag>
 
-    <bag name="Device" cascade="all-delete-orphan" inverse="true">
+    <bag name="Device" cascade="all-delete-orphan" inverse="true" where="ExpiredTime>now()">
       <key column="UserId"></key>
       <one-to-many class="WangYc.Models.HR.UserDevice" />
     </bag>
