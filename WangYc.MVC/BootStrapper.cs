@@ -81,10 +81,10 @@ namespace WangYc.MVC
                 For<IWarehouseShelfRepository>().Use<WarehouseShelfRepository>();
                 For<IWarehouseShelfService>().Use<WarehouseShelfService>();
 
-                For<IPurchaseReceiptService>().Use<PurchaseReceiptService>();
-                For<IPurchaseReceiptRepository>().Use<PurchaseReceiptRepository>();
+                For<IArrivalReceiptService>().Use<ArrivalReceiptService>();
+                For<IArrivalReceiptRepository>().Use<ArrivalReceiptRepository>();
                 
-                For<IPurchaseReceiptDetailRepository>().Use<PurchaseReceiptDetailRepository>(); 
+                For<IArrivalReceiptDetailRepository>().Use<ArrivalReceiptDetailRepository>(); 
 
                 For<IArrivalNoticeService>().Use<ArrivalNoticeService>();
                 For<IArrivalNoticeDetailRepository>().Use<ArrivalNoticeDetailRepository>();

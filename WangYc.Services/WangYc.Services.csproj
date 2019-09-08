@@ -57,7 +57,7 @@
     <Compile Include="AutoMapperBootStrapper.cs" />
     <Compile Include="Implementations\Account\AuthenticationService.cs" />
     <Compile Include="Implementations\BW\InOutReasonService.cs" />
-    <Compile Include="Implementations\BW\PurchaseReceiptService.cs" />
+    <Compile Include="Implementations\BW\ArrivalReceiptService.cs" />
     <Compile Include="Implementations\BW\SpotInventoryService.cs" />
     <Compile Include="Implementations\BW\ArrivalNoticeService.cs" />
     <Compile Include="Implementations\Common\WorkflowActivityService.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Interfaces\Account\AuthenticationFactory.cs" />
     <Compile Include="Interfaces\Account\IAuthenticationService.cs" />
     <Compile Include="Interfaces\BW\IInOutReasonService.cs" />
-    <Compile Include="Interfaces\BW\IPurchaseReceiptService.cs" />
+    <Compile Include="Interfaces\BW\IArrivalReceiptService.cs" />
     <Compile Include="Interfaces\BW\ISpotInventoryService.cs" />
     <Compile Include="Interfaces\BW\IArrivalNoticeService.cs" />
     <Compile Include="Interfaces\Common\IWorkflowActivityService.cs" />
@@ -113,8 +113,8 @@
     <Compile Include="Interfaces\SD\IProductTypeService.cs" />
     <Compile Include="Mapping\BW\InOutBoundOfShelfMapper.cs" />
     <Compile Include="Mapping\BW\InOutReasonMapper.cs" />
-    <Compile Include="Mapping\BW\PurchaseReceiptDetailMapper.cs" />
-    <Compile Include="Mapping\BW\PurchaseReceiptMapper.cs" />
+    <Compile Include="Mapping\BW\ArrivalReceiptDetailMapper.cs" />
+    <Compile Include="Mapping\BW\ArrivalReceiptMapper.cs" />
     <Compile Include="Mapping\BW\SpotInventoryMapper.cs" />
     <Compile Include="Mapping\BW\ArrivalNoticeDetailMapper.cs" />
     <Compile Include="Mapping\Common\WorkflowActivityMapper.cs" />
@@ -145,8 +145,8 @@
     <Compile Include="Mapping\SD\ProductTypeMapper.cs" />
     <Compile Include="Messaging\Account\AccountRequest.cs" />
     <Compile Include="Messaging\BW\AddInOutReasonRequest.cs" />
-    <Compile Include="Messaging\BW\AddPurchaseReceiptRequest.cs" />
-    <Compile Include="Messaging\BW\AddPurchaseReceiptDetailRequest.cs" />
+    <Compile Include="Messaging\BW\AddArrivalReceiptRequest.cs" />
+    <Compile Include="Messaging\BW\AddArrivalReceiptDetailRequest.cs" />
     <Compile Include="Messaging\BW\AddPurchaseNoticeRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseShelfRequest.cs" />
     <Compile Include="Messaging\BW\AddWarehouseRequest.cs" />
@@ -180,8 +180,8 @@
     <Compile Include="ViewModels\Account\AccountView.cs" />
     <Compile Include="ViewModels\BW\InOutBoundOfShelfView.cs" />
     <Compile Include="ViewModels\BW\InOutReasonView.cs" />
-    <Compile Include="ViewModels\BW\PurchaseReceiptDetailView.cs" />
-    <Compile Include="ViewModels\BW\PurchaseReceiptView.cs" />
+    <Compile Include="ViewModels\BW\ArrivalReceiptDetailView.cs" />
+    <Compile Include="ViewModels\BW\ArrivalReceiptView.cs" />
     <Compile Include="ViewModels\BW\SpotInventoryView.cs" />
     <Compile Include="ViewModels\BW\ArrivalNoticeView.cs" />
     <Compile Include="ViewModels\Common\WorkflowActivityView.cs" />

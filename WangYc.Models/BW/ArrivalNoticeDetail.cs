@@ -72,7 +72,7 @@ namespace WangYc.Models.BW {
             set;
         }
 
-        public virtual IList<PurchaseReceiptDetail> ReceiptDetail {
+        public virtual IList<ArrivalReceiptDetail> ReceiptDetail {
             get;
             set;
         }
@@ -81,12 +81,12 @@ namespace WangYc.Models.BW {
 
         #region 方法
 
-        public virtual void AddReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, PurchaseReceipt purchaseReceipt, int qty, string note, string createUserId ) {
+        public virtual void AddReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, ArrivalReceipt purchaseReceipt, int qty, string note, string createUserId ) {
 
             if (this.ReceiptDetail == null) {
-                this.ReceiptDetail = new List<PurchaseReceiptDetail>() { };
+                this.ReceiptDetail = new List<ArrivalReceiptDetail>() { };
             }
-            PurchaseReceiptDetail model = new PurchaseReceiptDetail(this, purchaseReceipt, qty, note, createUserId);
+            ArrivalReceiptDetail model = new ArrivalReceiptDetail(this, purchaseReceipt, qty, note, createUserId);
             this.ReceiptDetail.Add(model);
 
             //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结

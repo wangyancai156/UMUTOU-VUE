@@ -25,20 +25,20 @@ namespace WangYc.Controllers.Controllers.BW {
         private readonly IProductService _productService;
         private readonly IWarehouseService _warehouseService;
         private readonly IWarehouseShelfService _warehouseShelfService;
-        private readonly IArrivalNoticeService _purchaseNoticeService;
+        private readonly IArrivalNoticeService _arrivalNoticeService;
         public InOutBoundController(
                 IInOutBoundService inOutBoundService,
                 IProductService productService,
                 IWarehouseService warehouseService,
                 IWarehouseShelfService warehouseShelfService,
-            IArrivalNoticeService arrivalNoticeDetailService
+            IArrivalNoticeService arrivalNoticeService
         ) {
 
             this._inOutBoundService = inOutBoundService;
             this._productService = productService;
             this._warehouseService = warehouseService;
             this._warehouseShelfService = warehouseShelfService;
-            this._purchaseNoticeService = arrivalNoticeDetailService;
+            this._arrivalNoticeService = arrivalNoticeService;
         }
 
         public ActionResult Index() {

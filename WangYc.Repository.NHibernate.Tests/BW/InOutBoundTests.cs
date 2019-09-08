@@ -14,8 +14,8 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
     public class InOutBoundTests {
 
         private readonly IInOutBoundRepository _inOutBoundRepository;
-        private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
-        private readonly IPurchaseReceiptDetailRepository _purchaseReceiptDetailRepository;
+        private readonly IArrivalReceiptRepository _arrivalReceiptRepository;
+        private readonly IArrivalReceiptDetailRepository _arrivalReceiptDetailRepository;
         private readonly IInOutReasonRepository _inOutReasonRepository;
         private readonly ISpotInventoryRepository _spotInventoryRepository;
 
@@ -24,8 +24,8 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._inOutBoundRepository = new InOutBoundRepository(uow);
-            this._purchaseReceiptRepository = new PurchaseReceiptRepository(uow);
-            this._purchaseReceiptDetailRepository = new PurchaseReceiptDetailRepository(uow);
+            this._arrivalReceiptRepository = new ArrivalReceiptRepository(uow);
+            this._arrivalReceiptDetailRepository = new ArrivalReceiptDetailRepository(uow);
             this._inOutReasonRepository = new InOutReasonRepository(uow);
             this._spotInventoryRepository = new SpotInventoryRepository(uow);
         }
@@ -38,16 +38,16 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
 
         [TestMethod]
-        public void GetPurchaseReceipt() {
+        public void GetArrivalReceipt() {
 
-            IEnumerable<PurchaseReceipt> model = this._purchaseReceiptRepository.FindAll();
+            IEnumerable<ArrivalReceipt> model = this._arrivalReceiptRepository.FindAll();
         }
 
 
         [TestMethod]
-        public void GetPurchaseReceiptDetail() {
+        public void GetArrivalReceiptDetail() {
 
-            IEnumerable<PurchaseReceiptDetail> model = this._purchaseReceiptDetailRepository.FindAll();
+            IEnumerable<ArrivalReceiptDetail> model = this._arrivalReceiptDetailRepository.FindAll();
         }
 
         [TestMethod]

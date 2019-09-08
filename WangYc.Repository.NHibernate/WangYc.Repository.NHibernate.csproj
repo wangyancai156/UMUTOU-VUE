@@ -63,8 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BW\InOutBoundOfShelfRepository.cs" />
     <Compile Include="Repositories\BW\InOutReasonRepository.cs" />
-    <Compile Include="Repositories\BW\PurchaseReceiptDetailRepository.cs" />
-    <Compile Include="Repositories\BW\PurchaseReceiptRepository.cs" />
+    <Compile Include="Repositories\BW\ArrivalReceiptDetailRepository.cs" />
+    <Compile Include="Repositories\BW\ArrivalReceiptRepository.cs" />
     <Compile Include="Repositories\BW\SpotInventoryRepository.cs" />
     <Compile Include="Repositories\BW\ArrivalNoticeDetailRepository.cs" />
     <Compile Include="Repositories\Common\WorkflowActivityNodeRepository.cs" />
@@ -175,10 +175,10 @@
     <EmbeddedResource Include="Mapping\FI\Payment.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\BW\PurchaseReceipt.hbm.xml" />
+    <EmbeddedResource Include="Mapping\BW\ArrivalReceipt.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\BW\PurchaseReceiptDetail.hbm.xml" />
+    <EmbeddedResource Include="Mapping\BW\ArrivalReceiptDetail.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\PP\Project.hbm.xml" />

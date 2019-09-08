@@ -15,17 +15,17 @@ namespace WangYc.Controllers.WebApi.BW {
     public class ArrivalNoticeController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
-        private readonly IArrivalNoticeService _purchaseNoticeService;
-        private readonly IPurchaseReceiptService _purchaseReceiptService;
+        private readonly IArrivalNoticeService _arrivalNoticeService;
+        private readonly IArrivalReceiptService _arrivalReceiptService;
 
         public ArrivalNoticeController(
                 IInOutBoundService inOutBoundService,
-                IArrivalNoticeService purchaseNoticeService,
-            IPurchaseReceiptService purchaseReceiptService
+                IArrivalNoticeService arrivalNoticeService,
+            IArrivalReceiptService arrivalReceiptService
             ) {
             this._inOutBoundService = inOutBoundService;
-            this._purchaseNoticeService = purchaseNoticeService;
-            this._purchaseReceiptService = purchaseReceiptService;
+            this._arrivalNoticeService = arrivalNoticeService;
+            this._arrivalReceiptService = arrivalReceiptService;
         }
         /// <summary>
         /// 获取到货通知
@@ -34,7 +34,7 @@ namespace WangYc.Controllers.WebApi.BW {
         /// <returns></returns>
         public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GeArrivalNoticeRequest request) {
 
-            ListPaged<ArrivalNoticeView> list = this._purchaseNoticeService.GetPurchaseOrderViewByStatus(request);
+            ListPaged<ArrivalNoticeView> list = this._arrivalNoticeService.GetPurchaseOrderViewByStatus(request);
             return ToJson(list);
         }
 
@@ -44,9 +44,9 @@ namespace WangYc.Controllers.WebApi.BW {
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public HttpResponseMessage AddPurchaseReceipt([FromUri]  AddPurchaseReceiptDetailRequest request) {
+        public HttpResponseMessage AddArrivalReceipt([FromUri]  AddArrivalReceiptDetailRequest request) {
 
-            return ToJson(this._purchaseNoticeService.AddPurchaseReceipt(request));
+            return ToJson(this._arrivalNoticeService.AddArrivalReceipt(request));
         }
         /// <summary>
         /// 获取已到货列表
@@ -57,9 +57,9 @@ namespace WangYc.Controllers.WebApi.BW {
         /// <param name="sort"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GePurchaseReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort) {
+        public HttpResponseMessage GeArrivalReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort) {
 
-            ListPaged<PurchaseReceiptDetailView> model = this._purchaseReceiptService.GetPurchaseReceiptDetailView(purchaseId, pageIndex, pageSize, sort);
+            ListPaged<ArrivalReceiptDetailView> model = this._arrivalReceiptService.GetArrivalReceiptDetailView(purchaseId, pageIndex, pageSize, sort);
             return ToJson(model);
         }
         

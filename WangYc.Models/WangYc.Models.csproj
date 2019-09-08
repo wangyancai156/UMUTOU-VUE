@@ -42,8 +42,8 @@
   <ItemGroup>
     <Compile Include="BW\InOutBoundOfShelf.cs" />
     <Compile Include="BW\InOutReason.cs" />
-    <Compile Include="BW\PurchaseReceipt.cs" />
-    <Compile Include="BW\PurchaseReceiptDetail.cs" />
+    <Compile Include="BW\ArrivalReceipt.cs" />
+    <Compile Include="BW\ArrivalReceiptDetail.cs" />
     <Compile Include="BW\SpotInventory.cs" />
     <Compile Include="Common\WorkflowActivity.cs" />
     <Compile Include="Common\WorkflowActivityNode.cs" />

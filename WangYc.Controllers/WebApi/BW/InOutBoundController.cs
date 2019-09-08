@@ -18,11 +18,11 @@ namespace WangYc.Controllers.WebApi.BW {
     public class InOutBoundController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
-        private readonly IArrivalNoticeService _purchaseNoticeService;
+        private readonly IArrivalNoticeService _arrivalNoticeService;
 
-        public InOutBoundController(IInOutBoundService inOutBoundService, IArrivalNoticeService purchaseNoticeService) {
+        public InOutBoundController(IInOutBoundService inOutBoundService, IArrivalNoticeService arrivalNoticeService) {
             this._inOutBoundService = inOutBoundService;
-            this._purchaseNoticeService = purchaseNoticeService;
+            this._arrivalNoticeService = arrivalNoticeService;
 
         }
         /// <summary>

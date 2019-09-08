@@ -21,8 +21,8 @@ namespace WangYc.Services.Implementations.BW {
 
         private readonly IArrivalNoticeDetailRepository _arrivalNoticeRepository;
         private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
-        private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
-        private readonly PurchaseReceiptService _purchaseReceiptService;   
+        private readonly IArrivalReceiptRepository _arrivalReceiptRepository;
+        private readonly ArrivalReceiptService _arrivalReceiptService;   
         private readonly IWorkflowActivityService _workflowActivityService;
 
         private readonly IUnitOfWork _uow;
@@ -30,16 +30,16 @@ namespace WangYc.Services.Implementations.BW {
         public ArrivalNoticeService(
             IArrivalNoticeDetailRepository purchaseNoticeRepository,
             IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
-            IPurchaseReceiptRepository purchaseReceiptRepository,
-            PurchaseReceiptService purchaseReceiptService,
+            IArrivalReceiptRepository purchaseReceiptRepository,
+            ArrivalReceiptService purchaseReceiptService,
             IWorkflowActivityService workflowActivityService,
             IUnitOfWork uow
         ) {
 
             this._arrivalNoticeRepository = purchaseNoticeRepository;
             this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
-            this._purchaseReceiptRepository = purchaseReceiptRepository;
-            this._purchaseReceiptService = purchaseReceiptService;
+            this._arrivalReceiptRepository = purchaseReceiptRepository;
+            this._arrivalReceiptService = purchaseReceiptService;
             this._workflowActivityService = workflowActivityService;
             this._uow = uow;
         }
@@ -98,7 +98,7 @@ namespace WangYc.Services.Implementations.BW {
 
         #region 添加
 
-        public bool AddPurchaseReceipt(AddPurchaseReceiptDetailRequest request) {
+        public bool AddArrivalReceipt(AddArrivalReceiptDetailRequest request) {
 
             ArrivalNoticeDetail model = this._arrivalNoticeRepository.FindBy(request.ArrivalNoticeId);
             if (model == null) {
@@ -109,10 +109,10 @@ namespace WangYc.Services.Implementations.BW {
             if (purchaseOrderDetail == null) {
                 throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
             }
-            AddPurchaseReceiptRequest addreceipt = new AddPurchaseReceiptRequest();
+            AddArrivalReceiptRequest addreceipt = new AddArrivalReceiptRequest();
             addreceipt.CreateUserId = request.CreateUserId;
             addreceipt.Note = "";
-            PurchaseReceipt receipt =this._purchaseReceiptService.AddPurchaseReceipt(addreceipt);
+            ArrivalReceipt receipt =this._arrivalReceiptService.AddArrivalReceipt(addreceipt);
              
             model.AddReceiptDetail(purchaseOrderDetail, receipt, request.Qty, request.Note, request.CreateUserId);
 
