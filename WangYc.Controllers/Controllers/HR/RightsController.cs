@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using WangYc.Services.Interfaces.HR;
+using WangYc.Services.Messaging.HR;
 using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Controllers.Controllers.HR {
@@ -55,13 +56,9 @@ namespace WangYc.Controllers.Controllers.HR {
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <returns></returns>
-        public JsonResult UpdateRights(int id, string name, string url, string description, string isshow) {
-            
-            bool show = false;
-            if (isshow == "1") {
-                show = true;
-            }
-            RightsView rights = this._rightsService.UpdateRights(id, name, url, description, show);
+        public JsonResult UpdateRights(AddRightsRequest request) {
+         
+            RightsView rights = this._rightsService.UpdateRights(request);
             return Json(rights, JsonRequestBehavior.AllowGet);
         }
 

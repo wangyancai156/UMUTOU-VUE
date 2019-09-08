@@ -10,17 +10,17 @@ using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Services.Mapping.BW {
     public static class PurchaseNoticeMapper {
-        public static PurchaseNoticeView ConvertToPurchaseNoticeView(this PurchaseNotice model) {
+        public static PurchaseNoticeView ConvertToPurchaseNoticeView(this PurchaseNoticeDetail model) {
 
-            return Mapper.Map<PurchaseNotice, PurchaseNoticeView>(model);
+            return Mapper.Map<PurchaseNoticeDetail, PurchaseNoticeView>(model);
         }
 
-        public static IEnumerable<PurchaseNoticeView> ConvertToPurchaseNoticeView(this IEnumerable<PurchaseNotice> model) {
+        public static IEnumerable<PurchaseNoticeView> ConvertToPurchaseNoticeView(this IEnumerable<PurchaseNoticeDetail> model) {
 
-            return Mapper.Map<IEnumerable<PurchaseNotice>, IEnumerable<PurchaseNoticeView>>(model);
+            return Mapper.Map<IEnumerable<PurchaseNoticeDetail>, IEnumerable<PurchaseNoticeView>>(model);
         }
 
-        public static ListPaged<PurchaseNoticeView> ConvertToPurchaseNoticeView(this ListPaged<PurchaseNotice> model) {
+        public static ListPaged<PurchaseNoticeView> ConvertToPurchaseNoticeView(this ListPaged<PurchaseNoticeDetail> model) {
             ListPaged<PurchaseNoticeView> view = new ListPaged<PurchaseNoticeView>();
             view.EntityList = model.EntityList.ConvertToPurchaseNoticeView().ToList();
             view.TotalCount = model.TotalCount;

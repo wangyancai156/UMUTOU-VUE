@@ -9,7 +9,7 @@
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
     <many-to-one name="PurchaseReceipt" class="WangYc.Models.BW.PurchaseReceipt" column="PurchaseReceiptId"></many-to-one>
-    <many-to-one name="PurchaseNotice" class="WangYc.Models.BW.PurchaseNotice" column="PurchaseNoticeId"></many-to-one>
+    <many-to-one name="PurchaseNoticeDetail" class="WangYc.Models.BW.PurchaseNoticeDetail" column="PurchaseNoticeDetailId"></many-to-one>
     <property name="Qty" column="Qty" ></property>
     <property name="Note" column="Note" ></property>
     <property name="IsValid" column="IsValid"></property>

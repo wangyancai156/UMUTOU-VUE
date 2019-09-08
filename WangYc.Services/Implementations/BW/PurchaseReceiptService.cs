@@ -247,11 +247,10 @@ namespace WangYc.Services.Implementations.BW {
             return model.ConvertToPurchaseReceiptDetailView();
         }
 
-        public ListPaged<PurchaseReceiptDetailView> GetPurchaseReceiptDetailView(int pageIndex, int pageSize, string sort) {
+        public ListPaged<PurchaseReceiptDetailView> GetPurchaseReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort) {
 
             Query query = new Query();
-            query.Add(Criterion.Create<PurchaseReceiptDetail>(p => p.Id, 0, CriteriaOperator.GreaterThanOrEqual));
-
+            query.Add(Criterion.Create<PurchaseReceiptDetail>(p => p.Id, purchaseId, CriteriaOperator.GreaterThanOrEqual));
             return this._purchaseReceiptDetailRepository.PagedFindBy(query, pageIndex, pageSize).ConvertToPagedView();
         }
         #endregion

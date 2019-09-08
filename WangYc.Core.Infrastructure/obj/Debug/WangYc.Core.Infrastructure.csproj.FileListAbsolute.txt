@@ -163,3 +163,4 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.I
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Core.Infrastructure\obj\Debug\WangYc.Core.Infrastructure.csprojAssemblyReference.cache

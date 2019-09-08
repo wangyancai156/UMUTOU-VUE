@@ -19,7 +19,7 @@ using WangYc.Models.PO;
 namespace WangYc.Services.Implementations.BW {
     public  class PurchaseNoticeService : IPurchaseNoticeService {
 
-        private readonly IPurchaseNoticeRepository _purchaseNoticeRepository;
+        private readonly IPurchaseNoticeDetailRepository _purchaseNoticeRepository;
         private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
         private readonly IPurchaseReceiptRepository _purchaseReceiptRepository;
         private readonly PurchaseReceiptService _purchaseReceiptService;   
@@ -28,7 +28,7 @@ namespace WangYc.Services.Implementations.BW {
         private readonly IUnitOfWork _uow;
 
         public PurchaseNoticeService(
-            IPurchaseNoticeRepository purchaseNoticeRepository,
+            IPurchaseNoticeDetailRepository purchaseNoticeRepository,
             IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
             IPurchaseReceiptRepository purchaseReceiptRepository,
             PurchaseReceiptService purchaseReceiptService,
@@ -53,7 +53,7 @@ namespace WangYc.Services.Implementations.BW {
         /// 获取待到货单
         /// </summary>
         /// <returns></returns>
-        public PurchaseNotice GetPurchaseNotice(int id) {
+        public PurchaseNoticeDetail GetPurchaseNotice(int id) {
 
             return this._purchaseNoticeRepository.FindBy(id);
         }
@@ -62,9 +62,9 @@ namespace WangYc.Services.Implementations.BW {
         /// 获取待到货单
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PurchaseNotice> GetPurchaseNotice(Query request) {
+        public IEnumerable<PurchaseNoticeDetail> GetPurchaseNotice(Query request) {
 
-            IEnumerable<PurchaseNotice> model = this._purchaseNoticeRepository.FindBy(request);
+            IEnumerable<PurchaseNoticeDetail> model = this._purchaseNoticeRepository.FindBy(request);
             return model;
         }
 
@@ -86,7 +86,8 @@ namespace WangYc.Services.Implementations.BW {
         public ListPaged<PurchaseNoticeView> GetPurchaseOrderViewByStatus(GePurchaseNoticeRequest request) {
 
             Query query = new Query();
-            query.Add(Criterion.Create<PurchaseNotice>(c => c.IsValid, true, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<PurchaseNoticeDetail>(c => c.IsValid, true, CriteriaOperator.Equal));
+            query.Add(Criterion.Create<PurchaseNoticeDetail>(c => c.PurchaseOrderDetail.PurchaseOrder.StatuId, "PO-030", CriteriaOperator.Equal));
             return this._purchaseNoticeRepository.PagedFindBy(query, request.PageIndex, request.PageSize).ConvertToPurchaseNoticeView();
         }
 
@@ -99,7 +100,7 @@ namespace WangYc.Services.Implementations.BW {
 
         public bool AddPurchaseReceipt(AddPurchaseReceiptDetailRequest request) {
 
-            PurchaseNotice model = this._purchaseNoticeRepository.FindBy(request.PurchaseNoticeId);
+            PurchaseNoticeDetail model = this._purchaseNoticeRepository.FindBy(request.PurchaseNoticeId);
             if (model == null) {
                 throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
             }
@@ -127,7 +128,7 @@ namespace WangYc.Services.Implementations.BW {
         /// <param name="request"></param>
         public void UpdatePurchaseNotice(AddPurchaseNoticeRequest request) {
 
-            PurchaseNotice model = this._purchaseNoticeRepository.FindBy(request.Id);
+            PurchaseNoticeDetail model = this._purchaseNoticeRepository.FindBy(request.Id);
 
             if (model == null) {
                 throw new EntityIsInvalidException<string>(request.Id.ToString());
@@ -145,7 +146,7 @@ namespace WangYc.Services.Implementations.BW {
         /// <param name="id"></param>
         public void RemovePurchaseNotice(int id) {
 
-            PurchaseNotice model = this._purchaseNoticeRepository.FindBy(id);
+            PurchaseNoticeDetail model = this._purchaseNoticeRepository.FindBy(id);
 
             if (model == null) {
                 throw new EntityIsInvalidException<string>(id.ToString());

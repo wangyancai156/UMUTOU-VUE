@@ -59,7 +59,7 @@ namespace WangYc.Services.Interfaces.HR {
         #endregion
 
         RightsView AddRights(AddRightsRequest request);
-        RightsView UpdateRights(int id, string name,string url, string description, bool isshow);
+        RightsView UpdateRights(AddRightsRequest request);
         void DeleteRights(int id);
 
     }

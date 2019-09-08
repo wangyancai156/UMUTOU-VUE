@@ -20,13 +20,13 @@ namespace WangYc.Services.Interfaces.BW {
         /// 获取待到货单
         /// </summary>
         /// <returns></returns>
-        PurchaseNotice GetPurchaseNotice(int id);
+        PurchaseNoticeDetail GetPurchaseNotice(int id);
 
         /// <summary>
         /// 获取待到货单
         /// </summary>
         /// <returns></returns>
-        IEnumerable<PurchaseNotice> GetPurchaseNotice(Query request);
+        IEnumerable<PurchaseNoticeDetail> GetPurchaseNotice(Query request);
 
         /// <summary>
         /// 通过id获取待到货单

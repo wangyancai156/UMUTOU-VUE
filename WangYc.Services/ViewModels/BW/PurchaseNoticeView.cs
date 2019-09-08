@@ -8,5 +8,7 @@ namespace WangYc.Services.ViewModels.BW {
    public class PurchaseNoticeView {
 
         public int Id { get; set; }
+        public int Qty { get; set; }
+       
     }
 }

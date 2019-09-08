@@ -93,7 +93,8 @@ namespace WangYc.Services.Interfaces.BW {
         /// <returns></returns>
         IEnumerable<PurchaseReceiptDetailView> GetPurchaseReceiptDetailView(Query request);
 
-        ListPaged<PurchaseReceiptDetailView> GetPurchaseReceiptDetailView(int pageIndex, int pageSize, string sort);
+        ListPaged<PurchaseReceiptDetailView> GetPurchaseReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort);
+        
         #endregion
 
         #region 修改

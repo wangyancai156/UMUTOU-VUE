@@ -69,7 +69,7 @@ namespace WangYc.Models.PO {
             set;
         }
 
-        public virtual IList<PurchaseNotice> PurchaseNotice {
+        public virtual IList<PurchaseNoticeDetail> PurchaseNoticeDetail {
             get;
             set;
         }
@@ -80,11 +80,11 @@ namespace WangYc.Models.PO {
 
         public virtual void AddPurchaseNotice(string operatorId, int qty) {
 
-            if (this.PurchaseNotice == null) {
-                this.PurchaseNotice = new List<PurchaseNotice>();
+            if (this.PurchaseNoticeDetail == null) {
+                this.PurchaseNoticeDetail = new List<PurchaseNoticeDetail>();
             }
-            PurchaseNotice one = new PurchaseNotice(this, qty, operatorId);
-            this.PurchaseNotice.Add(one);
+            PurchaseNoticeDetail one = new PurchaseNoticeDetail(this, qty, operatorId);
+            this.PurchaseNoticeDetail.Add(one);
         }
 
         #endregion

@@ -8,8 +8,8 @@ using WangYc.Models.BW;
 using WangYc.Models.Repository.BW;
 
 namespace WangYc.Repository.NHibernate.Repositories.BW {
-    public class PurchaseNoticeRepository : Repository<PurchaseNotice, int>, IPurchaseNoticeRepository {
-        public PurchaseNoticeRepository(IUnitOfWork uow)
+    public class PurchaseNoticeDetailRepository : Repository<PurchaseNoticeDetail, int>, IPurchaseNoticeDetailRepository {
+        public PurchaseNoticeDetailRepository(IUnitOfWork uow)
             : base(uow) { }
     }
 }

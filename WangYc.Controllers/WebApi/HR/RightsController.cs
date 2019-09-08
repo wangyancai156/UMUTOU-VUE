@@ -65,9 +65,15 @@ namespace WangYc.Controllers.WebApi.HR {
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage DeleteRights(int id) {
+        public HttpResponseMessage DeleteRights(string id) {
+            string[] ids = id.Split('|');
+            foreach (string i in ids) {
 
-            this._rightsService.DeleteRights(id);
+                if (i != "") {
+                    this._rightsService.DeleteRights(Convert.ToInt32(i));
+                }
+            }
+          
             return ToJson("");
         }
         /// <summary>
@@ -80,7 +86,7 @@ namespace WangYc.Controllers.WebApi.HR {
         [HttpGet]
         public HttpResponseMessage UpdateRights([FromUri] AddRightsRequest request) {
  
-            RightsView rights = this._rightsService.UpdateRights(request.Id, request.Name, request.Url, request.Description, request.IsShow);
+            RightsView rights = this._rightsService.UpdateRights( request);
             return ToJson(rights);
         }
 

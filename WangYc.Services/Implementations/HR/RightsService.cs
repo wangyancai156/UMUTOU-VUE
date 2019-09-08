@@ -180,14 +180,14 @@ namespace WangYc.Services.Implementations.HR {
 
         #region 修改
 
-        public RightsView UpdateRights(int id, string name,string url, string description, bool isshow) {
+        public RightsView UpdateRights(AddRightsRequest request) {
 
-            Rights rights = this._rightsRepository.FindBy(id);
+            Rights rights = this._rightsRepository.FindBy(request.Id);
             if (rights == null) {
-                throw new EntityIsInvalidException<string>(rights.ToString());
+                throw new EntityIsInvalidException<string>(request.Id.ToString());
             }
 
-            rights.UpdateRights(name, url, description, isshow);
+            rights.UpdateRights(request.Name, request.Url, request.Description, request.IsShow, request.Icon);
             this._uow.Commit();
             return rights.ConvertToRightsView();
         }

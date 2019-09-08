@@ -86,9 +86,9 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual Rights AddChild(string name,string url, string descriptin, bool isshow,string icon) {
+        public virtual Rights AddChild(string name,string url, string description, bool isshow,string icon) {
 
-            Rights rights = new Rights(this, name, url, descriptin, isshow,  this.Level + 1, icon);
+            Rights rights = new Rights(this, name, url, description, isshow,  this.Level + 1, icon);
             if (Child == null) {
                 Child = new List<Rights>();
                 Child.Add(rights);
@@ -110,12 +110,13 @@ namespace WangYc.Models.HR {
         /// <param name="name"></param>
         /// <param name="descriptin"></param>
         /// <returns></returns>
-        public virtual void UpdateRights(string name,string url, string description, bool isshow) {
+        public virtual void UpdateRights(string name, string url, string description, bool isshow, string icon) {
 
             this.Name = name;
             this.Description = description;
             this.IsShow = isshow;
             this.Url = url;
+            this.Icon = icon;
  
             if (this.Level == 2) {
                 this.PathName = this.Parent.Name;

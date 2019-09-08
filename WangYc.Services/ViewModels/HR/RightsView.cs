@@ -8,7 +8,7 @@ namespace WangYc.Services.ViewModels.HR {
     public class RightsView {
         public int Id { get; set; }
 
-       
+
         /// <summary>
         /// 名称
         /// </summary>
@@ -33,6 +33,8 @@ namespace WangYc.Services.ViewModels.HR {
         /// 等级
         /// </summary>
         public int Level { get; set; }
+
+        public string Icon { get; set; }
 
         /// <summary>
         /// 创建时间

@@ -8,15 +8,12 @@
       <generator class="identity" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-
-    <many-to-one name="PurchaseOrderDetail" class="WangYc.Models.PO.PurchaseOrderDetail" lazy="proxy" column="PurchaseOrderDetailId" ></many-to-one>
-    <property name="Qty" column="Qty"></property>
-    <property name="ArrivalQty" column="ArrivalQty"></property>
+    <property name="Object" column="Object"></property>
+    <property name="PurchaseNoticeTypeId" column="PurchaseNoticeTypeId"></property>
+    <property name="WarehouseId" column="WarehouseId"></property>
     <property name="Note" column="Note"></property>
     <property name="IsValid" column="IsValid"></property>
     <property name="CreateUserId" column="CreateUserId"></property>
-   
     <property name="CreateDate" column="CreateDate"></property>
-
   </class>
 </hibernate-mapping>

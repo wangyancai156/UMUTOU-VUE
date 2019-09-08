@@ -6,26 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WangYc.Controllers.Account.WebApi;
+using WangYc.Core.Infrastructure.Domain;
 using WangYc.Services.Interfaces.BW;
 using WangYc.Services.Messaging.BW;
+using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Controllers.WebApi.BW {
     public class PurchaseNoticeController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
         private readonly IPurchaseNoticeService _purchaseNoticeService;
+        private readonly IPurchaseReceiptService _purchaseReceiptService;
 
         public PurchaseNoticeController(
                 IInOutBoundService inOutBoundService,
-                IPurchaseNoticeService purchaseNoticeService
+                IPurchaseNoticeService purchaseNoticeService,
+            IPurchaseReceiptService purchaseReceiptService
             ) {
             this._inOutBoundService = inOutBoundService;
             this._purchaseNoticeService = purchaseNoticeService;
+            this._purchaseReceiptService = purchaseReceiptService;
+        }
+        /// <summary>
+        /// 获取到货通知
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GePurchaseNoticeRequest request) {
 
+            ListPaged<PurchaseNoticeView> list = this._purchaseNoticeService.GetPurchaseOrderViewByStatus(request);
+            return ToJson(list);
         }
 
+
         /// <summary>
-        /// 获取现有库存
+        /// 添加到货
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -33,5 +48,20 @@ namespace WangYc.Controllers.WebApi.BW {
 
             return ToJson(this._purchaseNoticeService.AddPurchaseReceipt(request));
         }
+        /// <summary>
+        /// 获取已到货列表
+        /// </summary>
+        /// <param name="purchaseId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sort"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public HttpResponseMessage GePurchaseReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort) {
+
+            ListPaged<PurchaseReceiptDetailView> model = this._purchaseReceiptService.GetPurchaseReceiptDetailView(purchaseId, pageIndex, pageSize, sort);
+            return ToJson(model);
+        }
+        
     }
 }
