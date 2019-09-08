@@ -370,3 +370,4 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Te
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Tests.pdb
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\NHibernate.Caches.SysCache.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\Renci.SshNet.dll
