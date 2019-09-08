@@ -173,3 +173,4 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangY
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.pdb
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\NHibernate.Caches.SysCache.dll

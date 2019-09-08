@@ -1752,7 +1752,6 @@ D:\工作\优木头\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.cspro
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.csproj.CopyComplete
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.dll
 D:\工作\优木头\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.pdb
-D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.csproj.CoreCompileInputs.cache
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\WangYc.MVC.Tests.dll.config
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\WangYc.MVC.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\WangYc.MVC.Tests.pdb
@@ -1850,6 +1849,7 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\zh-Hans\System.Spatial.
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\zh-Hant\System.Spatial.resources.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\bin\Debug\zh-Hans\System.Web.Optimization.resources.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.csprojAssemblyReference.cache
+D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.csproj.CoreCompileInputs.cache
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.MVC.Tests\obj\Debug\WangYc.MVC.Tests.pdb

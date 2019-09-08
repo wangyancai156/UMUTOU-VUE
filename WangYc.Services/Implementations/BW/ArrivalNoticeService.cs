@@ -91,9 +91,6 @@ namespace WangYc.Services.Implementations.BW {
             return this._arrivalNoticeRepository.PagedFindBy(query, request.PageIndex, request.PageSize).ConvertToArrivalNoticeView();
         }
 
-
-
-
         #endregion
 
         #region 添加
@@ -115,7 +112,6 @@ namespace WangYc.Services.Implementations.BW {
             ArrivalReceipt receipt =this._arrivalReceiptService.AddArrivalReceipt(addreceipt);
              
             model.AddReceiptDetail(purchaseOrderDetail, receipt, request.Qty, request.Note, request.CreateUserId);
-
             return true;
         }
         #endregion

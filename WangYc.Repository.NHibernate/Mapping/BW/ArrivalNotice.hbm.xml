@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="WangYc.Models.BW"
+                   assembly="WangYc.Models">
+  <class name="ArrivalNotice" abstract="true" table="ArrivalNotice" >
+    <!--主键ID必须命名为Id-->
+    <id name="Id" column="Id" type="int" unsaved-value="0">
+      <generator class="identity" />
+      <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
+    </id>
+    <property name="ArrivalNoticeTypeId" column="ArrivalNoticeTypeId"></property>
+    <property name="ObjectId" column="ObjectId"></property>
+    <property name="WarehouseId" column="WarehouseId"></property>
+    <property name="Note" column="Note"></property>
+    <property name="IsValid" column="IsValid"></property>
+    <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
+    <property name="CreateDate" column="CreateDate"></property>
+  </class>
+</hibernate-mapping>

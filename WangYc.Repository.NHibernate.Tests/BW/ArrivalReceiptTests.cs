@@ -15,13 +15,15 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
         private readonly IArrivalReceiptRepository _arrivalReceiptRepository;
         private readonly IArrivalReceiptDetailRepository _arrivalReceiptDetailRepository;
-        private readonly IArrivalNoticeDetailRepository _arrivalNoticeRepository;
+        private readonly IArrivalNoticeDetailRepository _arrivalNoticeDetailRepository;
+        private readonly IArrivalNoticeRepository _arrivalNoticeRepository;
         public ArrivalReceiptTests() {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._arrivalReceiptRepository = new ArrivalReceiptRepository(uow);
             this._arrivalReceiptDetailRepository = new ArrivalReceiptDetailRepository(uow);
-            this._arrivalNoticeRepository = new ArrivalNoticeDetailRepository(uow);
+            this._arrivalNoticeDetailRepository = new ArrivalNoticeDetailRepository(uow);
+            this._arrivalNoticeRepository = new ArrivalNoticeRepository(uow);
         }
        
         [TestMethod]
@@ -39,9 +41,15 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
 
         [TestMethod]
+        public void GetArrivalNotice() {
+
+            IEnumerable<ArrivalNotice> model = this._arrivalNoticeRepository.FindAll();
+        }
+
+        [TestMethod]
         public void GetArrivalNoticeDetail() {
 
-            IEnumerable<ArrivalNoticeDetail> model = this._arrivalNoticeRepository.FindAll();
+            IEnumerable<ArrivalNoticeDetail> model = this._arrivalNoticeDetailRepository.FindAll();
         }
 
     }
