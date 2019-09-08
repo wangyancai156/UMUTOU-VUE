@@ -18,9 +18,9 @@ namespace WangYc.Controllers.WebApi.BW {
     public class InOutBoundController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
-        private readonly IPurchaseNoticeService _purchaseNoticeService;
+        private readonly IArrivalNoticeService _purchaseNoticeService;
 
-        public InOutBoundController(IInOutBoundService inOutBoundService, IPurchaseNoticeService purchaseNoticeService) {
+        public InOutBoundController(IInOutBoundService inOutBoundService, IArrivalNoticeService purchaseNoticeService) {
             this._inOutBoundService = inOutBoundService;
             this._purchaseNoticeService = purchaseNoticeService;
 

@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WangYc.Services.Messaging.BW {
-    public class AddPurchaseNoticeRequest {
+    public class AddArrivalNoticeDetailRequest {
 
-        public int Id { get; set; }
+        public int Id { get; set; } //ArrivalNotice
     }
 }

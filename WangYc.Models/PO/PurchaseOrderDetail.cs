@@ -69,7 +69,7 @@ namespace WangYc.Models.PO {
             set;
         }
 
-        public virtual IList<PurchaseNoticeDetail> PurchaseNoticeDetail {
+        public virtual IList<ArrivalNoticeDetail> ArrivalNoticeDetail {
             get;
             set;
         }
@@ -78,13 +78,13 @@ namespace WangYc.Models.PO {
 
         #region 方法
 
-        public virtual void AddPurchaseNotice(string operatorId, int qty) {
+        public virtual void AddArrivalNoticeDetail(string operatorId, int qty) {
 
-            if (this.PurchaseNoticeDetail == null) {
-                this.PurchaseNoticeDetail = new List<PurchaseNoticeDetail>();
+            if (this.ArrivalNoticeDetail == null) {
+                this.ArrivalNoticeDetail = new List<ArrivalNoticeDetail>();
             }
-            PurchaseNoticeDetail one = new PurchaseNoticeDetail(this, qty, operatorId);
-            this.PurchaseNoticeDetail.Add(one);
+            ArrivalNoticeDetail one = new ArrivalNoticeDetail(this, qty, operatorId);
+            this.ArrivalNoticeDetail.Add(one);
         }
 
         #endregion

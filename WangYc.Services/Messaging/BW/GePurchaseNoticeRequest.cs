@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WangYc.Services.Messaging.BW {
-    public class GePurchaseNoticeRequest {
+    public class GeArrivalNoticeRequest {
         
         public int PageIndex { get; set; }
         public int PageSize { get; set; }

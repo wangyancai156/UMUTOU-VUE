@@ -263,10 +263,10 @@ namespace WangYc.Services.Implementations.BW {
         /// <param name="request"></param>
         public void UpdatePurchaseDetailReceipt(AddPurchaseReceiptDetailRequest request) {
 
-            PurchaseReceiptDetail model = this._purchaseReceiptDetailRepository.FindBy(request.PurchaseNoticeId);
+            PurchaseReceiptDetail model = this._purchaseReceiptDetailRepository.FindBy(request.ArrivalNoticeId);
 
             if (model == null) {
-                throw new EntityIsInvalidException<string>(request.PurchaseNoticeId.ToString());
+                throw new EntityIsInvalidException<string>(request.ArrivalNoticeId.ToString());
             }
 
             model.Note = request.Note;

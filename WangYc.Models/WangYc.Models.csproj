@@ -60,7 +60,7 @@
     <Compile Include="PO\PurchaseOrder.cs" />
     <Compile Include="PO\PurchaseOrderDetail.cs" />
     <Compile Include="PO\PurchaseType.cs" />
-    <Compile Include="BW\PurchaseNoticeDetail.cs" />
+    <Compile Include="BW\ArrivalNoticeDetail.cs" />
     <Compile Include="PP\Project.cs" />
     <Compile Include="PP\ProjectAttendance.cs" />
     <Compile Include="PP\ProjectMaterial.cs" />

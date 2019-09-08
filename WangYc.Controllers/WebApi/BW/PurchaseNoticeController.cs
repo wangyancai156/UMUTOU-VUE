@@ -12,15 +12,15 @@ using WangYc.Services.Messaging.BW;
 using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Controllers.WebApi.BW {
-    public class PurchaseNoticeController : BaseApiController {
+    public class ArrivalNoticeController : BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
-        private readonly IPurchaseNoticeService _purchaseNoticeService;
+        private readonly IArrivalNoticeService _purchaseNoticeService;
         private readonly IPurchaseReceiptService _purchaseReceiptService;
 
-        public PurchaseNoticeController(
+        public ArrivalNoticeController(
                 IInOutBoundService inOutBoundService,
-                IPurchaseNoticeService purchaseNoticeService,
+                IArrivalNoticeService purchaseNoticeService,
             IPurchaseReceiptService purchaseReceiptService
             ) {
             this._inOutBoundService = inOutBoundService;
@@ -32,9 +32,9 @@ namespace WangYc.Controllers.WebApi.BW {
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GePurchaseNoticeRequest request) {
+        public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GeArrivalNoticeRequest request) {
 
-            ListPaged<PurchaseNoticeView> list = this._purchaseNoticeService.GetPurchaseOrderViewByStatus(request);
+            ListPaged<ArrivalNoticeView> list = this._purchaseNoticeService.GetPurchaseOrderViewByStatus(request);
             return ToJson(list);
         }
 

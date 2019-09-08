@@ -8,7 +8,7 @@ namespace WangYc.Services.Messaging.BW {
     public class AddPurchaseReceiptDetailRequest {
 
         
-        public virtual int PurchaseNoticeId {
+        public virtual int ArrivalNoticeId {
             get;
             set;
         }

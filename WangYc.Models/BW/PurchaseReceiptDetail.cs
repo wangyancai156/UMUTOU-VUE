@@ -16,9 +16,9 @@ namespace WangYc.Models.BW {
         public PurchaseReceiptDetail() { }
 
 
-        public PurchaseReceiptDetail(PurchaseNoticeDetail purchaseNoticeDetail, PurchaseReceipt purchaseReceipt, int qty, string note, string createUserId) {
+        public PurchaseReceiptDetail(ArrivalNoticeDetail purchaseNoticeDetail, PurchaseReceipt purchaseReceipt, int qty, string note, string createUserId) {
 
-            this.PurchaseNoticeDetail = purchaseNoticeDetail;
+            this.ArrivalNoticeDetail = purchaseNoticeDetail;
             this.PurchaseReceipt = purchaseReceipt;
             this.Qty = qty;
             this.Note = note;
@@ -31,7 +31,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual PurchaseNoticeDetail PurchaseNoticeDetail {
+        public virtual ArrivalNoticeDetail ArrivalNoticeDetail {
             get;
             set;
         }

@@ -86,8 +86,8 @@ namespace WangYc.MVC
                 
                 For<IPurchaseReceiptDetailRepository>().Use<PurchaseReceiptDetailRepository>(); 
 
-                For<IPurchaseNoticeService>().Use<PurchaseNoticeService>();
-                For<IPurchaseNoticeDetailRepository>().Use<PurchaseNoticeDetailRepository>();
+                For<IArrivalNoticeService>().Use<ArrivalNoticeService>();
+                For<IArrivalNoticeDetailRepository>().Use<ArrivalNoticeDetailRepository>();
 
                 #endregion
 

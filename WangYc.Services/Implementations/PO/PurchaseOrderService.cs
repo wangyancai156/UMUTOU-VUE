@@ -236,7 +236,7 @@ namespace WangYc.Services.Implementations.PO {
                     throw new EntityIsInvalidException<string>(id.ToString());
                 }
                 model.Approval(operatorId);
-                model.AddPurchaseNotice(operatorId);
+                model.AddArrivalNoticeDetail(operatorId);
                 this._purchaseOrderRepository.Save(model);
                 this._uow.Commit();
             } catch ( Exception ex) {

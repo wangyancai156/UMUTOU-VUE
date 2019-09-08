@@ -18,9 +18,9 @@
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
 
-    <bag name="PurchaseNoticeDetail"  cascade="all-delete-orphan" inverse="true" >
+    <bag name="ArrivalNoticeDetail"  cascade="all-delete-orphan" inverse="true" >
       <key column="PurchaseOrderDetailId"></key>
-      <one-to-many class="WangYc.Models.BW.PurchaseNoticeDetail" />
+      <one-to-many class="WangYc.Models.BW.ArrivalNoticeDetail" />
     </bag>
 
   </class>
