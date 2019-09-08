@@ -31,8 +31,7 @@ namespace WangYc.Repository.NHibernate.Tests.BW {
 
             IEnumerable<ArrivalReceipt> model = this._arrivalReceiptRepository.FindAll();
         }
-
-
+        
         [TestMethod]
         public void GetArrivalReceiptDetail() {
 

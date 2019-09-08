@@ -154,6 +154,7 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\WangY
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\WangYc.Repository.NHibernate.Tests.pdb
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\NHibernate.Caches.SysCache.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\WangYc.Core.Infrastructure.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\WangYc.Models.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\WangYc.Models.Repository.dll
@@ -173,4 +174,3 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangY
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\obj\Debug\WangYc.Repository.NHibernate.Tests.pdb
-D:\wangyancai.work\UMUTOU-VUE\WangYc.Repository.NHibernate.Tests\bin\Debug\NHibernate.Caches.SysCache.dll

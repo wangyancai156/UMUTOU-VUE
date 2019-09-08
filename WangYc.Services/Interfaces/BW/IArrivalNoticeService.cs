@@ -17,34 +17,23 @@ namespace WangYc.Services.Interfaces.BW {
         #region 查找
 
         /// <summary>
-        /// 获取待到货单
+        /// 根据状态获取采购单视图
         /// </summary>
         /// <returns></returns>
-        ArrivalNoticeDetail GetArrivalNotice(int id);
-
+        ListPaged<ArrivalNoticeView> GetArrivalNoticePageView(GeArrivalNoticeRequest request);
+         
         /// <summary>
-        /// 获取待到货单
+        /// 通过id获取所有库房视图
         /// </summary>
         /// <returns></returns>
-        IEnumerable<ArrivalNoticeDetail> GetArrivalNotice(Query request);
-
-        /// <summary>
-        /// 通过id获取待到货单
-        /// </summary>
-        /// <returns></returns>
-        ArrivalNoticeView GetArrivalNoticeView(int id);
-        /// <summary>
-        /// 获取到货单
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        ListPaged<ArrivalNoticeView> GetPurchaseOrderViewByStatus(GeArrivalNoticeRequest request);
+        ArrivalNoticeDetailView GetArrivalNoticeDetailView(int id);
+      
 
         #endregion
 
         #region 添加
 
-        bool AddArrivalReceipt(AddArrivalReceiptDetailRequest request);
+        bool AddArrivalReceiptDetail(AddArrivalReceiptDetailRequest request);
 
         #endregion
 

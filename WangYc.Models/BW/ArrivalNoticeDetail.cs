@@ -19,16 +19,26 @@ namespace WangYc.Models.BW {
 
         public ArrivalNoticeDetail() { }
 
-        public ArrivalNoticeDetail(PurchaseOrderDetail purchaseOrder, int qty, string createUserId) {
+        public ArrivalNoticeDetail(PurchaseOrderDetail purchaseOrder, Product product ,int qty, string createUserId) {
 
             this.PurchaseOrderDetail = purchaseOrder;
+            this.Product = product;
             this.Qty = qty;
             this.CreateUserId = createUserId;
-            this.IsValid = true;
+            this.State = 1;
             this.CreateDate = DateTime.Now;
         }
 
+        public virtual ArrivalNotice ArrivalNotice {
+            get;
+            set;
+        }
         public virtual PurchaseOrderDetail PurchaseOrderDetail {
+            get;
+            set;
+        }
+        
+        public virtual Product Product {
             get;
             set;
         }
@@ -37,28 +47,17 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-
-        int arrivalQty;
+         
         public virtual int ArrivalQty {
-            get {
-                int var = this.ReceiptDetail.Sum(s => s.Qty);
-                return var;
-            }
-            set {
-                arrivalQty = value;
-            }
-        }
-
-        public virtual int Product {
             get;
             set;
         }
-
+    
         public virtual string Note {
             get;
             set;
         }
-        public virtual bool IsValid {
+        public virtual int State {
             get;
             set;
         }
@@ -81,7 +80,7 @@ namespace WangYc.Models.BW {
 
         #region 方法
 
-        public virtual void AddReceiptDetail(PurchaseOrderDetail purchaseOrderDetail, ArrivalReceipt purchaseReceipt, int qty, string note, string createUserId ) {
+        public virtual void AddReceiptDetail( ArrivalReceipt purchaseReceipt, int qty, string note, string createUserId ) {
 
             if (this.ReceiptDetail == null) {
                 this.ReceiptDetail = new List<ArrivalReceiptDetail>() { };
@@ -91,9 +90,12 @@ namespace WangYc.Models.BW {
 
             //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结
             this.ArrivalQty = this.ReceiptDetail.Sum(s => s.Qty);
+            
+            //如果到货单和通知单相同 则到货单的状态改为已完结
+            if (this.Qty == ArrivalQty) {
+                this.State = 2;
+            }
         }
-
-
         #endregion
     }
 }

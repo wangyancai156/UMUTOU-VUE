@@ -45,6 +45,10 @@ namespace WangYc.Services
             Mapper.CreateMap<InBoundOfShelf, InBoundOfShelfView>();
             Mapper.CreateMap<OutBoundOfShelf, OutBoundOfShelfView>();
 
+            Mapper.CreateMap<ArrivalNoticeDetail, ArrivalNoticeDetailView>();
+            Mapper.CreateMap<ArrivalNotice, ArrivalNoticeView>();
+            Mapper.CreateMap<ArrivalReceiptDetail, ArrivalReceiptDetailView>();
+            Mapper.CreateMap<ArrivalReceipt, ArrivalReceiptView>();
 
             #endregion
 

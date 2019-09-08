@@ -8,23 +8,22 @@
       <generator class="assigned" />
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
-    <bag name="Detail" cascade="all-delete-orphan" inverse="true">
+    <bag name="Detail" cascade="all-delete-orphan" inverse="true" lazy="true">
       <key column="PurchaseOrderId"></key>
       <one-to-many class="PurchaseOrderDetail" />
     </bag>
-    <many-to-one name="Supplier" class="WangYc.Models.RS.Supplier" column="SupplierId" ></many-to-one>
-    <many-to-one name="PurchaseType" class="PurchaseType" column="PurchaseTypeId" ></many-to-one>
-    <many-to-one name="PaymentType" class="WangYc.Models.FI.PaymentType" column="PaymentTypeId" ></many-to-one>
+    <many-to-one name="Supplier" class="WangYc.Models.RS.Supplier" column="SupplierId"  lazy="no-proxy"  ></many-to-one>
+    <many-to-one name="PurchaseType" class="PurchaseType" column="PurchaseTypeId" lazy="no-proxy" ></many-to-one>
+    <many-to-one name="PaymentType" class="WangYc.Models.FI.PaymentType" column="PaymentTypeId" lazy="no-proxy" ></many-to-one>
     <property name="StatuId" column="StatuId"></property>
     <property name="Note" column="Note"></property>
     <property name="IsValid" column="IsValid"></property>
     <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
-    
-    <bag name="WorkflowActivity"  where="ObjectTypeId='PurchaseOrder'" inverse="true" cascade="all">
+
+    <bag name="WorkflowActivity"  where="ObjectTypeId='PurchaseOrder'"   lazy="true" cascade="all">
       <key column="ObjectId"></key>
       <one-to-many class="WangYc.Models.Common.WorkflowActivity" />
     </bag>
-
   </class>
 </hibernate-mapping>

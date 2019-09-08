@@ -27,6 +27,7 @@ namespace WangYc.Services.Implementations.PO {
     public class PurchaseOrderService : IPurchaseOrderService {
 
         private readonly IPurchaseOrderRepository _purchaseOrderRepository;
+        private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
         private readonly IPurchaseTypeRepository _purchaseTypeRepository;
         private readonly IPaymentTypeRepository _paymentTypeRepository;
         private readonly ISupplierRepository _supplierRepository;
@@ -38,6 +39,7 @@ namespace WangYc.Services.Implementations.PO {
 
         public PurchaseOrderService(
             IPurchaseOrderRepository purchaseOrderRepository,
+            IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
             IPurchaseTypeRepository purchaseTypeRepository,
             IPaymentTypeRepository paymentTypeRepository,
             ISupplierRepository supplierRepository,
@@ -48,6 +50,7 @@ namespace WangYc.Services.Implementations.PO {
             IUnitOfWork uow
             ) {
             this._purchaseOrderRepository = purchaseOrderRepository;
+            this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
             this._purchaseTypeRepository = purchaseTypeRepository;
             this._paymentTypeRepository = paymentTypeRepository;
             this._supplierRepository = supplierRepository;
@@ -255,12 +258,21 @@ namespace WangYc.Services.Implementations.PO {
                 model.Reject(operatorId);
                 this._purchaseOrderRepository.Save(model);
                 this._uow.Commit();
-            } catch {
+            } catch (Exception ex) {
+                string ss = ex.ToString();
                 return false;
             }
             return true;
         }
 
+        private void AddArrivalNoticeDetail( IEnumerable< PurchaseOrderDetail> model, string operatorId) {
+            if (model != null) {
+                foreach (PurchaseOrderDetail one in model) {
+                    one.AddArrivalNoticeDetail(operatorId, one.Product, one.Qty);
+                    this._purchaseOrderDetailRepository.Save(one);
+                }
+            } 
+        }
 
         #endregion
 

@@ -27,7 +27,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual bool IsValid {
+        public virtual int State {
             get;
             set;
         }
@@ -40,6 +40,11 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
- 
+
+        public virtual IEnumerable<ArrivalNoticeDetail> ArrivalNoticeDetail {
+            get;
+            set;
+        }
+
     }
 }

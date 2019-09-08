@@ -78,12 +78,12 @@ namespace WangYc.Models.PO {
 
         #region 方法
 
-        public virtual void AddArrivalNoticeDetail(string operatorId, int qty) {
+        public virtual void AddArrivalNoticeDetail(string operatorId, Product product, int qty) {
 
             if (this.ArrivalNoticeDetail == null) {
                 this.ArrivalNoticeDetail = new List<ArrivalNoticeDetail>();
             }
-            ArrivalNoticeDetail one = new ArrivalNoticeDetail(this, qty, operatorId);
+            ArrivalNoticeDetail one = new ArrivalNoticeDetail(this, product, qty, operatorId);
             this.ArrivalNoticeDetail.Add(one);
         }
 

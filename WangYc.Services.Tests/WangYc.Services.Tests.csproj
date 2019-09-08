@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BW\ArrivalReceiptTest.cs" />
     <Compile Include="BW\InOutBoundTest.cs" />
     <Compile Include="BW\WarehouseShelfTest.cs" />
     <Compile Include="BW\WarehouseTest.cs" />

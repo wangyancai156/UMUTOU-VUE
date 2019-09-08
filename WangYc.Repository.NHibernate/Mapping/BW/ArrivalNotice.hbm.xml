@@ -12,8 +12,12 @@
     <property name="ObjectId" column="ObjectId"></property>
     <property name="WarehouseId" column="WarehouseId"></property>
     <property name="Note" column="Note"></property>
-    <property name="IsValid" column="IsValid"></property>
+    <property name="State" column="State"></property>
     <many-to-one name="CreateUser" class="WangYc.Models.HR.Users" column="CreateUserId" ></many-to-one>
     <property name="CreateDate" column="CreateDate"></property>
+    <bag name="ArrivalNoticeDetail" inverse="true" lazy="true" cascade="all">
+      <key column="ArrivalNoticeId"></key>
+      <one-to-many class="WangYc.Models.BW.ArrivalNoticeDetail"/>
+    </bag>
   </class>
 </hibernate-mapping>

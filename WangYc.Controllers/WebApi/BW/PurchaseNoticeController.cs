@@ -34,7 +34,7 @@ namespace WangYc.Controllers.WebApi.BW {
         /// <returns></returns>
         public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GeArrivalNoticeRequest request) {
 
-            ListPaged<ArrivalNoticeView> list = this._arrivalNoticeService.GetPurchaseOrderViewByStatus(request);
+            ListPaged<ArrivalNoticeView> list = this._arrivalNoticeService.GetArrivalNoticePageView(request);
             return ToJson(list);
         }
 
@@ -46,7 +46,7 @@ namespace WangYc.Controllers.WebApi.BW {
         /// <returns></returns>
         public HttpResponseMessage AddArrivalReceipt([FromUri]  AddArrivalReceiptDetailRequest request) {
 
-            return ToJson(this._arrivalNoticeService.AddArrivalReceipt(request));
+            return ToJson(this._arrivalNoticeService.AddArrivalReceiptDetail(request));
         }
         /// <summary>
         /// 获取已到货列表

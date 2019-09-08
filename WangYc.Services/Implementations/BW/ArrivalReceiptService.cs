@@ -22,22 +22,20 @@ namespace WangYc.Services.Implementations.BW {
 
         private readonly IArrivalReceiptRepository _arrivalReceiptRepository;
         private readonly IArrivalReceiptDetailRepository _arrivalReceiptDetailRepository;
-        private readonly IPurchaseOrderDetailRepository _purchaseOrderDetailRepository;
-        private readonly IWorkflowActivityService _workflowActivityService;
+        //private readonly IWorkflowActivityService _workflowActivityService;
         private readonly IUnitOfWork _uow;
 
         public ArrivalReceiptService(
             IArrivalReceiptRepository purchaseReceiptRepository,
             IArrivalReceiptDetailRepository purchaseReceiptDetailRepository,
-            IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
-            IWorkflowActivityService workflowActivityService,
+            //IPurchaseOrderDetailRepository purchaseOrderDetailRepository,
+            //IWorkflowActivityService workflowActivityService,
             IUnitOfWork uow
         ) {
 
             this._arrivalReceiptRepository = purchaseReceiptRepository;
             this._arrivalReceiptDetailRepository = purchaseReceiptDetailRepository;
-            this._purchaseOrderDetailRepository = purchaseOrderDetailRepository;
-            this._workflowActivityService = workflowActivityService;
+            //this._workflowActivityService = workflowActivityService;
             this._uow = uow;
         }
 
@@ -159,26 +157,18 @@ namespace WangYc.Services.Implementations.BW {
              * step.2.获取采购明细
              */
             ArrivalReceipt receipt = this.AddArrivalReceipt(request.CreateUserId);
-
-            PurchaseOrderDetail model = this._purchaseOrderDetailRepository.FindBy(request.PurchaseOrderDetailId);
-            if (model == null) {
-                throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
-            }
-
-            //ArrivalReceiptDetail receiptDetail = new ArrivalReceiptDetail(model, receipt, request.Qty, request.Note, request.IsValid, request.CreateUserId);
-            //model.AddReceiptDetail(receiptDetail);
-            //this._purchaseOrderDetailRepository.Save(model);
-
-            //如果已经全部到齐结束采购单
-            if (model.PurchaseOrder.Detail.Where(s => s.Qty > s.ArrivalQty).Count() > 0) {
-                AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
-                request_ac.ObjectId = model.PurchaseOrder.Id.ToString();
-                request_ac.ObjectTypeId = "PurchaseOrder";
-                request_ac.WorkflowNodeId = "PO-005";
-                request_ac.Note = "货物到齐全自动完结";
-                request_ac.CreateUserId = request.CreateUserId;
-                this._workflowActivityService.InsertNewActivity(request_ac);
-            }
+ 
+             
+            ////如果已经全部到齐结束采购单
+            //if (model.PurchaseOrder.Detail.Where(s => s.Qty > s.ArrivalQty).Count() > 0) {
+            //    AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
+            //    request_ac.ObjectId = model.PurchaseOrder.Id.ToString();
+            //    request_ac.ObjectTypeId = "PurchaseOrder";
+            //    request_ac.WorkflowNodeId = "PO-005";
+            //    request_ac.Note = "货物到齐全自动完结";
+            //    request_ac.CreateUserId = request.CreateUserId;
+            //    this._workflowActivityService.InsertNewActivity(request_ac);
+            //}
             this._uow.Commit();
         }
 

@@ -11,6 +11,8 @@ namespace WangYc.Services.Messaging.BW {
         public int PageSize { get; set; }
         public int? ProductId { get; set; }
         public int? WarehouseId { get; set; }
+        public int? Sate { get; set; }
+        public int?  ArrivalNoticeTypeId { get; set; }
 
     }
 }

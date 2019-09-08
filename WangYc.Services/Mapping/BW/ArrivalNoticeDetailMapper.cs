@@ -10,19 +10,19 @@ using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Services.Mapping.BW {
     public static class ArrivalNoticeDetailMapper {
-        public static ArrivalNoticeView ConvertToArrivalNoticeView(this ArrivalNoticeDetail model) {
+        public static ArrivalNoticeDetailView ConvertToArrivalNoticeDetailView(this ArrivalNoticeDetail model) {
 
-            return Mapper.Map<ArrivalNoticeDetail, ArrivalNoticeView>(model);
+            return Mapper.Map<ArrivalNoticeDetail, ArrivalNoticeDetailView>(model);
         }
 
-        public static IEnumerable<ArrivalNoticeView> ConvertToArrivalNoticeView(this IEnumerable<ArrivalNoticeDetail> model) {
+        public static IEnumerable<ArrivalNoticeDetailView> ConvertToArrivalNoticeDetailView(this IEnumerable<ArrivalNoticeDetail> model) {
 
-            return Mapper.Map<IEnumerable<ArrivalNoticeDetail>, IEnumerable<ArrivalNoticeView>>(model);
+            return Mapper.Map<IEnumerable<ArrivalNoticeDetail>, IEnumerable<ArrivalNoticeDetailView>>(model);
         }
 
-        public static ListPaged<ArrivalNoticeView> ConvertToArrivalNoticeView(this ListPaged<ArrivalNoticeDetail> model) {
-            ListPaged<ArrivalNoticeView> view = new ListPaged<ArrivalNoticeView>();
-            view.EntityList = model.EntityList.ConvertToArrivalNoticeView().ToList();
+        public static ListPaged<ArrivalNoticeDetailView> ConvertToArrivalNoticeDetailView(this ListPaged<ArrivalNoticeDetail> model) {
+            ListPaged<ArrivalNoticeDetailView> view = new ListPaged<ArrivalNoticeDetailView>();
+            view.EntityList = model.EntityList.ConvertToArrivalNoticeDetailView().ToList();
             view.TotalCount = model.TotalCount;
             view.PageCount = model.PageCount;
             view.PageIndex = model.PageIndex;

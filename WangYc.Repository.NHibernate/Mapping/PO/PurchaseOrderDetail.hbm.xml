@@ -18,7 +18,7 @@
     <property name="CreateUserId" column="CreateUserId"></property>
     <property name="CreateDate" column="CreateDate"></property>
 
-    <bag name="ArrivalNoticeDetail"  cascade="all-delete-orphan" inverse="true" >
+    <bag name="ArrivalNoticeDetail" lazy="true" cascade="all" inverse="false" >
       <key column="PurchaseOrderDetailId"></key>
       <one-to-many class="WangYc.Models.BW.ArrivalNoticeDetail" />
     </bag>

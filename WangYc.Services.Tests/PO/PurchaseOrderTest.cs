@@ -27,6 +27,7 @@ namespace WangYc.Services.Tests.PO {
 
         private readonly IPurchaseOrderService _purchaseOrderService;
         private readonly IPurchaseOrderRepository _purchaseOrderRepository;
+     
         private readonly IPurchaseTypeRepository _purchaseTypeRepository;
         private readonly IPaymentTypeRepository _paymentTypeRepository;
         private readonly ISupplierRepository _supplierRepository;
@@ -42,15 +43,16 @@ namespace WangYc.Services.Tests.PO {
 
             IUnitOfWork uow = new NHUnitOfWork();
             this._purchaseOrderRepository = new PurchaseOrderRepository(uow);
+            this._purchaseOrderDetailRepository = new PurchaseOrderDetailRepository(uow);
             this._purchaseTypeRepository = new PurchaseTypeRepository(uow);
             this._paymentTypeRepository = new PaymentTypeRepository(uow);
             this._supplierRepository = new SupplierRepository(uow);
             this._productRepository = new ProductRepository(uow);
             this._uersRepository = new UsersRepository(uow);
+             
             this._purchaseTypeService = new PurchaseTypeService(this._purchaseTypeRepository, this._uersRepository, uow);
-            this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository,null, null, null, uow);
+            this._purchaseOrderService = new PurchaseOrderService(this._purchaseOrderRepository, _purchaseOrderDetailRepository, this._purchaseTypeRepository, this._paymentTypeRepository, this._supplierRepository, this._productRepository,null, null, null, uow);
 
-            this._purchaseOrderDetailRepository = new PurchaseOrderDetailRepository(uow);
             this._purchaseOrderDetailService = new PurchaseOrderDetailService(this._purchaseOrderDetailRepository,uow);
             AutoMapperBootStrapper.ConfigureAutoMapper();
         }
@@ -72,5 +74,10 @@ namespace WangYc.Services.Tests.PO {
             this._purchaseOrderService.GetPurchaseOrderViewByStatus(null);
            
         }
+        [TestMethod]
+        public void PurchaseApproval() {
+            this._purchaseOrderService.PurchaseApproval("PO-20190908-002", "W006");
+        }
+        
     }
 }

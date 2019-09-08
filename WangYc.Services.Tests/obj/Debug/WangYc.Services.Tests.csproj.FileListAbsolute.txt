@@ -348,6 +348,8 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Services.Te
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Services.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Services.Tests.pdb
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\NHibernate.Caches.SysCache.dll
+D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\Renci.SshNet.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Core.Infrastructure.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Models.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\WangYc.Models.Repository.dll
@@ -369,5 +371,3 @@ D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Te
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Tests.csproj.CopyComplete
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Tests.dll
 D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\obj\Debug\WangYc.Services.Tests.pdb
-D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\NHibernate.Caches.SysCache.dll
-D:\wangyancai.work\UMUTOU-VUE\WangYc.Services.Tests\bin\Debug\Renci.SshNet.dll

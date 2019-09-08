@@ -170,7 +170,7 @@ namespace WangYc.Models.PO {
 
             if (this.Detail != null) {
                 foreach (PurchaseOrderDetail one in this.Detail) {
-                    one.AddArrivalNoticeDetail(operatorId, one.Qty);
+                    one.AddArrivalNoticeDetail(operatorId, one.Product, one.Qty);
                 }
             }
         }
