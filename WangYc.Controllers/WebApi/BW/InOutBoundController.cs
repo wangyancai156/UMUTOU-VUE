@@ -47,6 +47,7 @@ namespace WangYc.Controllers.WebApi.BW {
             return ToJson("出库成功");
 
         }
+
         /// <summary>
         ///  获取现货库存（分页方法）
         /// </summary>
