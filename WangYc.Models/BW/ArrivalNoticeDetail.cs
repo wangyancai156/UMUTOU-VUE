@@ -28,6 +28,7 @@ namespace WangYc.Models.BW {
             this.CreateUserId = createUserId;
             this.State = 1;
             this.CreateDate = DateTime.Now;
+
         }
 
         public virtual ArrivalNotice ArrivalNotice {
