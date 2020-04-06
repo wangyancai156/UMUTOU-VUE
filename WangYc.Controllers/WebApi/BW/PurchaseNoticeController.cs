@@ -32,7 +32,7 @@ namespace WangYc.Controllers.WebApi.BW {
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public HttpResponseMessage GetPurchaseOrderViewByStatus([FromUri]  GeArrivalNoticeRequest request) {
+        public HttpResponseMessage GetArrivalNoticePage( [FromUri]  GeArrivalNoticeRequest request) {
 
             ListPaged<ArrivalNoticeView> list = this._arrivalNoticeService.GetArrivalNoticePageView(request);
             return ToJson(list);
