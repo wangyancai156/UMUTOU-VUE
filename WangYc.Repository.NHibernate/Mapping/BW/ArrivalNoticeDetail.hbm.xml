@@ -9,7 +9,7 @@
       <!--generator：主键的生成策略，unsaved-value：主键的默认值， -->
     </id>
     <many-to-one name="ArrivalNotice" class="WangYc.Models.BW.ArrivalNotice" lazy="proxy" column="ArrivalNoticeId" ></many-to-one>
-    <many-to-one name="PurchaseOrderDetail" class="WangYc.Models.PO.PurchaseOrderDetail" lazy="proxy" column="PurchaseOrderDetailId" ></many-to-one>
+	<property name="PurchaseOrderDetailId" column="PurchaseOrderDetailId"></property>
     <many-to-one name="Product" class="WangYc.Models.SD.Product" column="ProductId" lazy="false" ></many-to-one>
     <property name="Qty" column="Qty"></property>
     <property name="ArrivalQty" column="ArrivalQty"></property>

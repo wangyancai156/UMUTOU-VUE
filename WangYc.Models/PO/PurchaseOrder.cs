@@ -165,16 +165,7 @@ namespace WangYc.Models.PO {
 
         #region 通知到货
         #endregion
-
-        public virtual void AddArrivalNoticeDetail(string operatorId) {
-
-            if (this.Detail != null) {
-                foreach (PurchaseOrderDetail one in this.Detail) {
-                    one.AddArrivalNoticeDetail(operatorId, one.Product, one.Qty);
-                }
-            }
-        }
-
+ 
         #endregion
 
 

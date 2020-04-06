@@ -5,13 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using WangYc.Core.Infrastructure.Domain;
 using WangYc.Models.HR;
+using WangYc.Models.SD;
 
 namespace WangYc.Models.BW {
-    public class ArrivalNotice : EntityBase<int>, IAggregateRoot {
+    public class ArrivalNotice:EntityBase<int>, IAggregateRoot {
+
+        #region 属性
+
+        public ArrivalNotice() { }
+
+
+        public ArrivalNotice( int arrivalNoticeTypeId,string objectId,int warehouseId,Users createUser ) {
+            this.ArrivalNoticeTypeId = arrivalNoticeTypeId;
+            this.ObjectId = objectId;
+            this.WarehouseId = warehouseId;
+            this.CreateUser = createUser;
+            this.CreateDate = DateTime.Now;
+            this.State = 1;
+        }
+
+
         protected override void Validate() {
             throw new NotImplementedException();
         }
-        public virtual string ArrivalNoticeTypeId {
+        public virtual int ArrivalNoticeTypeId {
             get;
             set;
         }
@@ -19,7 +36,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual string WarehouseId {
+        public virtual int WarehouseId {
             get;
             set;
         }
@@ -41,10 +58,24 @@ namespace WangYc.Models.BW {
             set;
         }
 
-        public virtual IEnumerable<ArrivalNoticeDetail> ArrivalNoticeDetail {
+        public virtual IList<ArrivalNoticeDetail> ArrivalNoticeDetail {
             get;
             set;
         }
+
+        #endregion
+
+        #region 方法 
+        public virtual void AddArrivalNoticeDetail( string operatorId,int itemId,Product product,int qty ) {
+
+            if(this.ArrivalNoticeDetail == null) {
+                this.ArrivalNoticeDetail = new List<ArrivalNoticeDetail>();
+            }
+            ArrivalNoticeDetail one = new ArrivalNoticeDetail(this,itemId,product,qty,operatorId);
+            this.ArrivalNoticeDetail.Add(one);
+        }
+
+        #endregion
 
     }
 }

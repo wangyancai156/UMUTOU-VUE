@@ -22,6 +22,8 @@ using WangYc.Services.Messaging.Common;
 using WangYc.Services.Interfaces.Common;
 using WangYc.Models.HR;
 using WangYc.Models.Repository.HR;
+using WangYc.Models.BW;
+using WangYc.Models.Repository.BW;
 
 namespace WangYc.Services.Implementations.PO {
     public class PurchaseOrderService : IPurchaseOrderService {
@@ -32,6 +34,7 @@ namespace WangYc.Services.Implementations.PO {
         private readonly IPaymentTypeRepository _paymentTypeRepository;
         private readonly ISupplierRepository _supplierRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IArrivalNoticeRepository _arrivalNoticeRepository;
         private readonly IWorkflowActivityService _workflowActivityService;
         private readonly IUsersRepository _usersRepository;
         private readonly IIdGenerator<PurchaseOrder, string> _purchaseOrderIdGenerator;
@@ -44,6 +47,7 @@ namespace WangYc.Services.Implementations.PO {
             IPaymentTypeRepository paymentTypeRepository,
             ISupplierRepository supplierRepository,
             IProductRepository productRepository,
+            IArrivalNoticeRepository arrivalNoticeRepository,
             IWorkflowActivityService workflowActivityService,
             IUsersRepository usersRepository,
             IIdGenerator<PurchaseOrder, string> purchaseOrderIdGenerator,
@@ -55,8 +59,9 @@ namespace WangYc.Services.Implementations.PO {
             this._paymentTypeRepository = paymentTypeRepository;
             this._supplierRepository = supplierRepository;
             this._productRepository = productRepository;
-            this._usersRepository = usersRepository;
+            this._arrivalNoticeRepository= arrivalNoticeRepository;
             this._workflowActivityService = workflowActivityService;
+            this._usersRepository = usersRepository;
             this._purchaseOrderIdGenerator = purchaseOrderIdGenerator;
             this._uow = uow;
         }
@@ -238,14 +243,31 @@ namespace WangYc.Services.Implementations.PO {
                 if (model == null) {
                     throw new EntityIsInvalidException<string>(id.ToString());
                 }
+                Users operators = this._usersRepository.FindBy(operatorId);
+                if(operatorId == null) {
+                    throw new EntityIsInvalidException<string>(operatorId);
+                }
+
                 model.Approval(operatorId);
-                model.AddArrivalNoticeDetail(operatorId);
-                this._purchaseOrderRepository.Save(model);
+                this.AddArrivalNoticeForPurchase(model.Id,operators,model.Detail);
+                this._purchaseOrderRepository.Add(model);
                 this._uow.Commit();
             } catch ( Exception ex) {
                 string ss = ex.ToString();
                 return false;
             }
+            return true;
+        }
+
+        //添加到货通知单
+        public bool AddArrivalNoticeForPurchase( string purchaseId,Users operators,IList<PurchaseOrderDetail> items ) {
+             
+            ArrivalNotice notice = new ArrivalNotice(1,purchaseId,1,operators);
+            foreach(PurchaseOrderDetail one in items) {
+                notice.AddArrivalNoticeDetail(operators.Id,one.Id,one.Product,one.Qty);
+            }
+            this._arrivalNoticeRepository.Save(notice);
+            this._uow.Commit();
             return true;
         }
 
@@ -264,16 +286,7 @@ namespace WangYc.Services.Implementations.PO {
             }
             return true;
         }
-
-        private void AddArrivalNoticeDetail( IEnumerable< PurchaseOrderDetail> model, string operatorId) {
-            if (model != null) {
-                foreach (PurchaseOrderDetail one in model) {
-                    one.AddArrivalNoticeDetail(operatorId, one.Product, one.Qty);
-                    this._purchaseOrderDetailRepository.Save(one);
-                }
-            } 
-        }
-
+ 
         #endregion
 
         #region 删除

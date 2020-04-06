@@ -83,10 +83,10 @@ namespace WangYc.MVC
 
                 For<IArrivalReceiptService>().Use<ArrivalReceiptService>();
                 For<IArrivalReceiptRepository>().Use<ArrivalReceiptRepository>();
-                
                 For<IArrivalReceiptDetailRepository>().Use<ArrivalReceiptDetailRepository>(); 
 
                 For<IArrivalNoticeService>().Use<ArrivalNoticeService>();
+                For<IArrivalNoticeRepository>().Use<ArrivalNoticeRepository>();
                 For<IArrivalNoticeDetailRepository>().Use<ArrivalNoticeDetailRepository>();
 
                 #endregion

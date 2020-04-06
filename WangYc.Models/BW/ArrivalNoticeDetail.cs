@@ -19,9 +19,10 @@ namespace WangYc.Models.BW {
 
         public ArrivalNoticeDetail() { }
 
-        public ArrivalNoticeDetail(PurchaseOrderDetail purchaseOrder, Product product ,int qty, string createUserId) {
+        public ArrivalNoticeDetail( ArrivalNotice arrivalNotice, int orderItemId, Product product ,int qty, string createUserId) {
 
-            this.PurchaseOrderDetail = purchaseOrder;
+            this.ArrivalNotice = arrivalNotice;
+            this.PurchaseOrderDetailId = orderItemId;
             this.Product = product;
             this.Qty = qty;
             this.CreateUserId = createUserId;
@@ -33,7 +34,7 @@ namespace WangYc.Models.BW {
             get;
             set;
         }
-        public virtual PurchaseOrderDetail PurchaseOrderDetail {
+        public virtual int PurchaseOrderDetailId {
             get;
             set;
         }

@@ -68,7 +68,7 @@ namespace WangYc.Services.Implementations.BW {
 
         #endregion
 
-        #region 添加
+        #region 添加到货单
 
         /// <summary>
         /// 添加到货单
@@ -114,6 +114,8 @@ namespace WangYc.Services.Implementations.BW {
 
 
         #endregion
+
+        //添加到货通知单
 
         #region 修改
 
