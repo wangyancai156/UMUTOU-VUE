@@ -26,7 +26,7 @@ namespace WangYc.Services.Interfaces.BW {
         /// 通过id获取所有库房视图
         /// </summary>
         /// <returns></returns>
-        ArrivalNoticeDetailView GetArrivalNoticeDetailView(int id);
+        IEnumerable< ArrivalNoticeDetailView> GetArrivalNoticeDetailView(int id);
       
 
         #endregion

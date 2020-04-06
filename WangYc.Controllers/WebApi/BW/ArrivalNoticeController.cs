@@ -12,7 +12,7 @@ using WangYc.Services.Messaging.BW;
 using WangYc.Services.ViewModels.BW;
 
 namespace WangYc.Controllers.WebApi.BW {
-    public class ArrivalNoticeController : BaseApiController {
+    public class ArrivalNoticeController:BaseApiController {
 
         private readonly IInOutBoundService _inOutBoundService;
         private readonly IArrivalNoticeService _arrivalNoticeService;
@@ -32,22 +32,32 @@ namespace WangYc.Controllers.WebApi.BW {
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public HttpResponseMessage GetArrivalNoticePage( [FromUri]  GeArrivalNoticeRequest request) {
+        public HttpResponseMessage GetArrivalNoticePage( [FromUri]  GeArrivalNoticeRequest request ) {
 
             ListPaged<ArrivalNoticeView> list = this._arrivalNoticeService.GetArrivalNoticePageView(request);
             return ToJson(list);
         }
 
+        /// <summary>
+        /// 获取到货通知明细
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public HttpResponseMessage GetArrivalNoticeDetail( [FromUri] int id ) {
+            IEnumerable<ArrivalNoticeDetailView> model = this._arrivalNoticeService.GetArrivalNoticeDetailView(id);
+            return ToJson(model);
+        }
 
         /// <summary>
         /// 添加到货
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public HttpResponseMessage AddArrivalReceipt([FromUri]  AddArrivalReceiptDetailRequest request) {
+        public HttpResponseMessage AddArrivalReceipt( [FromUri]  AddArrivalReceiptDetailRequest request ) {
 
             return ToJson(this._arrivalNoticeService.AddArrivalReceiptDetail(request));
         }
+
         /// <summary>
         /// 获取已到货列表
         /// </summary>
@@ -57,11 +67,11 @@ namespace WangYc.Controllers.WebApi.BW {
         /// <param name="sort"></param>
         /// <returns></returns>
         [HttpGet]
-        public HttpResponseMessage GeArrivalReceiptDetailView(string purchaseId, int pageIndex, int pageSize, string sort) {
+        public HttpResponseMessage GeArrivalReceiptDetailView( string purchaseId,int pageIndex,int pageSize,string sort ) {
 
-            ListPaged<ArrivalReceiptDetailView> model = this._arrivalReceiptService.GetArrivalReceiptDetailView(purchaseId, pageIndex, pageSize, sort);
+            ListPaged<ArrivalReceiptDetailView> model = this._arrivalReceiptService.GetArrivalReceiptDetailView(purchaseId,pageIndex,pageSize,sort);
             return ToJson(model);
         }
-        
+
     }
 }

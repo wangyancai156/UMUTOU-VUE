@@ -15,8 +15,8 @@ namespace WangYc.Models.BW {
         public ArrivalNotice() { }
 
 
-        public ArrivalNotice( int arrivalNoticeTypeId,string objectId,int warehouseId,Users createUser ) {
-            this.ArrivalNoticeTypeId = arrivalNoticeTypeId;
+        public ArrivalNotice( ArrivalNoticeType arrivalNoticeType,string objectId,int warehouseId,Users createUser ) {
+            this.ArrivalNoticeType = arrivalNoticeType;
             this.ObjectId = objectId;
             this.WarehouseId = warehouseId;
             this.CreateUser = createUser;
@@ -24,11 +24,10 @@ namespace WangYc.Models.BW {
             this.State = 1;
         }
 
-
         protected override void Validate() {
             throw new NotImplementedException();
         }
-        public virtual int ArrivalNoticeTypeId {
+        public virtual ArrivalNoticeType ArrivalNoticeType {
             get;
             set;
         }
@@ -73,6 +72,13 @@ namespace WangYc.Models.BW {
             }
             ArrivalNoticeDetail one = new ArrivalNoticeDetail(this,itemId,product,qty,operatorId);
             this.ArrivalNoticeDetail.Add(one);
+        }
+
+        public virtual void RefreshState() {
+            int counts = this.ArrivalNoticeDetail.Count(s => s.State == 1);
+            if(counts ==0) {
+                this.State = 2;
+            }
         }
 
         #endregion

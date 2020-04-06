@@ -61,9 +61,10 @@ namespace WangYc.Services.Implementations.BW {
         /// 通过id获取所有库房视图
         /// </summary>
         /// <returns></returns>
-        public ArrivalNoticeDetailView GetArrivalNoticeDetailView(int id) {
-
-            return this._arrivalNoticeDetailRepository.FindBy(id).ConvertToArrivalNoticeDetailView();
+        public IEnumerable< ArrivalNoticeDetailView> GetArrivalNoticeDetailView(int id) {
+            Query query = new Query();
+            query.Add(Criterion.Create<ArrivalNoticeDetail>(c => c.ArrivalNotice.Id,id,CriteriaOperator.Equal));
+            return this._arrivalNoticeDetailRepository.FindBy(query).ConvertToArrivalNoticeDetailView();
         }
 
         #endregion
@@ -75,11 +76,11 @@ namespace WangYc.Services.Implementations.BW {
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public bool AddArrivalReceiptDetail(AddArrivalReceiptDetailRequest request) {
+        public bool AddArrivalReceiptDetail( AddArrivalReceiptDetailRequest request ) {
 
             //获取通知到货明细
             ArrivalNoticeDetail model = this._arrivalNoticeDetailRepository.FindBy(request.ArrivalNoticeId);
-            if (model == null) {
+            if(model == null) {
                 throw new EntityIsInvalidException<string>(request.PurchaseOrderDetailId.ToString());
             }
 
@@ -89,26 +90,26 @@ namespace WangYc.Services.Implementations.BW {
             addreceipt.Note = "";
             ArrivalReceipt receipt = this._arrivalReceiptService.AddArrivalReceipt(addreceipt);
             //添加到货明细
-            model.AddReceiptDetail(receipt, request.Qty, request.Note, request.CreateUserId);
+            model.AddReceiptDetail(receipt,request.Qty,request.Note,request.CreateUserId);
             this._arrivalNoticeDetailRepository.Save(model);
             this._uow.Commit();
 
             //看看到货单的所有产品是否已经都到货了
             ArrivalNotice notice = this._arrivalNoticeRepository.FindBy(model.ArrivalNotice.Id);
-            int counts = notice.ArrivalNoticeDetail.Count(s => s.State == 1);
-            if (counts == 0 ) {
-                notice.State = 2;
-
-                //调整采购单状态
-                AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
-                request_ac.ObjectId = notice.ObjectId.ToString();
-                request_ac.ObjectTypeId = "PurchaseOrder";
-                request_ac.WorkflowNodeId = "PO-005";
-                request_ac.Note = "货物到齐全自动完结";
-                request_ac.CreateUserId = request.CreateUserId;
-                this._workflowActivityService.InsertNewActivity(request_ac);
+            if(notice.State==1) {
+                //刷新通知到货单状态
+                notice.RefreshState();
+                if(notice.State == 2) {
+                    //调整采购单状态
+                    AddWorkflowActivityRequest request_ac = new AddWorkflowActivityRequest();
+                    request_ac.ObjectId = notice.ObjectId.ToString();
+                    request_ac.ObjectTypeId = "PurchaseOrder";
+                    request_ac.WorkflowNodeId = "PO-005";
+                    request_ac.Note = "货物到齐全自动完结";
+                    request_ac.CreateUserId = request.CreateUserId;
+                    this._workflowActivityService.InsertNewActivity(request_ac);
+                }
             }
-
             return true;
         }
 

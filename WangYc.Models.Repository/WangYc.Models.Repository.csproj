@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BW\IArrivalNoticeRepository.cs" />
+    <Compile Include="BW\IArrivalNoticeTypeRepository.cs" />
     <Compile Include="BW\IInOutBoundOfShelfRepository.cs" />
     <Compile Include="BW\IInOutReasonRepository.cs" />
     <Compile Include="BW\IArrivalReceiptDetailRepository.cs" />

@@ -89,12 +89,18 @@ namespace WangYc.Models.BW {
             }
             ArrivalReceiptDetail model = new ArrivalReceiptDetail(this, purchaseReceipt, qty, note, createUserId);
             this.ReceiptDetail.Add(model);
+            RefreshState();
 
+        }
+
+        /// <summary>
+        /// 刷新到货通知单明细状态
+        /// </summary>
+        public virtual void RefreshState() {
             //添加完到货后如果到货的数量和 采购的数量一致，则调整采购状态到完结
             this.ArrivalQty = this.ReceiptDetail.Sum(s => s.Qty);
-            
             //如果到货单和通知单相同 则到货单的状态改为已完结
-            if (this.Qty == ArrivalQty) {
+            if(this.Qty == ArrivalQty) {
                 this.State = 2;
             }
         }

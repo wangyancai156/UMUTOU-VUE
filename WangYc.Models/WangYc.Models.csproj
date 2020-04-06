@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BW\ArrivalNotice.cs" />
+    <Compile Include="BW\ArrivalNoticeType.cs" />
     <Compile Include="BW\InOutBoundOfShelf.cs" />
     <Compile Include="BW\InOutReason.cs" />
     <Compile Include="BW\ArrivalReceipt.cs" />

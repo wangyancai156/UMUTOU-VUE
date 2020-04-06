@@ -261,8 +261,9 @@ namespace WangYc.Services.Implementations.PO {
 
         //添加到货通知单
         public bool AddArrivalNoticeForPurchase( string purchaseId,Users operators,IList<PurchaseOrderDetail> items ) {
-             
-            ArrivalNotice notice = new ArrivalNotice(1,purchaseId,1,operators);
+
+            ArrivalNoticeType type = new ArrivalNoticeType(1,"采购");
+            ArrivalNotice notice = new ArrivalNotice(type,purchaseId,1,operators);
             foreach(PurchaseOrderDetail one in items) {
                 notice.AddArrivalNoticeDetail(operators.Id,one.Id,one.Product,one.Qty);
             }

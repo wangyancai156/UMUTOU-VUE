@@ -112,6 +112,7 @@
     <Compile Include="Interfaces\SD\IProductService.cs" />
     <Compile Include="Interfaces\SD\IProductTypeService.cs" />
     <Compile Include="Mapping\BW\ArrivalNoticeMapper.cs" />
+    <Compile Include="Mapping\BW\ArrivalNoticeTypeMapper.cs" />
     <Compile Include="Mapping\BW\InOutBoundOfShelfMapper.cs" />
     <Compile Include="Mapping\BW\InOutReasonMapper.cs" />
     <Compile Include="Mapping\BW\ArrivalReceiptDetailMapper.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Messaging\SD\AddProductTypeRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\AccountView.cs" />
+    <Compile Include="ViewModels\BW\ArrivalNoticeTypeView.cs" />
     <Compile Include="ViewModels\BW\ArrivalNoticeView.cs" />
     <Compile Include="ViewModels\BW\InOutBoundOfShelfView.cs" />
     <Compile Include="ViewModels\BW\InOutReasonView.cs" />

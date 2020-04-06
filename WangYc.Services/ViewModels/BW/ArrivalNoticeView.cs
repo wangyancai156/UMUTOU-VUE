@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WangYc.Services.ViewModels.HR;
 
 namespace WangYc.Services.ViewModels.BW {
 
     public class ArrivalNoticeView {
 
-        public string ArrivalNoticeTypeId {
+
+        public int Id {
+            get;
+            set;
+        }
+
+        public ArrivalNoticeTypeView ArrivalNoticeType {
             get;
             set;
         }
@@ -34,12 +36,13 @@ namespace WangYc.Services.ViewModels.BW {
             get;
             set;
         }
-        public virtual DateTime CreateDate {
-            get;
-            set;
+
+        private DateTime createdate;
+        public string CreateDate {
+            get { return createdate.ToString("yyyy-MM-dd HH:mm:ss"); }
+            set { createdate = Convert.ToDateTime(value); }
         }
 
     }
 }
 
- 

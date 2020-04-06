@@ -65,7 +65,7 @@ namespace WangYc.Services.Tests.BW {
         [TestMethod]
         public void GetArrivalNoticeDetail() {
              
-            ArrivalNoticeDetailView model = this._arrivalNoticeService.GetArrivalNoticeDetailView(1);
-        }
+           IEnumerable< ArrivalNoticeDetailView>  a = this._arrivalNoticeService.GetArrivalNoticeDetailView(1);
+        } 
     }
 }

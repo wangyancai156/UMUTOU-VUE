@@ -88,6 +88,7 @@ namespace WangYc.MVC
                 For<IArrivalNoticeService>().Use<ArrivalNoticeService>();
                 For<IArrivalNoticeRepository>().Use<ArrivalNoticeRepository>();
                 For<IArrivalNoticeDetailRepository>().Use<ArrivalNoticeDetailRepository>();
+                For<IArrivalNoticeTypeRepository>().Use<ArrivalNoticeTypeRepository>();
 
                 #endregion
 

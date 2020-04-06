@@ -49,6 +49,8 @@ namespace WangYc.Services
             Mapper.CreateMap<ArrivalNotice, ArrivalNoticeView>();
             Mapper.CreateMap<ArrivalReceiptDetail, ArrivalReceiptDetailView>();
             Mapper.CreateMap<ArrivalReceipt, ArrivalReceiptView>();
+            Mapper.CreateMap<ArrivalNoticeType,ArrivalNoticeTypeView>();
+            
 
             #endregion
 
